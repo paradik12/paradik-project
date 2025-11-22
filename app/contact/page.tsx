@@ -1,86 +1,71 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
+import { useLocale } from '@/contexts/LocaleContext'
+import { translations } from '@/utils/translations'
+import { Mail, Phone, MapPin } from 'lucide-react'
 
 export default function ContactPage() {
+  const { locale } = useLocale()
+  const t = translations[locale]
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    company: '',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your API
-    console.log('Form submitted:', formData)
+    // In real app, send to API
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: '',
-      })
+      setFormData({ name: '', email: '', phone: '', message: '' })
     }, 3000)
   }
 
   return (
     <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-        تماس با ما
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        {t.nav.contact}
       </h1>
 
       <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
         {/* Contact Info */}
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-            اطلاعات تماس
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+            {locale === 'fa' ? 'اطلاعات تماس' : 'معلومات الاتصال'}
           </h2>
           <div className="space-y-4">
             <div className="flex items-start gap-4">
-              <div className="text-2xl">📍</div>
+              <MapPin className="w-6 h-6 text-primary-600 dark:text-primary-400 mt-1" />
               <div>
-                <h3 className="font-semibold text-gray-900">آدرس</h3>
-                <p className="text-gray-700">
-                  تهران، خیابان ولیعصر، پلاک 123
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {locale === 'fa' ? 'آدرس' : 'العنوان'}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {locale === 'fa' ? 'تهران، ایران' : 'طهران، إيران'}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="text-2xl">📞</div>
+              <Phone className="w-6 h-6 text-primary-600 dark:text-primary-400 mt-1" />
               <div>
-                <h3 className="font-semibold text-gray-900">تلفن</h3>
-                <p className="text-gray-700">021-12345678</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {locale === 'fa' ? 'تلفن' : 'الهاتف'}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">+98-21-12345678</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="text-2xl">📧</div>
+              <Mail className="w-6 h-6 text-primary-600 dark:text-primary-400 mt-1" />
               <div>
-                <h3 className="font-semibold text-gray-900">ایمیل</h3>
-                <p className="text-gray-700">info@paradik.com</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="text-2xl">🕒</div>
-              <div>
-                <h3 className="font-semibold text-gray-900">ساعات کاری</h3>
-                <p className="text-gray-700">
-                  شنبه تا پنج‌شنبه: 9:00 - 18:00
-                </p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  {locale === 'fa' ? 'ایمیل' : 'البريد الإلكتروني'}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">info@paradik.com</p>
               </div>
             </div>
           </div>
@@ -88,103 +73,83 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-            فرم تماس
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+            {locale === 'fa' ? 'فرم تماس' : 'نموذج الاتصال'}
           </h2>
           {submitted ? (
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
-              پیام شما با موفقیت ارسال شد!
+            <div className="bg-green-100 dark:bg-green-900 border border-green-400 text-green-700 dark:text-green-300 px-4 py-3 rounded-lg">
+              {locale === 'fa' ? 'پیام شما با موفقیت ارسال شد!' : 'تم إرسال رسالتك بنجاح!'}
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                 >
-                  نام و نام خانوادگی
+                  {locale === 'fa' ? 'نام' : 'الاسم'}
                 </label>
                 <input
                   type="text"
                   id="name"
-                  name="name"
                   value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                 >
-                  ایمیل
+                  {locale === 'fa' ? 'ایمیل' : 'البريد الإلكتروني'}
                 </label>
                 <input
                   type="email"
                   id="email"
-                  name="email"
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                 >
-                  تلفن
+                  {locale === 'fa' ? 'تلفن' : 'الهاتف'}
                 </label>
                 <input
                   type="tel"
                   id="phone"
-                  name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="company"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  نام شرکت
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                 >
-                  پیام
+                  {locale === 'fa' ? 'پیام' : 'الرسالة'}
                 </label>
                 <textarea
                   id="message"
-                  name="message"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={5}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                className="w-full bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium"
               >
-                ارسال پیام
+                {locale === 'fa' ? 'ارسال پیام' : 'إرسال الرسالة'}
               </button>
             </form>
           )}
@@ -193,5 +158,3 @@ export default function ContactPage() {
     </div>
   )
 }
-
-

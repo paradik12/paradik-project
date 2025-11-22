@@ -1,109 +1,243 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useLocale } from '@/contexts/LocaleContext'
+import { translations } from '@/utils/translations'
 import ProductCard from '@/components/ProductCard'
 import SearchBar from '@/components/SearchBar'
-import FilterPanel from '@/components/FilterPanel'
-import { getProducts } from '@/services/productService'
-
-interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
-  category: string
-}
+import { products, categories } from '@/data/mockData'
+import { Product, FilterOptions } from '@/types'
+import { Slider } from '@/components/ui/Slider'
+import { Star, Filter } from 'lucide-react'
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-  const [searchQuery, setSearchQuery] = useState('')
+  const { locale } = useLocale()
+  const searchParams = useSearchParams()
+  const t = translations[locale]
+  
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [loading, setLoading] = useState(true)
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000000])
+  const [minRating, setMinRating] = useState(0)
+  const [currency, setCurrency] = useState<'irr' | 'aed' | 'sar'>('irr')
+  const [showFilters, setShowFilters] = useState(false)
+  const [sortBy, setSortBy] = useState<'price' | 'rating' | 'newest'>('newest')
 
-  useEffect(() => {
-    loadProducts()
-  }, [])
+  const filteredProducts = useMemo(() => {
+    let filtered: Product[] = [...products]
 
-  useEffect(() => {
-    filterProducts()
-  }, [products, searchQuery, selectedCategory])
-
-  const loadProducts = async () => {
-    try {
-      setLoading(true)
-      const data = await getProducts()
-      setProducts(data)
-      setFilteredProducts(data)
-    } catch (error) {
-      console.error('Error loading products:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const filterProducts = () => {
-    let filtered = [...products]
-
-    // Filter by search query
+    // Search filter
     if (searchQuery) {
+      const query = searchQuery.toLowerCase()
       filtered = filtered.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchQuery.toLowerCase())
+        (p) =>
+          p.name[locale].toLowerCase().includes(query) ||
+          p.description[locale].toLowerCase().includes(query) ||
+          p.manufacturerName[locale].toLowerCase().includes(query)
       )
     }
 
-    // Filter by category
+    // Category filter
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter((product) => product.category === selectedCategory)
+      const category = categories.find((c) => c.id === selectedCategory)
+      if (category) {
+        filtered = filtered.filter((p) => p.category === category.name.fa)
+      }
     }
 
-    setFilteredProducts(filtered)
-  }
+    // Price filter
+    filtered = filtered.filter((p) => {
+      const price = p.price[currency] || p.price.irr
+      return price >= priceRange[0] && price <= priceRange[1]
+    })
 
-  const categories = ['all', ...new Set(products.map((p) => p.category))]
+    // Rating filter
+    filtered = filtered.filter((p) => p.rating >= minRating)
+
+    // Sort
+    filtered.sort((a, b) => {
+      if (sortBy === 'price') {
+        return (a.price[currency] || a.price.irr) - (b.price[currency] || b.price.irr)
+      }
+      if (sortBy === 'rating') {
+        return b.rating - a.rating
+      }
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
+
+    return filtered
+  }, [searchQuery, selectedCategory, priceRange, minRating, currency, sortBy, locale])
+
+  const maxPrice = Math.max(...products.map((p) => p.price[currency] || p.price.irr))
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-        محصولات
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+        {t.products.title}
       </h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Filter Panel */}
-        <aside className="lg:w-1/4">
-          <FilterPanel
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+        {/* Filters Sidebar */}
+        <aside className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-24">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                <Filter size={20} />
+                {t.products.filters}
+              </h2>
+              <button
+                onClick={() => setShowFilters(false)}
+                className="lg:hidden text-gray-500"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Category Filter */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t.products.category}
+              </label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              >
+                <option value="all">{locale === 'fa' ? 'همه دسته‌ها' : 'جميع الفئات'}</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name[locale]}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Price Range */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t.products.price}
+              </label>
+              <div className="space-y-2">
+                <input
+                  type="range"
+                  min="0"
+                  max={maxPrice}
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+                  <span>0</span>
+                  <span>{priceRange[1].toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Rating Filter */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t.products.rating}
+              </label>
+              <div className="flex items-center gap-2">
+                {[4, 3, 2, 1].map((rating) => (
+                  <button
+                    key={rating}
+                    onClick={() => setMinRating(minRating === rating ? 0 : rating)}
+                    className={`flex items-center gap-1 px-3 py-1 rounded ${
+                      minRating >= rating
+                        ? 'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                    }`}
+                  >
+                    <Star
+                      className={`w-4 h-4 ${
+                        minRating >= rating ? 'fill-yellow-400 text-yellow-400' : ''
+                      }`}
+                    />
+                    <span>{rating}+</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Currency Selector */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t.products.currency}
+              </label>
+              <div className="flex gap-2">
+                {(['irr', 'aed', 'sar'] as const).map((curr) => (
+                  <button
+                    key={curr}
+                    onClick={() => setCurrency(curr)}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                      currency === curr
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
+                    {curr.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </aside>
 
         {/* Main Content */}
         <div className="lg:w-3/4">
-          <div className="mb-6">
-            <SearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-              placeholder="جستجوی محصولات..."
-            />
+          {/* Search and Sort */}
+          <div className="mb-6 space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <SearchBar
+                  placeholder={t.home.searchPlaceholder}
+                  onSearch={setSearchQuery}
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(true)}
+                className="lg:hidden px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg"
+              >
+                <Filter size={20} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p className="text-gray-600 dark:text-gray-400">
+                {filteredProducts.length}{' '}
+                {locale === 'fa' ? 'محصول یافت شد' : 'منتج موجود'}
+              </p>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              >
+                <option value="newest">
+                  {locale === 'fa' ? 'جدیدترین' : 'الأحدث'}
+                </option>
+                <option value="price">
+                  {locale === 'fa' ? 'قیمت' : 'السعر'}
+                </option>
+                <option value="rating">
+                  {locale === 'fa' ? 'امتیاز' : 'التقييم'}
+                </option>
+              </select>
+            </div>
           </div>
 
-          {loading ? (
+          {/* Products Grid */}
+          {filteredProducts.length === 0 ? (
             <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-              <p className="mt-4 text-gray-600">در حال بارگذاری...</p>
-            </div>
-          ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">محصولی یافت نشد</p>
+              <p className="text-gray-600 dark:text-gray-400 text-lg">
+                {t.common.noResults}
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} currency={currency} />
               ))}
             </div>
           )}
@@ -112,5 +246,3 @@ export default function ProductsPage() {
     </div>
   )
 }
-
-
