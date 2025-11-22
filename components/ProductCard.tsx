@@ -45,12 +45,12 @@ export default function ProductCard({ product, currency = 'irr' }: ProductCardPr
           </div>
 
           {/* Name */}
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2 leading-snug">
             {name}
           </h3>
 
           {/* Description */}
-          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 flex-grow">
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 flex-grow leading-relaxed">
             {description}
           </p>
 
@@ -66,7 +66,7 @@ export default function ProductCard({ product, currency = 'irr' }: ProductCardPr
           </div>
 
           {/* MOQ and Price */}
-          <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between mb-3 pt-3 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
               <Package className="w-4 h-4" />
               <span>
@@ -74,11 +74,22 @@ export default function ProductCard({ product, currency = 'irr' }: ProductCardPr
               </span>
             </div>
             <div className="text-right">
-              <div className="text-xl font-bold text-primary-600 dark:text-primary-400">
+              <div className="text-xl font-bold text-primary-500 dark:text-primary-400">
                 {formatPrice(price, currency, locale)}
               </div>
             </div>
           </div>
+
+          {/* View Details Button */}
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              window.location.href = `/products/${product.id}`
+            }}
+            className="w-full mt-auto bg-primary-500 hover:bg-primary-600 text-white px-4 py-2.5 rounded-lg transition-all duration-300 font-semibold text-sm shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            مشاهده جزئیات
+          </button>
         </div>
       </div>
     </Link>

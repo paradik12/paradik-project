@@ -8,7 +8,9 @@ import ProductCard from '@/components/ProductCard'
 import SearchBar from '@/components/SearchBar'
 import { products, categories } from '@/data/mockData'
 import { Product } from '@/types'
-import { Star, Filter } from 'lucide-react'
+import { Star, Filter, ChevronRight, ChevronLeft } from 'lucide-react'
+
+const ITEMS_PER_PAGE = 12
 
 export default function ProductsContent() {
   const { locale } = useLocale()
@@ -22,6 +24,7 @@ export default function ProductsContent() {
   const [currency, setCurrency] = useState<'irr' | 'aed' | 'sar'>('irr')
   const [showFilters, setShowFilters] = useState(false)
   const [sortBy, setSortBy] = useState<'price' | 'rating' | 'newest'>('newest')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const filteredProducts = useMemo(() => {
     let filtered: Product[] = [...products]
@@ -68,18 +71,34 @@ export default function ProductsContent() {
     return filtered
   }, [searchQuery, selectedCategory, priceRange, minRating, currency, sortBy, locale])
 
+  // Pagination
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE)
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useMemo(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedCategory, priceRange, minRating, sortBy])
+
   const maxPrice = Math.max(...products.map((p) => p.price[currency] || p.price.irr))
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+    <div className="container mx-auto px-4 py-12">
+      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-10">
         {t.products.title}
       </h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
         <aside className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-24">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-28">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                 <Filter size={20} />
@@ -101,7 +120,7 @@ export default function ProductsContent() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base"
               >
                 <option value="all">{locale === 'fa' ? 'همه دسته‌ها' : 'جميع الفئات'}</option>
                 {categories.map((cat) => (
@@ -143,7 +162,7 @@ export default function ProductsContent() {
                   <button
                     key={rating}
                     onClick={() => setMinRating(minRating === rating ? 0 : rating)}
-                    className={`flex items-center gap-1 px-3 py-1 rounded ${
+                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm ${
                       minRating >= rating
                         ? 'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
@@ -172,7 +191,7 @@ export default function ProductsContent() {
                     onClick={() => setCurrency(curr)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium ${
                       currency === curr
-                        ? 'bg-primary-600 text-white'
+                        ? 'bg-primary-500 text-white'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                     }`}
                   >
@@ -187,7 +206,7 @@ export default function ProductsContent() {
         {/* Main Content */}
         <div className="lg:w-3/4">
           {/* Search and Sort */}
-          <div className="mb-6 space-y-4">
+          <div className="mb-8 space-y-4">
             <div className="flex items-center gap-4">
               <div className="flex-1">
                 <SearchBar
@@ -197,21 +216,21 @@ export default function ProductsContent() {
               </div>
               <button
                 onClick={() => setShowFilters(true)}
-                className="lg:hidden px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg"
+                className="lg:hidden px-4 py-3 bg-gray-200 dark:bg-gray-700 rounded-lg"
               >
                 <Filter size={20} />
               </button>
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-lg text-gray-600 dark:text-gray-400">
                 {filteredProducts.length}{' '}
                 {locale === 'fa' ? 'محصول یافت شد' : 'منتج موجود'}
               </p>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-base"
               >
                 <option value="newest">
                   {locale === 'fa' ? 'جدیدترین' : 'الأحدث'}
@@ -227,22 +246,77 @@ export default function ProductsContent() {
           </div>
 
           {/* Products Grid */}
-          {filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
+          {paginatedProducts.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-xl text-gray-600 dark:text-gray-400">
                 {t.common.noResults}
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} currency={currency} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {paginatedProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} currency={currency} />
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-12 flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                    // Show first page, last page, current page, and pages around current
+                    if (
+                      page === 1 ||
+                      page === totalPages ||
+                      (page >= currentPage - 1 && page <= currentPage + 1)
+                    ) {
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                            currentPage === page
+                              ? 'bg-primary-500 text-white'
+                              : 'border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      )
+                    } else if (
+                      page === currentPage - 2 ||
+                      page === currentPage + 2
+                    ) {
+                      return (
+                        <span key={page} className="px-2 text-gray-500">
+                          ...
+                        </span>
+                      )
+                    }
+                    return null
+                  })}
+
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
     </div>
   )
 }
-

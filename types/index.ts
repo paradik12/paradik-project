@@ -68,12 +68,17 @@ export interface Manufacturer {
 
 export interface Category {
   id: string
+  slug: string
   name: {
     fa: string
     ar: string
   }
   icon: string
   productCount: number
+  description?: {
+    fa: string
+    ar: string
+  }
 }
 
 export interface User {

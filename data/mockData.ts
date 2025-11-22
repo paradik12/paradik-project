@@ -3,39 +3,135 @@ import { Product, Manufacturer, Category } from '@/types'
 export const categories: Category[] = [
   {
     id: '1',
-    name: { fa: 'الکترونیک', ar: 'إلكترونيات' },
-    icon: '⚡',
+    slug: 'plastic',
+    name: { fa: 'پلاستیک', ar: 'بلاستيك' },
+    icon: '🧴',
     productCount: 245,
+    description: {
+      fa: 'محصولات پلاستیکی صنعتی و خانگی با کیفیت بالا',
+      ar: 'منتجات بلاستيكية صناعية ومنزلية عالية الجودة',
+    },
   },
   {
     id: '2',
-    name: { fa: 'پوشاک', ar: 'ملابس' },
-    icon: '👕',
+    slug: 'home-appliances',
+    name: { fa: 'لوازم خانگی', ar: 'أدوات منزلية' },
+    icon: '🏠',
     productCount: 189,
+    description: {
+      fa: 'تجهیزات و لوازم خانگی مدرن و با کیفیت',
+      ar: 'معدات وأدوات منزلية حديثة وعالية الجودة',
+    },
   },
   {
     id: '3',
-    name: { fa: 'مواد غذایی', ar: 'مواد غذائية' },
-    icon: '🍎',
+    slug: 'apparel',
+    name: { fa: 'پوشاک', ar: 'ملابس' },
+    icon: '👕',
     productCount: 156,
+    description: {
+      fa: 'پوشاک و منسوجات برای تمام سنین',
+      ar: 'ملابس ومنسوجات لجميع الأعمار',
+    },
   },
   {
     id: '4',
-    name: { fa: 'مکانیک', ar: 'ميكانيكي' },
-    icon: '🔧',
+    slug: 'food',
+    name: { fa: 'مواد غذایی', ar: 'مواد غذائية' },
+    icon: '🍎',
     productCount: 203,
+    description: {
+      fa: 'مواد غذایی و نوشیدنی با استانداردهای بهداشتی',
+      ar: 'مواد غذائية ومشروبات بمعايير صحية',
+    },
   },
   {
     id: '5',
-    name: { fa: 'نرم‌افزار', ar: 'برمجيات' },
-    icon: '💻',
-    productCount: 98,
+    slug: 'machinery',
+    name: { fa: 'ماشین‌آلات', ar: 'آلات' },
+    icon: '⚙️',
+    productCount: 167,
+    description: {
+      fa: 'ماشین‌آلات صنعتی و تجهیزات تولیدی',
+      ar: 'آلات صناعية ومعدات إنتاجية',
+    },
   },
   {
     id: '6',
+    slug: 'electronics',
+    name: { fa: 'الکترونیک', ar: 'إلكترونيات' },
+    icon: '⚡',
+    productCount: 298,
+    description: {
+      fa: 'تجهیزات الکترونیکی و دیجیتال',
+      ar: 'معدات إلكترونية ورقمية',
+    },
+  },
+  {
+    id: '7',
+    slug: 'construction',
     name: { fa: 'ساختمان', ar: 'بناء' },
     icon: '🏗️',
-    productCount: 167,
+    productCount: 234,
+    description: {
+      fa: 'مصالح ساختمانی و تجهیزات ساخت و ساز',
+      ar: 'مواد بناء ومعدات البناء',
+    },
+  },
+  {
+    id: '8',
+    slug: 'textiles',
+    name: { fa: 'منسوجات', ar: 'منسوجات' },
+    icon: '🧵',
+    productCount: 178,
+    description: {
+      fa: 'پارچه و منسوجات صنعتی',
+      ar: 'أقمشة ومنسوجات صناعية',
+    },
+  },
+  {
+    id: '9',
+    slug: 'chemicals',
+    name: { fa: 'مواد شیمیایی', ar: 'مواد كيميائية' },
+    icon: '🧪',
+    productCount: 145,
+    description: {
+      fa: 'مواد شیمیایی صنعتی و آزمایشگاهی',
+      ar: 'مواد كيميائية صناعية ومخبرية',
+    },
+  },
+  {
+    id: '10',
+    slug: 'automotive',
+    name: { fa: 'خودرو', ar: 'سيارات' },
+    icon: '🚗',
+    productCount: 267,
+    description: {
+      fa: 'قطعات و لوازم یدکی خودرو',
+      ar: 'قطع غيار ولوازم سيارات',
+    },
+  },
+  {
+    id: '11',
+    slug: 'packaging',
+    name: { fa: 'بسته‌بندی', ar: 'تغليف' },
+    icon: '📦',
+    productCount: 198,
+    description: {
+      fa: 'مواد و تجهیزات بسته‌بندی',
+      ar: 'مواد ومعدات التغليف',
+    },
+  },
+  {
+    id: '12',
+    slug: 'tools',
+    name: { fa: 'ابزار', ar: 'أدوات' },
+    icon: '🔧',
+    productCount: 312,
+    description: {
+      fa: 'ابزار و تجهیزات صنعتی',
+      ar: 'أدوات ومعدات صناعية',
+    },
   },
 ]
 
@@ -48,7 +144,7 @@ export const manufacturers: Manufacturer[] = [
       fa: 'تولیدکننده پیشرو در زمینه تجهیزات الکترونیکی با بیش از 20 سال تجربه',
       ar: 'مصنع رائد في مجال المعدات الإلكترونية مع أكثر من 20 عامًا من الخبرة',
     },
-    category: ['الکترونیک', 'مکانیک'],
+    category: ['الکترونیک', 'ماشین‌آلات'],
     location: { city: 'تهران', country: 'ایران' },
     rating: 4.8,
     reviewCount: 324,
@@ -93,28 +189,104 @@ export const manufacturers: Manufacturer[] = [
   },
   {
     id: 'm3',
-    name: { fa: 'شرکت نرم‌افزاری پارس', ar: 'شركة البرمجيات فارس' },
-    logo: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=200',
+    name: { fa: 'شرکت پلاستیک پارس', ar: 'شركة البلاستيك فارس' },
+    logo: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200',
     description: {
-      fa: 'توسعه‌دهنده راه‌حل‌های نرم‌افزاری برای کسب‌وکارها',
-      ar: 'مطور حلول برمجية للشركات',
+      fa: 'تولیدکننده محصولات پلاستیکی صنعتی و خانگی با استانداردهای بین‌المللی',
+      ar: 'مصنع المنتجات البلاستيكية الصناعية والمنزلية بمعايير دولية',
     },
-    category: ['نرم‌افزار'],
+    category: ['پلاستیک', 'لوازم خانگی'],
     location: { city: 'شیراز', country: 'ایران' },
-    rating: 4.9,
-    reviewCount: 456,
-    productCount: 18,
+    rating: 4.7,
+    reviewCount: 267,
+    productCount: 58,
     verified: true,
-    badges: ['Verified', 'Top Seller', 'Innovation Award'],
+    badges: ['Verified', 'ISO Certified'],
     contact: {
-      email: 'sales@pars-software.com',
+      email: 'sales@pars-plastic.com',
       phone: '+98-71-12345678',
-      website: 'https://pars-software.com',
+      website: 'https://pars-plastic.com',
+    },
+    trustIndicators: {
+      yearsInBusiness: 18,
+      totalOrders: 12350,
+      responseRate: 97,
+    },
+  },
+  {
+    id: 'm4',
+    name: { fa: 'کارخانه مواد غذایی کیمیا', ar: 'مصنع المواد الغذائية كيميا' },
+    logo: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=200',
+    description: {
+      fa: 'تولیدکننده مواد غذایی با کیفیت و بهداشتی برای بازارهای داخلی و صادراتی',
+      ar: 'مصنع مواد غذائية عالية الجودة والصحية للأسواق المحلية والتصدير',
+    },
+    category: ['مواد غذایی'],
+    location: { city: 'مشهد', country: 'ایران' },
+    rating: 4.9,
+    reviewCount: 412,
+    productCount: 67,
+    verified: true,
+    badges: ['Verified', 'Halal Certified', 'Top Seller'],
+    contact: {
+      email: 'info@kimia-food.com',
+      phone: '+98-51-12345678',
+    },
+    trustIndicators: {
+      yearsInBusiness: 25,
+      totalOrders: 18920,
+      responseRate: 99,
+    },
+  },
+  {
+    id: 'm5',
+    name: { fa: 'صنایع ماشین‌آلات صنعتی', ar: 'صناعات الآلات الصناعية' },
+    logo: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=200',
+    description: {
+      fa: 'تولیدکننده ماشین‌آلات صنعتی و تجهیزات تولیدی با تکنولوژی روز',
+      ar: 'مصنع الآلات الصناعية ومعدات الإنتاج بتكنولوجيا حديثة',
+    },
+    category: ['ماشین‌آلات'],
+    location: { city: 'تبریز', country: 'ایران' },
+    rating: 4.8,
+    reviewCount: 298,
+    productCount: 42,
+    verified: true,
+    badges: ['Verified', 'Innovation Award'],
+    contact: {
+      email: 'sales@industrial-machinery.com',
+      phone: '+98-41-12345678',
+      website: 'https://industrial-machinery.com',
+    },
+    trustIndicators: {
+      yearsInBusiness: 22,
+      totalOrders: 11230,
+      responseRate: 96,
+    },
+  },
+  {
+    id: 'm6',
+    name: { fa: 'کارخانه لوازم خانگی سینا', ar: 'مصنع الأدوات المنزلية سينا' },
+    logo: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200',
+    description: {
+      fa: 'تولیدکننده لوازم خانگی مدرن و با کیفیت برای زندگی روزمره',
+      ar: 'مصنع أدوات منزلية حديثة وعالية الجودة للحياة اليومية',
+    },
+    category: ['لوازم خانگی'],
+    location: { city: 'قم', country: 'ایران' },
+    rating: 4.5,
+    reviewCount: 156,
+    productCount: 28,
+    verified: true,
+    badges: ['Verified'],
+    contact: {
+      email: 'info@sina-home.com',
+      phone: '+98-25-12345678',
     },
     trustIndicators: {
       yearsInBusiness: 12,
-      totalOrders: 5230,
-      responseRate: 99,
+      totalOrders: 6540,
+      responseRate: 94,
     },
   },
 ]
@@ -186,29 +358,29 @@ export const products: Product[] = [
   {
     id: 'p3',
     name: {
-      fa: 'نرم‌افزار مدیریت فروش',
-      ar: 'برنامج إدارة المبيعات',
-      en: 'Sales Management Software',
+      fa: 'بطری پلاستیکی صنعتی',
+      ar: 'زجاجة بلاستيكية صناعية',
+      en: 'Industrial Plastic Bottle',
     },
     description: {
-      fa: 'راه‌حل کامل برای مدیریت فروش و مشتریان با رابط کاربری ساده',
-      ar: 'حل كامل لإدارة المبيعات والعملاء بواجهة مستخدم بسيطة',
-      en: 'Complete solution for sales and customer management with simple UI',
+      fa: 'بطری پلاستیکی مقاوم و با کیفیت برای استفاده در صنایع غذایی و شیمیایی',
+      ar: 'زجاجة بلاستيكية مقاومة وعالية الجودة للاستخدام في الصناعات الغذائية والكيميائية',
+      en: 'Durable and high-quality plastic bottle for food and chemical industries',
     },
     price: {
-      irr: 5000000,
-      aed: 500,
-      sar: 500,
+      irr: 85000,
+      aed: 8.5,
+      sar: 8.5,
     },
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500',
-    category: 'نرم‌افزار',
+    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500',
+    category: 'پلاستیک',
     manufacturerId: 'm3',
-    manufacturerName: { fa: 'شرکت نرم‌افزاری پارس', ar: 'شركة البرمجيات فارس' },
-    moq: 1,
-    rating: 4.9,
-    reviewCount: 234,
+    manufacturerName: { fa: 'شرکت پلاستیک پارس', ar: 'شركة البلاستيك فارس' },
+    moq: 100,
+    rating: 4.6,
+    reviewCount: 124,
     inStock: true,
-    createdAt: '2024-01-10',
+    createdAt: '2024-01-18',
   },
   {
     id: 'p4',
@@ -228,9 +400,9 @@ export const products: Product[] = [
       sar: 850,
     },
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500',
-    category: 'مکانیک',
-    manufacturerId: 'm1',
-    manufacturerName: { fa: 'صنایع الکترونیک تهران', ar: 'صناعات إلكترونيات طهران' },
+    category: 'ماشین‌آلات',
+    manufacturerId: 'm5',
+    manufacturerName: { fa: 'صنایع ماشین‌آلات صنعتی', ar: 'صناعات الآلات الصناعية' },
     moq: 5,
     rating: 4.6,
     reviewCount: 67,
@@ -267,29 +439,136 @@ export const products: Product[] = [
   {
     id: 'p6',
     name: {
-      fa: 'سیستم ERP سازمانی',
-      ar: 'نظام ERP المؤسسي',
-      en: 'Enterprise ERP System',
+      fa: 'روغن خوراکی صنعتی',
+      ar: 'زيت طعامي صناعي',
+      en: 'Industrial Cooking Oil',
     },
     description: {
-      fa: 'سیستم جامع مدیریت منابع سازمانی با قابلیت‌های پیشرفته',
-      ar: 'نظام شامل لإدارة الموارد المؤسسية مع إمكانيات متقدمة',
-      en: 'Comprehensive enterprise resource management system with advanced features',
+      fa: 'روغن خوراکی با کیفیت بالا و استانداردهای بهداشتی برای استفاده در صنایع غذایی',
+      ar: 'زيت طعامي عالي الجودة ومعايير صحية للاستخدام في الصناعات الغذائية',
+      en: 'High-quality cooking oil with health standards for food industries',
     },
     price: {
-      irr: 15000000,
-      aed: 1500,
-      sar: 1500,
+      irr: 450000,
+      aed: 45,
+      sar: 45,
     },
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500',
-    category: 'نرم‌افزار',
-    manufacturerId: 'm3',
-    manufacturerName: { fa: 'شرکت نرم‌افزاری پارس', ar: 'شركة البرمجيات فارس' },
-    moq: 1,
+    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd8692?w=500',
+    category: 'مواد غذایی',
+    manufacturerId: 'm4',
+    manufacturerName: { fa: 'کارخانه مواد غذایی کیمیا', ar: 'مصنع المواد الغذائية كيميا' },
+    moq: 50,
     rating: 4.8,
-    reviewCount: 189,
+    reviewCount: 203,
     inStock: true,
-    createdAt: '2024-01-12',
+    createdAt: '2024-01-25',
+  },
+  {
+    id: 'p7',
+    name: {
+      fa: 'ماشین ظرفشویی صنعتی',
+      ar: 'غسالة أطباق صناعية',
+      en: 'Industrial Dishwasher',
+    },
+    description: {
+      fa: 'ماشین ظرفشویی صنعتی با ظرفیت بالا برای رستوران‌ها و هتل‌ها',
+      ar: 'غسالة أطباق صناعية عالية السعة للمطاعم والفنادق',
+      en: 'High-capacity industrial dishwasher for restaurants and hotels',
+    },
+    price: {
+      irr: 12500000,
+      aed: 1250,
+      sar: 1250,
+    },
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500',
+    category: 'لوازم خانگی',
+    manufacturerId: 'm6',
+    manufacturerName: { fa: 'کارخانه لوازم خانگی سینا', ar: 'مصنع الأدوات المنزلية سينا' },
+    moq: 2,
+    rating: 4.5,
+    reviewCount: 87,
+    inStock: true,
+    createdAt: '2024-01-28',
+  },
+  {
+    id: 'p8',
+    name: {
+      fa: 'کیسه پلاستیکی زباله',
+      ar: 'كيس بلاستيكي للنفايات',
+      en: 'Plastic Garbage Bag',
+    },
+    description: {
+      fa: 'کیسه پلاستیکی مقاوم و با کیفیت برای جمع‌آوری زباله',
+      ar: 'كيس بلاستيكي مقاوم وعالي الجودة لجمع النفايات',
+      en: 'Durable and high-quality plastic bag for waste collection',
+    },
+    price: {
+      irr: 120000,
+      aed: 12,
+      sar: 12,
+    },
+    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500',
+    category: 'پلاستیک',
+    manufacturerId: 'm3',
+    manufacturerName: { fa: 'شرکت پلاستیک پارس', ar: 'شركة البلاستيك فارس' },
+    moq: 200,
+    rating: 4.3,
+    reviewCount: 145,
+    inStock: true,
+    createdAt: '2024-02-01',
+  },
+  {
+    id: 'p9',
+    name: {
+      fa: 'شیر برقی صنعتی',
+      ar: 'صمام كهربائي صناعي',
+      en: 'Industrial Solenoid Valve',
+    },
+    description: {
+      fa: 'شیر برقی صنعتی با عملکرد سریع و دقیق برای سیستم‌های هیدرولیک',
+      ar: 'صمام كهربائي صناعي بأداء سريع ودقيق لأنظمة هيدروليكية',
+      en: 'Industrial solenoid valve with fast and precise operation for hydraulic systems',
+    },
+    price: {
+      irr: 3200000,
+      aed: 320,
+      sar: 320,
+    },
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500',
+    category: 'ماشین‌آلات',
+    manufacturerId: 'm5',
+    manufacturerName: { fa: 'صنایع ماشین‌آلات صنعتی', ar: 'صناعات الآلات الصناعية' },
+    moq: 10,
+    rating: 4.7,
+    reviewCount: 112,
+    inStock: true,
+    createdAt: '2024-02-05',
+  },
+  {
+    id: 'p10',
+    name: {
+      fa: 'یخچال صنعتی',
+      ar: 'ثلاجة صناعية',
+      en: 'Industrial Refrigerator',
+    },
+    description: {
+      fa: 'یخچال صنعتی با ظرفیت بالا و مصرف انرژی بهینه برای رستوران‌ها',
+      ar: 'ثلاجة صناعية عالية السعة واستهلاك طاقة محسّن للمطاعم',
+      en: 'High-capacity industrial refrigerator with optimized energy consumption for restaurants',
+    },
+    price: {
+      irr: 18500000,
+      aed: 1850,
+      sar: 1850,
+    },
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500',
+    category: 'لوازم خانگی',
+    manufacturerId: 'm6',
+    manufacturerName: { fa: 'کارخانه لوازم خانگی سینا', ar: 'مصنع الأدوات المنزلية سينا' },
+    moq: 1,
+    rating: 4.6,
+    reviewCount: 134,
+    inStock: true,
+    createdAt: '2024-02-10',
   },
 ]
-

@@ -6,7 +6,16 @@ import Footer from '@/components/Footer'
 import { LocaleProvider } from '@/contexts/LocaleContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
-const inter = Inter({ subsets: ['latin'] })
+// Load Inter for English/Latin text fallback
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+})
+
+// Note: Vazirmatn is loaded via @fontsource in globals.css
+// This is the recommended approach as Vazirmatn is not available in Google Fonts
 
 export const metadata: Metadata = {
   title: 'Paradik - B2B Marketplace',
@@ -20,11 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.variable} font-sans`}>
         <ThemeProvider>
           <LocaleProvider>
             <Navbar />
-            <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <main className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
               {children}
             </main>
             <Footer />
