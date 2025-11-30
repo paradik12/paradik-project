@@ -153,5 +153,23 @@
       min-width: 44px;
     }
   }
+  
+  /* Card optimization - prevent cards from becoming too large */
+  .card-container {
+    max-width: 100%;
+  }
+  
+  /* Ensure images don't cause layout shifts */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Grid container constraints */
+  .grid-container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 

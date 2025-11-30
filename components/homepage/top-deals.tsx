@@ -138,38 +138,45 @@ export function TopDeals() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 max-w-7xl mx-auto">
           {mockTopDeals.map((product) => (
-            <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 group border-2 hover:border-primary/50">
-                <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
+            <Link 
+              key={product.id} 
+              href={`/products/${product.id}`}
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+            >
+              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/50 overflow-hidden">
+                {/* Image Container - Fixed Aspect Ratio */}
+                <div className="relative w-full aspect-square overflow-hidden bg-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16.67vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
                   />
-                  <Badge className="absolute top-3 left-3 bg-red-600 text-white font-bold px-3 py-1.5 text-xs md:text-sm">
+                  <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-red-600 text-white font-bold px-2 py-1 text-xs sm:text-sm">
                     {language === "fa" ? "فوری" : "Flash Deal"}
                   </Badge>
                 </div>
-                <CardContent className="p-4 md:p-5">
-                  <div className="flex items-baseline gap-2 mb-2 md:mb-3">
-                    <span className="text-xl md:text-2xl font-bold text-primary">
+                
+                {/* Content */}
+                <CardContent className="flex-1 flex flex-col p-3 sm:p-4">
+                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3">
+                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-sm md:text-base text-muted-foreground line-through font-medium">
+                      <span className="text-xs sm:text-sm text-muted-foreground line-through font-medium">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm md:text-base text-muted-foreground font-medium">
-                    {t("common.minimumOrder")}: {product.moq}
+                  <p className="text-sm sm:text-base text-muted-foreground font-medium">
+                    {t("common.minimumOrder")}: <span className="font-bold">{product.moq}</span>
                   </p>
                 </CardContent>
               </Card>

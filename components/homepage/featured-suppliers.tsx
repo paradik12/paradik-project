@@ -114,61 +114,72 @@ export function FeaturedSuppliers() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
           {mockSuppliers.map((supplier) => (
-            <Link key={supplier.id} href={`/suppliers/${supplier.id}`}>
-              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-primary/30">
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start gap-5 md:gap-6 mb-6 md:mb-8">
-                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted">
+            <Link 
+              key={supplier.id} 
+              href={`/suppliers/${supplier.id}`}
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+            >
+              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
+                <CardContent className="flex-1 flex flex-col p-5 sm:p-6 md:p-7">
+                  {/* Supplier Header */}
+                  <div className="flex items-start gap-4 sm:gap-5 mb-5 sm:mb-6">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted">
                       <Image
                         src={supplier.logo}
                         alt={`${language === "fa" ? supplier.name : supplier.nameEn} - Verified Supplier - Paradik B2B Marketplace`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 96px, 112px"
+                        sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 112px"
                         quality={90}
                         loading="lazy"
                         title={language === "fa" ? supplier.name : supplier.nameEn}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 flex-wrap">
-                        <h3 className="font-bold text-lg md:text-xl truncate font-heading">
+                      <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3 flex-wrap">
+                        <h3 className="font-bold text-base sm:text-lg md:text-xl font-heading leading-tight">
                           {language === "fa" ? supplier.name : supplier.nameEn}
                         </h3>
                         {supplier.verified && (
-                          <Badge variant="default" className="bg-green-600 text-white font-semibold px-2 py-1 text-xs">
+                          <Badge variant="default" className="bg-green-600 text-white font-bold px-2 py-1 text-xs flex-shrink-0">
                             <CheckCircle2 className="h-3 w-3 mr-1" />
                             {t("common.verified")}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-base md:text-lg text-muted-foreground font-medium">
+                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
                         {supplier.yearsActive} {language === "fa" ? "سال تجربه" : "Years Experience"}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
-                    <div className="flex items-center justify-between text-base md:text-lg">
+                  {/* Supplier Stats */}
+                  <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-6 flex-1">
+                    <div className="flex items-center justify-between text-sm sm:text-base md:text-lg">
                       <span className="flex items-center gap-2">
-                        <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                        <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 fill-yellow-500" />
                         <span className="font-bold">{supplier.rating}</span>
                       </span>
-                      <span className="text-muted-foreground font-medium">
+                      <span className="text-muted-foreground font-medium text-sm sm:text-base">
                         {supplier.responseRate}% {language === "fa" ? "نرخ پاسخ" : "Response Rate"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-base md:text-lg text-muted-foreground font-medium">
-                      <Package className="h-5 w-5" />
+                    <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
+                      <Package className="h-4 w-4 sm:h-5 sm:w-5" />
                       <span>
                         {supplier.productCount} {t("common.products")}
                       </span>
                     </div>
                   </div>
 
-                  <Button className="w-full text-base md:text-lg font-semibold py-5 md:py-6 hover:bg-primary hover:text-white transition-all duration-300" variant="outline" size="lg">
+                  {/* CTA Button */}
+                  <Button 
+                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[44px] hover:bg-primary hover:text-white transition-all duration-300" 
+                    variant="outline" 
+                    size="lg"
+                  >
                     {t("common.contactSupplier")}
                   </Button>
                 </CardContent>

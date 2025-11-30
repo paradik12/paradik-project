@@ -132,52 +132,67 @@ export function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
           {mockProducts.map((product) => (
-            <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 group border-2 hover:border-primary/30">
-                <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
+            <Link 
+              key={product.id} 
+              href={`/products/${product.id}`}
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+            >
+              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
+                {/* Image Container - Fixed Aspect Ratio */}
+                <div className="relative w-full aspect-square overflow-hidden bg-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16.67vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
                   />
                   {product.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-600 text-white font-semibold px-2 py-1 text-xs">
-                      <CheckCircle2 className="h-3 w-3 mr-1" />
+                    <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-600 text-white font-bold px-2 py-1 text-xs sm:text-sm">
+                      <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                       {t("common.verified")}
                     </Badge>
                   )}
                 </div>
-                <CardContent className="p-5 md:p-6">
-                  <h3 className="font-bold text-base md:text-lg mb-3 md:mb-4 line-clamp-2 min-h-[3rem] font-heading">
+                
+                {/* Content - Flex Grow for Equal Heights */}
+                <CardContent className="flex-1 flex flex-col p-4 sm:p-5">
+                  <h3 className="font-bold text-base sm:text-lg mb-3 line-clamp-2 min-h-[3rem] font-heading leading-tight">
                     {language === "fa" ? product.title : product.titleEn}
                   </h3>
-                  <div className="flex items-center justify-between mb-3 md:mb-4">
-                    <span className="text-xl md:text-2xl font-bold text-primary">
+                  
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.rating && (
-                      <span className="text-base md:text-lg text-muted-foreground font-semibold">
-                        ⭐ {product.rating}
+                      <span className="text-sm sm:text-base text-muted-foreground font-semibold flex items-center gap-1">
+                        ⭐ <span>{product.rating}</span>
                       </span>
                     )}
                   </div>
-                  <p className="text-sm md:text-base text-muted-foreground mb-2 font-medium">
-                    {t("common.minimumOrder")}: {product.moq}
-                  </p>
-                  <p className="text-sm md:text-base text-muted-foreground font-medium">
-                    {product.sold} {t("common.sold")}
-                  </p>
+                  
+                  <div className="space-y-1.5 mb-4 flex-1">
+                    <p className="text-sm sm:text-base text-muted-foreground font-medium">
+                      {t("common.minimumOrder")}: <span className="font-bold">{product.moq}</span>
+                    </p>
+                    <p className="text-sm sm:text-base text-muted-foreground font-medium">
+                      {product.sold} {t("common.sold")}
+                    </p>
+                  </div>
                 </CardContent>
-                <CardFooter className="p-5 md:p-6 pt-0">
-                  <Button className="w-full text-base md:text-lg font-semibold py-5 md:py-6 hover:bg-primary/90 transition-all duration-300" size="lg">
-                    <ShoppingCart className="h-5 w-5 mr-2" />
+                
+                <CardFooter className="p-4 sm:p-5 pt-0">
+                  <Button 
+                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[44px] hover:bg-primary/90 transition-all duration-300" 
+                    size="lg"
+                  >
+                    <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                     {t("common.addToCart")}
                   </Button>
                 </CardFooter>

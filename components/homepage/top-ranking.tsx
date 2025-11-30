@@ -139,33 +139,40 @@ export function TopRanking() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 max-w-7xl mx-auto">
           {mockTopRanking.map((product, index) => (
-            <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 group relative border-2 hover:border-primary/30">
-                <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
+            <Link 
+              key={product.id} 
+              href={`/products/${product.id}`}
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+            >
+              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
+                {/* Image Container - Fixed Aspect Ratio */}
+                <div className="relative w-full aspect-square overflow-hidden bg-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16.67vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
                   />
-                  <Badge className="absolute top-3 left-3 bg-primary text-white font-bold px-3 py-1.5 text-xs md:text-sm">
+                  <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-primary text-white font-bold px-2 py-1 text-xs sm:text-sm">
                     TOP
                   </Badge>
                 </div>
-                <CardContent className="p-4 md:p-5">
-                  <p className="text-sm md:text-base text-muted-foreground mb-2 font-medium">
+                
+                {/* Content */}
+                <CardContent className="flex-1 flex flex-col p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 font-medium">
                     {language === "fa" ? "دسته‌بندی" : "Category"}
                   </p>
-                  <p className="text-base md:text-lg font-bold mb-3 md:mb-4 line-clamp-2 min-h-[3rem] font-heading">
+                  <p className="text-base sm:text-lg font-bold mb-2 sm:mb-3 line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] font-heading leading-tight">
                     {language === "fa" ? product.title : product.titleEn}
                   </p>
-                  <Badge variant="secondary" className="text-xs md:text-sm font-semibold px-3 py-1.5">
+                  <Badge variant="secondary" className="text-xs sm:text-sm font-semibold px-2 py-1 w-fit">
                     {language === "fa" ? "فروش داغ" : "Hot selling"}
                   </Badge>
                 </CardContent>
