@@ -96,73 +96,79 @@ export function FeaturedSuppliers() {
   const { language } = useLanguageStore();
 
   return (
-    <section className="py-12 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="mb-8 flex items-center justify-between">
+    <section className="py-16 md:py-20 bg-muted/50" aria-label="Featured Suppliers">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <div>
-            <h2 className="text-3xl font-bold mb-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
               {t("homepage.featuredSuppliers.title")}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground font-medium">
               {t("homepage.featuredSuppliers.subtitle")}
             </p>
           </div>
           <Link href="/suppliers">
-            <Button variant="outline">{t("common.viewMore")}</Button>
+            <Button variant="outline" size="lg" className="text-base md:text-lg px-6 md:px-8 py-6 md:py-7 font-semibold hover:bg-primary hover:text-white transition-all duration-300">
+              {t("common.viewMore")}
+            </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {mockSuppliers.map((supplier) => (
             <Link key={supplier.id} href={`/suppliers/${supplier.id}`}>
-              <Card className="h-full transition-all hover:shadow-lg hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-primary/30">
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-start gap-5 md:gap-6 mb-6 md:mb-8">
+                    <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted">
                       <Image
                         src={supplier.logo}
-                        alt={language === "fa" ? supplier.name : supplier.nameEn}
+                        alt={`${language === "fa" ? supplier.name : supplier.nameEn} - Verified Supplier - Paradik B2B Marketplace`}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 640px) 96px, 112px"
+                        quality={90}
+                        loading="lazy"
+                        title={language === "fa" ? supplier.name : supplier.nameEn}
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-lg truncate">
+                      <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 flex-wrap">
+                        <h3 className="font-bold text-lg md:text-xl truncate font-heading">
                           {language === "fa" ? supplier.name : supplier.nameEn}
                         </h3>
                         {supplier.verified && (
-                          <Badge variant="default" className="bg-green-500">
+                          <Badge variant="default" className="bg-green-600 text-white font-semibold px-2 py-1 text-xs">
                             <CheckCircle2 className="h-3 w-3 mr-1" />
                             {t("common.verified")}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base md:text-lg text-muted-foreground font-medium">
                         {supplier.yearsActive} {language === "fa" ? "سال تجربه" : "Years Experience"}
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-1">
-                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                        <span className="font-semibold">{supplier.rating}</span>
+                  <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
+                    <div className="flex items-center justify-between text-base md:text-lg">
+                      <span className="flex items-center gap-2">
+                        <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
+                        <span className="font-bold">{supplier.rating}</span>
                       </span>
-                      <span className="text-muted-foreground">
+                      <span className="text-muted-foreground font-medium">
                         {supplier.responseRate}% {language === "fa" ? "نرخ پاسخ" : "Response Rate"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Package className="h-4 w-4" />
+                    <div className="flex items-center gap-2 text-base md:text-lg text-muted-foreground font-medium">
+                      <Package className="h-5 w-5" />
                       <span>
                         {supplier.productCount} {t("common.products")}
                       </span>
                     </div>
                   </div>
 
-                  <Button className="w-full" variant="outline" size="sm">
+                  <Button className="w-full text-base md:text-lg font-semibold py-5 md:py-6 hover:bg-primary hover:text-white transition-all duration-300" variant="outline" size="lg">
                     {t("common.contactSupplier")}
                   </Button>
                 </CardContent>

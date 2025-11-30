@@ -12,11 +12,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" role="main">
         {/* Hero Carousel */}
-        <div className="container mx-auto px-4 py-6 md:py-8">
+        <section aria-label="Hero banner" className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-10">
           <HeroCarousel />
-        </div>
+        </section>
         
         {/* Categories Section */}
         <CategoriesSection />

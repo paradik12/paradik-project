@@ -114,14 +114,14 @@ export function TopDeals() {
   const isRTL = direction === "rtl";
 
   return (
-    <section className="py-8 bg-gradient-to-b from-primary/5 to-background">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background" aria-label="Top Deals">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 md:mb-16 gap-4 sm:gap-6">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
               {language === "fa" ? "پیشنهادات ویژه" : "Top Deals"}
             </h2>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               {language === "fa"
                 ? "کمترین قیمت‌ها در پارادیک"
                 : "Score the lowest prices on Paradik"}
@@ -129,42 +129,46 @@ export function TopDeals() {
           </div>
           <Link
             href="/products"
-            className="flex items-center gap-2 text-primary hover:underline text-sm font-medium"
+            className="flex items-center gap-2 text-primary hover:underline text-base md:text-lg font-semibold"
           >
             {t("common.viewMore")}
             <ArrowRight
-              className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`}
+              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
             />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
           {mockTopDeals.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="h-full transition-all hover:shadow-lg hover:scale-105 group border-2 hover:border-primary/50">
-                <div className="relative aspect-square overflow-hidden rounded-t-lg">
+              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 group border-2 hover:border-primary/50">
+                <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                   <Image
                     src={product.image}
-                    alt={language === "fa" ? product.title : product.titleEn}
+                    alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16.67vw"
+                    quality={90}
+                    loading="lazy"
+                    title={language === "fa" ? product.title : product.titleEn}
                   />
-                  <Badge className="absolute top-2 left-2 bg-red-500 text-white">
+                  <Badge className="absolute top-3 left-3 bg-red-600 text-white font-bold px-3 py-1.5 text-xs md:text-sm">
                     {language === "fa" ? "فوری" : "Flash Deal"}
                   </Badge>
                 </div>
-                <CardContent className="p-3">
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-lg font-bold text-primary">
+                <CardContent className="p-4 md:p-5">
+                  <div className="flex items-baseline gap-2 mb-2 md:mb-3">
+                    <span className="text-xl md:text-2xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-xs text-muted-foreground line-through">
+                      <span className="text-sm md:text-base text-muted-foreground line-through font-medium">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm md:text-base text-muted-foreground font-medium">
                     {t("common.minimumOrder")}: {product.moq}
                   </p>
                 </CardContent>
@@ -176,4 +180,5 @@ export function TopDeals() {
     </section>
   );
 }
+
 

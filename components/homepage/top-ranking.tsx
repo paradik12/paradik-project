@@ -114,15 +114,15 @@ export function TopRanking() {
   const isRTL = direction === "rtl";
 
   return (
-    <section className="py-8">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
+    <section className="py-16 md:py-20" aria-label="Top Ranking Products">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 md:mb-16 gap-4 sm:gap-6">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-2">
-              <TrendingUp className="h-6 w-6 text-primary" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 flex items-center gap-3 font-heading">
+              <TrendingUp className="h-8 w-8 md:h-10 md:w-10 text-primary" />
               {language === "fa" ? "رتبه‌بندی برتر" : "Top Ranking"}
             </h2>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground font-medium">
               {language === "fa"
                 ? "روندها را با رتبه‌بندی مبتنی بر داده دنبال کنید"
                 : "Navigate trends with data-driven rankings"}
@@ -130,38 +130,42 @@ export function TopRanking() {
           </div>
           <Link
             href="/products"
-            className="flex items-center gap-2 text-primary hover:underline text-sm font-medium"
+            className="flex items-center gap-2 text-primary hover:underline text-base md:text-lg font-semibold"
           >
             {t("common.viewMore")}
             <ArrowRight
-              className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`}
+              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
             />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
           {mockTopRanking.map((product, index) => (
             <Link key={product.id} href={`/products/${product.id}`}>
-              <Card className="h-full transition-all hover:shadow-lg hover:scale-105 group relative">
-                <div className="relative aspect-square overflow-hidden rounded-t-lg">
+              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 group relative border-2 hover:border-primary/30">
+                <div className="relative aspect-square overflow-hidden rounded-t-lg bg-muted">
                   <Image
                     src={product.image}
-                    alt={language === "fa" ? product.title : product.titleEn}
+                    alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16.67vw"
+                    quality={90}
+                    loading="lazy"
+                    title={language === "fa" ? product.title : product.titleEn}
                   />
-                  <Badge className="absolute top-2 left-2 bg-primary text-white">
+                  <Badge className="absolute top-3 left-3 bg-primary text-white font-bold px-3 py-1.5 text-xs md:text-sm">
                     TOP
                   </Badge>
                 </div>
-                <CardContent className="p-3">
-                  <p className="text-xs text-muted-foreground mb-1">
+                <CardContent className="p-4 md:p-5">
+                  <p className="text-sm md:text-base text-muted-foreground mb-2 font-medium">
                     {language === "fa" ? "دسته‌بندی" : "Category"}
                   </p>
-                  <p className="text-sm font-semibold mb-2 line-clamp-1">
+                  <p className="text-base md:text-lg font-bold mb-3 md:mb-4 line-clamp-2 min-h-[3rem] font-heading">
                     {language === "fa" ? product.title : product.titleEn}
                   </p>
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-xs md:text-sm font-semibold px-3 py-1.5">
                     {language === "fa" ? "فروش داغ" : "Hot selling"}
                   </Badge>
                 </CardContent>
@@ -173,4 +177,5 @@ export function TopRanking() {
     </section>
   );
 }
+
 

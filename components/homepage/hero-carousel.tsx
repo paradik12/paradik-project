@@ -73,7 +73,7 @@ export function HeroCarousel() {
   const currentSlide = mockSlides[currentIndex];
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-lg">
+    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[650px] overflow-hidden rounded-lg shadow-xl" role="region" aria-label="Hero carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -89,20 +89,24 @@ export function HeroCarousel() {
             fill
             className="object-cover"
             priority
+            quality={90}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
           <div className={`absolute inset-0 ${direction === "rtl" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/60 to-black/40`} />
         </motion.div>
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 flex h-full items-center justify-center">
-        <div className="container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 flex h-full items-center justify-center px-4 md:px-8">
+        <div className="container mx-auto text-center text-white max-w-4xl">
           <motion.h1
             key={`title-${currentIndex}`}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 font-heading drop-shadow-lg"
           >
             {language === "fa" ? currentSlide.title : currentSlide.titleEn}
           </motion.h1>
@@ -111,7 +115,7 @@ export function HeroCarousel() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl lg:text-2xl mb-8"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-12 font-medium drop-shadow-md px-4"
           >
             {language === "fa" ? currentSlide.subtitle : currentSlide.subtitleEn}
           </motion.p>
@@ -122,7 +126,7 @@ export function HeroCarousel() {
             transition={{ delay: 0.4 }}
           >
             <Link href={currentSlide.link}>
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Button size="lg" className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90">
                 {language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
               </Button>
             </Link>
@@ -156,10 +160,11 @@ export function HeroCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all ${
-              index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+            className={`h-3 w-3 rounded-full transition-all ${
+              index === currentIndex ? "w-8 bg-white scale-110" : "w-3 bg-white/50 hover:bg-white/75"
             }`}
             aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === currentIndex ? "true" : "false"}
           />
         ))}
       </div>

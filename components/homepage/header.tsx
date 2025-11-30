@@ -51,13 +51,13 @@ export function Header() {
   const isRTL = direction === "rtl";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm" role="banner">
       <div className="container mx-auto px-4">
         {/* Top Bar */}
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="text-2xl font-bold text-primary">Paradik</div>
+            <div className="text-2xl md:text-3xl font-bold text-primary font-heading">Paradik</div>
           </Link>
 
           {/* Mega Search Bar - Alibaba Style */}
@@ -90,14 +90,15 @@ export function Header() {
 
               {/* Search Input */}
               <div className="relative flex-1">
-                <Input
-                  type="text"
-                  placeholder={t("header.searchPlaceholder")}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-12 rounded-none border-x-0 pr-12"
-                  dir={direction}
-                />
+              <Input
+                type="text"
+                placeholder={t("header.searchPlaceholder")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-12 md:h-14 rounded-none border-x-0 pr-12 text-base md:text-lg"
+                dir={direction}
+                aria-label="Search products and suppliers"
+              />
                 <Button
                   type="button"
                   variant="ghost"
@@ -117,11 +118,12 @@ export function Header() {
               {/* Search Button */}
               <Button
                 type="submit"
-                className={`h-12 px-8 rounded-none ${
+                className={`h-12 md:h-14 px-8 md:px-10 rounded-none text-base md:text-lg font-semibold ${
                   isRTL ? "rounded-l-md" : "rounded-r-md"
                 }`}
+                aria-label="Submit search"
               >
-                <Search className="h-5 w-5" />
+                <Search className="h-5 w-5 md:h-6 md:w-6" />
                 <span className="ml-2 hidden lg:inline">{t("common.search")}</span>
               </Button>
             </div>

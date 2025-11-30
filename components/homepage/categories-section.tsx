@@ -79,33 +79,33 @@ export function CategoriesSection() {
   const { language } = useLanguageStore();
 
   return (
-    <section className="py-12 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold mb-2">
+    <section className="py-16 md:py-20 bg-muted/50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
             {t("homepage.categories.title")}
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             {t("homepage.categories.subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6">
           {mockCategories.map((category) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
               className="group"
             >
-              <Card className="h-full transition-all hover:shadow-lg hover:scale-105">
-                <CardContent className="flex flex-col items-center justify-center p-6 text-center">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
+              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-primary/30">
+                <CardContent className="flex flex-col items-center justify-center p-6 md:p-8 text-center">
+                  <div className="text-5xl md:text-6xl mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300">
                     {category.icon}
                   </div>
-                  <h3 className="font-semibold text-sm mb-1">
+                  <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 font-heading">
                     {language === "fa" ? category.name : category.nameEn}
                   </h3>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm md:text-base text-muted-foreground font-medium">
                     {category.productCount}+ {t("common.products")}
                   </p>
                 </CardContent>
