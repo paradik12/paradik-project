@@ -1,110 +1,58 @@
-// TypeScript interfaces for all data structures
-
-export interface Product {
-  id: string
-  name: {
-    fa: string
-    ar: string
-    en: string
-  }
-  description: {
-    fa: string
-    ar: string
-    en: string
-  }
-  price: {
-    irr: number // Iranian Rial
-    aed?: number // UAE Dirham
-    sar?: number // Saudi Riyal
-  }
-  image: string
-  images?: string[]
-  category: string
-  manufacturerId: string
-  manufacturerName: {
-    fa: string
-    ar: string
-  }
-  moq: number // Minimum Order Quantity
-  rating: number
-  reviewCount: number
-  specifications?: Record<string, string>
-  inStock: boolean
-  createdAt: string
-}
-
-export interface Manufacturer {
-  id: string
-  name: {
-    fa: string
-    ar: string
-  }
-  logo: string
-  description: {
-    fa: string
-    ar: string
-  }
-  category: string[]
-  location: {
-    city: string
-    country: string
-  }
-  rating: number
-  reviewCount: number
-  productCount: number
-  verified: boolean
-  badges: string[]
-  contact: {
-    email: string
-    phone: string
-    website?: string
-  }
-  trustIndicators: {
-    yearsInBusiness: number
-    totalOrders: number
-    responseRate: number
-  }
-}
+export type Language = "fa" | "en";
+export type Direction = "rtl" | "ltr";
 
 export interface Category {
-  id: string
-  slug: string
-  name: {
-    fa: string
-    ar: string
-  }
-  icon: string
-  productCount: number
-  description?: {
-    fa: string
-    ar: string
-  }
+  id: string;
+  name: string;
+  nameEn: string;
+  slug: string;
+  icon: string;
+  image?: string;
+  productCount?: number;
 }
 
-export interface User {
-  id: string
-  email: string
-  name: string
-  role: 'buyer' | 'seller' | 'admin'
-  companyName?: string
-  avatar?: string
-  language: 'fa' | 'ar'
-  currency: 'irr' | 'aed' | 'sar'
+export interface Product {
+  id: string;
+  title: string;
+  titleEn: string;
+  description?: string;
+  price: number;
+  currency: string;
+  image: string;
+  images?: string[];
+  moq: number;
+  sold: number;
+  supplierId: string;
+  supplierName: string;
+  verified: boolean;
+  categoryId: string;
+  rating?: number;
+  reviewCount?: number;
 }
 
-export interface FilterOptions {
-  category?: string
-  minPrice?: number
-  maxPrice?: number
-  minRating?: number
-  manufacturerId?: string
-  inStock?: boolean
-  currency?: 'irr' | 'aed' | 'sar'
+export interface Supplier {
+  id: string;
+  name: string;
+  nameEn: string;
+  logo: string;
+  verified: boolean;
+  yearsActive: number;
+  country: string;
+  productCount: number;
+  responseRate: number;
+  rating: number;
+  mainCategories: string[];
 }
 
-export interface SearchResult {
-  products: Product[]
-  manufacturers: Manufacturer[]
-  total: number
+export interface HeroSlide {
+  id: string;
+  title: string;
+  titleEn: string;
+  subtitle: string;
+  subtitleEn: string;
+  image: string;
+  ctaText: string;
+  ctaTextEn: string;
+  link: string;
 }
 

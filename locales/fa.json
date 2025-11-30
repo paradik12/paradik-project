@@ -1,0 +1,106 @@
+{
+  "common": {
+    "search": "جستجو",
+    "categories": "دسته‌بندی‌ها",
+    "products": "محصولات",
+    "suppliers": "تامین‌کنندگان",
+    "signIn": "ورود",
+    "createAccount": "ایجاد حساب کاربری",
+    "language": "زبان",
+    "currency": "ارز",
+    "deliverTo": "ارسال به",
+    "viewMore": "مشاهده بیشتر",
+    "addToCart": "افزودن به سبد خرید",
+    "contactSupplier": "تماس با تامین‌کننده",
+    "requestQuotation": "درخواست قیمت",
+    "minimumOrder": "حداقل سفارش",
+    "sold": "فروخته شده",
+    "verified": "تایید شده"
+  },
+  "header": {
+    "searchPlaceholder": "جستجوی محصولات، تامین‌کنندگان...",
+    "allCategories": "همه دسته‌بندی‌ها",
+    "myAccount": "حساب کاربری من",
+    "orders": "سفارشات",
+    "messages": "پیام‌ها",
+    "favorites": "علاقه‌مندی‌ها"
+  },
+  "homepage": {
+    "hero": {
+      "title": "پارادیک - بازار B2B ایران",
+      "subtitle": "اتصال تولیدکنندگان ایرانی با خریداران جهانی",
+      "cta": "شروع خرید"
+    },
+    "categories": {
+      "title": "دسته‌بندی‌های محبوب",
+      "subtitle": "کالاهای مورد نیاز خود را پیدا کنید"
+    },
+    "featuredProducts": {
+      "title": "محصولات ویژه",
+      "subtitle": "بهترین پیشنهادات برای شما"
+    },
+    "featuredSuppliers": {
+      "title": "تامین‌کنندگان برتر",
+      "subtitle": "تامین‌کنندگان تایید شده و معتبر"
+    },
+    "rfq": {
+      "title": "درخواست قیمت (RFQ)",
+      "subtitle": "نیاز خود را ارسال کنید و بهترین قیمت را دریافت کنید",
+      "button": "ارسال درخواست"
+    }
+  },
+  "footer": {
+    "about": "درباره ما",
+    "contact": "تماس با ما",
+    "careers": "فرصت‌های شغلی",
+    "help": "مرکز راهنمایی",
+    "terms": "قوانین و مقررات",
+    "privacy": "حریم خصوصی",
+    "products": "محصولات",
+    "suppliers": "تامین‌کنندگان",
+    "rfq": "درخواست قیمت",
+    "tradeAssurance": "ضمانت معاملات",
+    "payment": "پرداخت امن",
+    "shipping": "ارسال و تحویل",
+    "forSuppliers": "برای تامین‌کنندگان",
+    "becomeSupplier": "تامین‌کننده شوید",
+    "supplierCentral": "پنل تامین‌کننده",
+    "advertising": "تبلیغات",
+    "followUs": "ما را دنبال کنید"
+  },
+  "pages": {
+    "products": {
+      "title": "محصولات",
+      "description": "صفحه لیست محصولات - در حال توسعه"
+    },
+    "productDetail": {
+      "title": "جزئیات محصول",
+      "description": "صفحه جزئیات محصول - در حال توسعه"
+    },
+    "supplierProfile": {
+      "title": "پروفایل تامین‌کننده",
+      "description": "صفحه پروفایل تامین‌کننده - در حال توسعه"
+    },
+    "rfqForm": {
+      "title": "فرم درخواست قیمت",
+      "description": "صفحه فرم RFQ - در حال توسعه"
+    },
+    "dashboard": {
+      "title": "داشبورد",
+      "description": "صفحه داشبورد - در حال توسعه"
+    },
+    "subscription": {
+      "title": "اشتراک",
+      "description": "صفحه اشتراک - در حال توسعه"
+    },
+    "about": {
+      "title": "درباره ما",
+      "description": "صفحه درباره ما - در حال توسعه"
+    },
+    "contact": {
+      "title": "تماس با ما",
+      "description": "صفحه تماس - در حال توسعه"
+    }
+  }
+}
+

@@ -1,0 +1,106 @@
+{
+  "common": {
+    "search": "Search",
+    "categories": "Categories",
+    "products": "Products",
+    "suppliers": "Suppliers",
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "language": "Language",
+    "currency": "Currency",
+    "deliverTo": "Deliver to",
+    "viewMore": "View More",
+    "addToCart": "Add to Cart",
+    "contactSupplier": "Contact Supplier",
+    "requestQuotation": "Request Quotation",
+    "minimumOrder": "Minimum Order",
+    "sold": "Sold",
+    "verified": "Verified"
+  },
+  "header": {
+    "searchPlaceholder": "Search products, suppliers...",
+    "allCategories": "All Categories",
+    "myAccount": "My Account",
+    "orders": "Orders",
+    "messages": "Messages",
+    "favorites": "Favorites"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Paradik - Iranian B2B Marketplace",
+      "subtitle": "Connecting Iranian manufacturers with global buyers",
+      "cta": "Start Shopping"
+    },
+    "categories": {
+      "title": "Popular Categories",
+      "subtitle": "Find the products you need"
+    },
+    "featuredProducts": {
+      "title": "Featured Products",
+      "subtitle": "Best offers for you"
+    },
+    "featuredSuppliers": {
+      "title": "Top Suppliers",
+      "subtitle": "Verified and trusted suppliers"
+    },
+    "rfq": {
+      "title": "Request for Quotation (RFQ)",
+      "subtitle": "Submit your needs and get the best prices",
+      "button": "Submit Request"
+    }
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact Us",
+    "careers": "Careers",
+    "help": "Help Center",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "products": "Products",
+    "suppliers": "Suppliers",
+    "rfq": "Request for Quotation",
+    "tradeAssurance": "Trade Assurance",
+    "payment": "Secure Payment",
+    "shipping": "Shipping & Delivery",
+    "forSuppliers": "For Suppliers",
+    "becomeSupplier": "Become a Supplier",
+    "supplierCentral": "Supplier Central",
+    "advertising": "Advertising",
+    "followUs": "Follow Us"
+  },
+  "pages": {
+    "products": {
+      "title": "Products",
+      "description": "Product listing page - Under development"
+    },
+    "productDetail": {
+      "title": "Product Details",
+      "description": "Product detail page - Under development"
+    },
+    "supplierProfile": {
+      "title": "Supplier Profile",
+      "description": "Supplier profile page - Under development"
+    },
+    "rfqForm": {
+      "title": "RFQ Form",
+      "description": "RFQ form page - Under development"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Dashboard page - Under development"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "description": "Subscription page - Under development"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "About us page - Under development"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Contact page - Under development"
+    }
+  }
+}
+

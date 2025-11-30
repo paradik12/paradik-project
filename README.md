@@ -1,215 +1,214 @@
-# Paradik - B2B Marketplace Platform
+# Paradik - Iranian B2B Marketplace
 
-پلتفرم B2B پارادیک برای اتصال تولیدکنندگان ایرانی با خریداران در سراسر جهان
+A modern B2B marketplace platform connecting Iranian manufacturers with global buyers, inspired by Alibaba.com and MadeInChina.com.
 
-## ویژگی‌ها
+## 🎯 Current Status
 
-- ✨ **چندزبانه**: پشتیبانی کامل از فارسی و عربی
-- 🎨 **UI مدرن**: طراحی زیبا و واکنش‌گرا با Tailwind CSS
-- 🌙 **Dark Mode**: پشتیبانی از حالت تاریک
-- 🔍 **جستجو پیشرفته**: جستجو در محصولات و تولیدکنندگان
-- 📱 **واکنش‌گرا**: سازگار با موبایل، تبلت و دسکتاپ
-- 🔐 **احراز هویت**: سیستم ثبت‌نام و ورود برای خریداران و فروشندگان
-- 💰 **چند ارزی**: پشتیبانی از IRR, AED, SAR
-- ⭐ **امتیازدهی**: سیستم امتیازدهی و نظرات
+**Milestone: Homepage Development**
 
-## ساختار پروژه
+This project is currently in the **homepage development phase**. Only the homepage has been built and is ready for review. All internal pages are placeholders and will be developed after homepage approval.
+
+## 🚀 Tech Stack
+
+### Frontend
+- **Next.js 15** - React framework
+- **React 19** - UI library
+- **TypeScript 5.6+** - Type safety
+- **TailwindCSS 3.4+** - Styling
+- **shadcn/ui** - Component library
+- **Framer Motion** - Animations
+- **Zustand** - State management
+- **i18next** - Internationalization
+- **Lucide Icons** - Icon library
+
+### Backend
+- **Next.js 15 API Routes** - Server endpoints
+- **Prisma 5+** - ORM
+- **PostgreSQL 16** - Database
+- **Redis 7.2** - Caching
+- **BullMQ** - Job queue
+- **NextAuth.js v5** - Authentication
+
+## 📁 Project Structure
 
 ```
 paradik-project/
-├── app/                    # صفحات Next.js (App Router)
-│   ├── page.tsx           # صفحه اصلی
-│   ├── products/          # صفحات محصولات
-│   ├── manufacturers/     # صفحات تولیدکنندگان
-│   ├── auth/              # صفحات احراز هویت
-│   ├── about/             # درباره ما
-│   ├── contact/           # تماس با ما
-│   └── dashboard/         # داشبورد کاربر
-├── components/            # کامپوننت‌های React
-│   ├── Navbar.tsx         # نوار ناوبری
-│   ├── Footer.tsx         # فوتر
-│   ├── ProductCard.tsx    # کارت محصول
-│   ├── ManufacturerCard.tsx # کارت تولیدکننده
-│   └── SearchBar.tsx      # نوار جستجو
-├── contexts/              # Context Providers
-│   ├── LocaleContext.tsx  # مدیریت زبان
-│   └── ThemeContext.tsx   # مدیریت تم
-├── services/              # سرویس‌های API
-│   ├── productService.ts
-│   └── manufacturerService.ts
-├── data/                  # داده‌های نمونه
-│   └── mockData.ts
-├── types/                 # TypeScript interfaces
-│   └── index.ts
-└── utils/                 # توابع کمکی
-    ├── locale.ts
-    ├── translations.ts
-    ├── format.ts
-    └── validation.ts
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes (mock data for homepage)
+│   ├── products/          # Placeholder pages (not built yet)
+│   ├── suppliers/         # Placeholder pages (not built yet)
+│   ├── rfq/               # Placeholder pages (not built yet)
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Homepage (✅ Built)
+│   └── globals.css        # Global styles
+├── components/
+│   ├── homepage/          # Homepage components
+│   │   ├── header.tsx
+│   │   ├── hero-carousel.tsx
+│   │   ├── categories-section.tsx
+│   │   ├── featured-products.tsx
+│   │   ├── featured-suppliers.tsx
+│   │   ├── rfq-cta.tsx
+│   │   └── footer.tsx
+│   ├── providers/         # Context providers
+│   └── ui/                # shadcn/ui components
+├── lib/                   # Utilities
+│   ├── utils.ts
+│   ├── i18n.ts
+│   └── prisma.ts
+├── locales/               # Translation files
+│   ├── fa.json           # Farsi (RTL)
+│   └── en.json           # English (LTR)
+├── prisma/
+│   └── schema.prisma     # Database schema (placeholder)
+├── store/                 # Zustand stores
+│   └── language-store.ts
+└── types/                 # TypeScript types
+    └── index.ts
 ```
 
-## نصب و راه‌اندازی
+## 🌐 Features
 
-### پیش‌نیازها
+### Homepage (✅ Implemented)
+- **Header** with mega search bar, language switcher, currency selector
+- **Hero Carousel** with auto-rotation and navigation
+- **Categories Section** with 8 main categories
+- **Featured Products** grid with product cards
+- **Featured Suppliers** with supplier profiles
+- **RFQ CTA** section for quotation requests
+- **Footer** with all future page links
 
-- Node.js 18 یا بالاتر
-- npm 9 یا بالاتر
+### Internationalization
+- **Farsi (RTL)** - Primary language
+- **English (LTR)** - Secondary language
+- Full RTL/LTR support with automatic direction switching
+- Language persistence in localStorage
 
-### مراحل نصب
+### Responsive Design
+- Mobile-first approach
+- Fully responsive across all devices
+- Touch-friendly interactions
 
-1. **نصب وابستگی‌ها:**
+## 🛠️ Setup Instructions
+
+### Prerequisites
+- Node.js 20+ LTS
+- npm 9+
+- PostgreSQL 16 (for future database setup)
+- Redis 7.2 (for future caching)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd paradik-project
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. **اجرای پروژه در حالت توسعه:**
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and add your configuration values.
+
+4. **Set up Prisma (for future use)**
+   ```bash
+   npm run db:generate
+   npm run db:push
+   ```
+
+5. **Run development server**
    ```bash
    npm run dev
    ```
 
-3. **باز کردن مرورگر:**
-   ```
-   http://localhost:3000
-   ```
+6. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-## اسکریپت‌ها
+## 📝 Available Scripts
 
-- `npm run dev` - اجرای سرور توسعه
-- `npm run build` - ساخت پروژه برای تولید
-- `npm run start` - اجرای پروژه در حالت تولید
-- `npm run lint` - بررسی کد با ESLint
-- `npm run type-check` - بررسی TypeScript
-- `npm run format` - فرمت کردن کد با Prettier
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - TypeScript type checking
+- `npm run format` - Format code with Prettier
+- `npm run db:generate` - Generate Prisma client
+- `npm run db:push` - Push schema to database
+- `npm run db:studio` - Open Prisma Studio
 
-## صفحات
+## 🔗 Internal Pages (Placeholders)
 
-### صفحات عمومی
+The following pages are referenced in the homepage but **not yet built**:
 
-- **خانه** (`/`) - صفحه اصلی با Hero Section، دسته‌بندی‌ها و محصولات برتر
-- **محصولات** (`/products`) - لیست محصولات با فیلتر و جستجو
-- **جزئیات محصول** (`/products/[id]`) - صفحه جزئیات هر محصول
-- **تولیدکنندگان** (`/manufacturers`) - لیست تولیدکنندگان
-- **پروفایل تولیدکننده** (`/manufacturers/[id]`) - صفحه پروفایل کامل
-- **درباره ما** (`/about`) - اطلاعات شرکت
-- **تماس با ما** (`/contact`) - فرم تماس
+- `/products` - Product listing page
+- `/products/[id]` - Product detail page
+- `/suppliers` - Supplier listing page
+- `/suppliers/[id]` - Supplier profile page
+- `/rfq` - RFQ form page
+- `/dashboard` - User dashboard
+- `/subscription` - Subscription page
+- `/about` - About us page
+- `/contact` - Contact page
 
-### صفحات احراز هویت
+These pages will be developed after homepage approval.
 
-- **ورود** (`/auth/login`) - صفحه ورود برای خریداران و فروشندگان
-- **ثبت‌نام** (`/auth/register`) - صفحه ثبت‌نام
-- **داشبورد** (`/dashboard`) - داشبورد کاربر
+## 🎨 Design System
 
-## کامپوننت‌ها
+The homepage follows an Alibaba-style enterprise B2B design with:
+- Modern Persian and English fonts (Vazirmatn)
+- Full RTL support for Farsi
+- Smooth animations and transitions
+- High-quality product images
+- Professional color scheme
 
-### Navbar
-نوار ناوبری با:
-- منوی اصلی
-- تغییر زبان (فارسی/عربی)
-- تغییر تم (روشن/تاریک)
-- دکمه‌های ورود و ثبت‌نام
+## 📊 API Endpoints (Mock Data)
 
-### ProductCard
-کارت نمایش محصول با:
-- تصویر محصول
-- نام و توضیحات
-- قیمت (با پشتیبانی چند ارزی)
-- امتیاز و نظرات
-- MOQ (حداقل سفارش)
+Currently using mock data for homepage:
 
-### ManufacturerCard
-کارت تولیدکننده با:
-- لوگو
-- نام و توضیحات
-- امتیاز و تعداد محصولات
-- نشان‌های اعتماد
+- `GET /api/products` - Get products list
+- `GET /api/categories` - Get categories list
+- `GET /api/suppliers` - Get suppliers list
 
-### SearchBar
-نوار جستجو برای محصولات و تولیدکنندگان
+These will be replaced with real database queries after homepage approval.
 
-## ویژگی‌های چندزبانه
+## 🔒 Security Notes
 
-پروژه از سیستم چندزبانه کامل پشتیبانی می‌کند:
+- Environment variables are not committed
+- Database credentials should be kept secure
+- API routes will include authentication after homepage approval
 
-- **فارسی (fa)**: زبان پیش‌فرض
-- **عربی (ar)**: برای خریداران عرب
+## 📄 License
 
-زبان در `localStorage` ذخیره می‌شود و در تمام صفحات حفظ می‌شود.
+Private project - All rights reserved
 
-## Dark Mode
+## 👥 Development Team
 
-پروژه از Dark Mode کامل پشتیبانی می‌کند:
-- تغییر خودکار بر اساس تنظیمات سیستم
-- ذخیره انتخاب کاربر در `localStorage`
-- دکمه تغییر تم در Navbar
+This project follows a structured workflow:
+1. **Sonnet** - UI/UX planning and QA
+2. **v0** - Component generation
+3. **Cursor** - Integration and implementation
+4. **Sonnet** - Final QA and review
 
-## استقرار در Vercel
+## 🚧 Next Steps (After Homepage Approval)
 
-### مراحل سریع:
+1. Build internal pages (products, suppliers, RFQ, etc.)
+2. Implement authentication system
+3. Set up real database connections
+4. Add admin dashboard
+5. Implement subscription system
+6. Add payment integration
+7. Set up email notifications
+8. Add search functionality
+9. Implement user reviews and ratings
+10. Add analytics and reporting
 
-1. **Push به GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
+---
 
-2. **اتصال به Vercel:**
-   - به [vercel.com](https://vercel.com) بروید
-   - روی "New Project" کلیک کنید
-   - Repository خود را انتخاب کنید
-   - Vercel به صورت خودکار تنظیمات را تشخیص می‌دهد
+**Note**: This is a milestone-based development. The homepage must be fully approved before proceeding to internal pages development.
 
-3. **Deploy:**
-   - روی "Deploy" کلیک کنید
-   - پروژه در چند دقیقه آماده می‌شود
-
-### GitHub Integration
-
-Vercel به صورت خودکار:
-- برای هر commit جدید، deployment جدید می‌سازد
-- برای هر Pull Request، preview deployment ایجاد می‌کند
-- در صورت خطا، notification ارسال می‌کند
-
-### Environment Variables
-
-در صورت نیاز، متغیرهای محیطی را در Vercel تنظیم کنید:
-- `NEXT_PUBLIC_API_URL`
-- `NEXT_PUBLIC_APP_NAME`
-
-## تکنولوژی‌ها
-
-- **Next.js 14** - فریمورک React با App Router
-- **TypeScript** - تایپ‌های استاتیک
-- **Tailwind CSS** - استایل‌دهی
-- **React 18** - کتابخانه UI
-- **Lucide React** - آیکون‌ها
-
-## توسعه
-
-### افزودن صفحه جدید:
-
-1. فایل جدید در `app/[page-name]/page.tsx` ایجاد کنید
-2. از کامپوننت‌های موجود استفاده کنید
-3. ترجمه‌ها را در `utils/translations.ts` اضافه کنید
-
-### افزودن کامپوننت جدید:
-
-1. فایل جدید در `components/[ComponentName].tsx` ایجاد کنید
-2. از TypeScript interfaces استفاده کنید
-3. از Context‌ها برای زبان و تم استفاده کنید
-
-### اتصال به API واقعی:
-
-1. فایل‌های `services/` را به‌روزرسانی کنید
-2. از `apiClient.ts` برای درخواست‌ها استفاده کنید
-3. Mock data را با API calls جایگزین کنید
-
-## مجوز
-
-این پروژه برای استفاده در پروژه‌های B2B طراحی شده است.
-
-## پشتیبانی
-
-برای سوالات و مشکلات، به [GitHub Issues](https://github.com/your-repo/issues) مراجعه کنید.

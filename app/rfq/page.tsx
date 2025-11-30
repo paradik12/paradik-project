@@ -1,14 +1,14 @@
 // Placeholder page - Not to be built yet
-// This route exists only as a placeholder for footer links
+// This route exists only as a placeholder for homepage links
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
-export default function ContactPage() {
+export default function RFQPage() {
   return (
     <div className="container mx-auto px-4 py-12 text-center">
-      <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+      <h1 className="text-4xl font-bold mb-4">RFQ Form Page</h1>
       <p className="text-muted-foreground mb-6">
         This page is under development. Please return to the homepage.
       </p>

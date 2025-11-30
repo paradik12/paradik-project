@@ -1,21 +1,43 @@
-'use client'
+import { Header } from "@/components/homepage/header";
+import { HeroCarousel } from "@/components/homepage/hero-carousel";
+import { CategoriesSection } from "@/components/homepage/categories-section";
+import { TopDeals } from "@/components/homepage/top-deals";
+import { TopRanking } from "@/components/homepage/top-ranking";
+import { FeaturedProducts } from "@/components/homepage/featured-products";
+import { FeaturedSuppliers } from "@/components/homepage/featured-suppliers";
+import { RFQCTA } from "@/components/homepage/rfq-cta";
+import { Footer } from "@/components/homepage/footer";
 
-import Hero from '@/components/home/Hero'
-import Categories from '@/components/home/Categories'
-import FeaturedProducts from '@/components/home/FeaturedProducts'
-import HowItWorks from '@/components/home/HowItWorks'
-import SupplierHighlight from '@/components/home/SupplierHighlight'
-import Newsletter from '@/components/home/Newsletter'
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <Categories />
-      <FeaturedProducts />
-      <HowItWorks />
-      <SupplierHighlight />
-      <Newsletter />
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Hero Carousel */}
+        <div className="container mx-auto px-4 py-6 md:py-8">
+          <HeroCarousel />
+        </div>
+        
+        {/* Categories Section */}
+        <CategoriesSection />
+        
+        {/* Top Deals - Alibaba Style */}
+        <TopDeals />
+        
+        {/* Top Ranking - Alibaba Style */}
+        <TopRanking />
+        
+        {/* Featured Products */}
+        <FeaturedProducts />
+        
+        {/* Featured Suppliers */}
+        <FeaturedSuppliers />
+        
+        {/* RFQ CTA */}
+        <RFQCTA />
+      </main>
+      <Footer />
     </div>
-  )
+  );
 }
+
