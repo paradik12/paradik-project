@@ -114,9 +114,9 @@ export function TopRanking() {
   const isRTL = direction === "rtl";
 
   return (
-    <section className="py-16 md:py-20" aria-label="Top Ranking Products">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 md:mb-16 gap-4 sm:gap-6">
+    <section className="section-spacing bg-white" aria-label="Top Ranking Products">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-12 md:mb-16 gap-4 sm:gap-6">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 flex items-center gap-3 font-heading">
               <TrendingUp className="h-8 w-8 md:h-10 md:w-10 text-primary" />
@@ -146,33 +146,33 @@ export function TopRanking() {
               href={`/products/${product.id}`}
               className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
             >
-              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
-                {/* Image Container - Fixed Aspect Ratio */}
-                <div className="relative w-full aspect-square overflow-hidden bg-muted">
+              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
+                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
-                  <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-primary text-white font-bold px-2 py-1 text-xs sm:text-sm">
+                  <Badge className="absolute top-2.5 left-2.5 bg-primary text-white font-bold px-3 py-1.5 text-xs sm:text-sm shadow-lg border-0">
                     TOP
                   </Badge>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
-                
-                {/* Content */}
-                <CardContent className="flex-1 flex flex-col p-3 sm:p-4">
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 font-medium">
+                <CardContent className="flex-1 flex flex-col p-4 sm:p-5 space-y-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide">
                     {language === "fa" ? "دسته‌بندی" : "Category"}
                   </p>
-                  <p className="text-base sm:text-lg font-bold mb-2 sm:mb-3 line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] font-heading leading-tight">
+                  <p className="text-base sm:text-lg font-bold line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] font-heading leading-tight">
                     {language === "fa" ? product.title : product.titleEn}
                   </p>
-                  <Badge variant="secondary" className="text-xs sm:text-sm font-semibold px-2 py-1 w-fit">
+                  <Badge variant="secondary" className="text-xs sm:text-sm font-semibold px-2.5 py-1 w-fit mt-auto">
                     {language === "fa" ? "فروش داغ" : "Hot selling"}
                   </Badge>
                 </CardContent>

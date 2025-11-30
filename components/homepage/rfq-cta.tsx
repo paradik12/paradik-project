@@ -27,13 +27,17 @@ export function RFQCTA() {
                 <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 md:mb-10 font-medium leading-relaxed">
                   {t("homepage.rfq.subtitle")}
                 </p>
-                <Link href="/rfq">
-                  <Button size="lg" className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90">
+                <Link href="/rfq" className="focus-modern">
+                  <Button 
+                    size="lg" 
+                    className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold btn-primary-modern focus-modern min-h-[56px]"
+                    aria-label={t("homepage.rfq.button")}
+                  >
                     {t("homepage.rfq.button")}
                     {direction === "rtl" ? (
-                      <ArrowLeft className="h-6 w-6 mr-2" />
+                      <ArrowLeft className="h-6 w-6 mr-2" aria-hidden="true" />
                     ) : (
-                      <ArrowLeft className="h-6 w-6 ml-2 rotate-180" />
+                      <ArrowLeft className="h-6 w-6 ml-2 rotate-180" aria-hidden="true" />
                     )}
                   </Button>
                 </Link>

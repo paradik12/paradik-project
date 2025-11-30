@@ -79,34 +79,35 @@ export function CategoriesSection() {
   const { language } = useLanguageStore();
 
   return (
-    <section className="py-16 md:py-20 bg-muted/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 md:mb-16 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
+    <section className="section-spacing bg-gradient-to-b from-background to-muted/30" aria-label="Product Categories">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="mb-10 sm:mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading text-foreground">
             {t("homepage.categories.title")}
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground font-medium max-w-2xl mx-auto">
             {t("homepage.categories.subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-5 md:gap-6">
           {mockCategories.map((category) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
-              className="group"
+              className="group focus-modern"
+              aria-label={`Browse ${language === "fa" ? category.name : category.nameEn} products`}
             >
-              <Card className="h-full transition-all hover:shadow-xl hover:scale-105 border-2 hover:border-primary/30">
-                <CardContent className="flex flex-col items-center justify-center p-6 md:p-8 text-center">
-                  <div className="text-5xl md:text-6xl mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300">
+              <Card className="modern-card h-full text-center">
+                <CardContent className="flex flex-col items-center justify-center p-6 sm:p-7 md:p-8 space-y-3">
+                  <div className="text-5xl sm:text-6xl md:text-7xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     {category.icon}
                   </div>
-                  <h3 className="font-bold text-base md:text-lg mb-2 md:mb-3 font-heading">
+                  <h3 className="font-bold text-base sm:text-lg md:text-xl font-heading leading-tight">
                     {language === "fa" ? category.name : category.nameEn}
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground font-medium">
-                    {category.productCount}+ {t("common.products")}
+                  <p className="text-sm sm:text-base text-muted-foreground font-medium">
+                    {category.productCount.toLocaleString()}+ {t("common.products")}
                   </p>
                 </CardContent>
               </Card>

@@ -114,85 +114,97 @@ export function FeaturedProducts() {
   const { language } = useLanguageStore();
 
   return (
-    <section className="py-16 md:py-20" aria-label="Featured Products">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-          <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
+    <section className="section-spacing bg-white" aria-label="Featured Products">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {/* Section Header - Alibaba Style */}
+        <div className="mb-10 sm:mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+          <div className="space-y-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-foreground">
               {t("homepage.featuredProducts.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground font-medium">
+            <p className="text-base md:text-lg text-muted-foreground font-medium max-w-2xl">
               {t("homepage.featuredProducts.subtitle")}
             </p>
           </div>
-          <Link href="/products">
-            <Button variant="outline" size="lg" className="text-base md:text-lg px-6 md:px-8 py-6 md:py-7 font-semibold hover:bg-primary hover:text-white transition-all duration-300">
+          <Link href="/products" className="focus-modern">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 font-semibold border-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 min-h-[48px]"
+            >
               {t("common.viewMore")}
             </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
+        {/* Product Grid - Modern, Spacious */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6">
           {mockProducts.map((product) => (
             <Link 
               key={product.id} 
               href={`/products/${product.id}`}
               className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
             >
-              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
-                {/* Image Container - Fixed Aspect Ratio */}
-                <div className="relative w-full aspect-square overflow-hidden bg-muted">
+              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
+                {/* Image Container - Fixed Aspect Ratio with Modern Styling */}
+                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   {product.verified && (
-                    <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-600 text-white font-bold px-2 py-1 text-xs sm:text-sm">
-                      <CheckCircle2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    <Badge className="absolute top-2.5 left-2.5 bg-green-600 text-white font-bold px-2.5 py-1 text-xs shadow-lg border-0">
+                      <CheckCircle2 className="h-3 w-3 mr-1 inline" />
                       {t("common.verified")}
                     </Badge>
                   )}
+                  {/* Hover overlay effect */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
                 
-                {/* Content - Flex Grow for Equal Heights */}
-                <CardContent className="flex-1 flex flex-col p-4 sm:p-5">
-                  <h3 className="font-bold text-base sm:text-lg mb-3 line-clamp-2 min-h-[3rem] font-heading leading-tight">
+                {/* Content - Clean, Spacious Layout */}
+                <CardContent className="flex-1 flex flex-col p-4 sm:p-5 space-y-3">
+                  <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] font-heading leading-tight text-foreground">
                     {language === "fa" ? product.title : product.titleEn}
                   </h3>
                   
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
+                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.rating && (
-                      <span className="text-sm sm:text-base text-muted-foreground font-semibold flex items-center gap-1">
-                        ⭐ <span>{product.rating}</span>
+                      <span className="text-sm sm:text-base text-muted-foreground font-semibold flex items-center gap-1.5 bg-muted/50 px-2 py-1 rounded-md">
+                        <span className="text-yellow-500">⭐</span>
+                        <span>{product.rating}</span>
                       </span>
                     )}
                   </div>
                   
-                  <div className="space-y-1.5 mb-4 flex-1">
-                    <p className="text-sm sm:text-base text-muted-foreground font-medium">
-                      {t("common.minimumOrder")}: <span className="font-bold">{product.moq}</span>
+                  <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
+                    <p className="font-medium">
+                      {t("common.minimumOrder")}: <span className="font-bold text-foreground">{product.moq}</span>
                     </p>
-                    <p className="text-sm sm:text-base text-muted-foreground font-medium">
-                      {product.sold} {t("common.sold")}
+                    <p className="font-medium">
+                      {product.sold.toLocaleString()} {t("common.sold")}
                     </p>
                   </div>
                 </CardContent>
                 
                 <CardFooter className="p-4 sm:p-5 pt-0">
                   <Button 
-                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[44px] hover:bg-primary/90 transition-all duration-300" 
+                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[48px] btn-primary-modern focus-modern" 
                     size="lg"
+                    aria-label={`${t("common.addToCart")} - ${language === "fa" ? product.title : product.titleEn}`}
                   >
-                    <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                    <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 mr-2" aria-hidden="true" />
                     {t("common.addToCart")}
                   </Button>
                 </CardFooter>

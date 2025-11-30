@@ -10,11 +10,11 @@ import { Footer } from "@/components/homepage/footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1" role="main">
         {/* Hero Carousel */}
-        <section aria-label="Hero banner" className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-10">
+        <section aria-label="Hero banner" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
           <HeroCarousel />
         </section>
         

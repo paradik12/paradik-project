@@ -171,5 +171,105 @@
     margin-left: auto;
     margin-right: auto;
   }
+  
+  /* Modern card styling - Alibaba inspired */
+  .modern-card {
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    background: hsl(var(--card));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .modern-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+  
+  /* Enhanced button styles */
+  .btn-primary-modern {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(24 95% 48%));
+    box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary-modern:hover {
+    box-shadow: 0 6px 20px 0 rgba(255, 107, 53, 0.4);
+    transform: translateY(-1px);
+  }
+  
+  .btn-primary-modern:active {
+    transform: translateY(0);
+  }
+  
+  /* Improved spacing utilities */
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  
+  /* Enhanced image loading */
+  .image-placeholder {
+    background: linear-gradient(90deg, 
+      hsl(var(--muted)) 0%, 
+      hsl(var(--muted) / 0.5) 50%, 
+      hsl(var(--muted)) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Better focus states for accessibility */
+  .focus-modern:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
+  /* Performance optimizations */
+  img, picture, video {
+    content-visibility: auto;
+  }
+  
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 

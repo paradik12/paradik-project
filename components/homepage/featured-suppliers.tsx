@@ -96,9 +96,9 @@ export function FeaturedSuppliers() {
   const { language } = useLanguageStore();
 
   return (
-    <section className="py-16 md:py-20 bg-muted/50" aria-label="Featured Suppliers">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+    <section className="section-spacing bg-muted/30" aria-label="Featured Suppliers">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="mb-10 sm:mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
               {t("homepage.featuredSuppliers.title")}
@@ -121,11 +121,11 @@ export function FeaturedSuppliers() {
               href={`/suppliers/${supplier.id}`}
               className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
             >
-              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/30 overflow-hidden">
-                <CardContent className="flex-1 flex flex-col p-5 sm:p-6 md:p-7">
+              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
+                <CardContent className="flex-1 flex flex-col p-6 sm:p-7 md:p-8 space-y-5">
                   {/* Supplier Header */}
-                  <div className="flex items-start gap-4 sm:gap-5 mb-5 sm:mb-6">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted">
+                  <div className="flex items-start gap-4 sm:gap-5">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted shadow-sm">
                       <Image
                         src={supplier.logo}
                         alt={`${language === "fa" ? supplier.name : supplier.nameEn} - Verified Supplier - Paradik B2B Marketplace`}
@@ -137,14 +137,14 @@ export function FeaturedSuppliers() {
                         title={language === "fa" ? supplier.name : supplier.nameEn}
                       />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3 flex-wrap">
-                        <h3 className="font-bold text-base sm:text-lg md:text-xl font-heading leading-tight">
+                    <div className="flex-1 min-w-0 space-y-2">
+                      <div className="flex items-start gap-2 sm:gap-3 flex-wrap">
+                        <h3 className="font-bold text-lg sm:text-xl md:text-2xl font-heading leading-tight">
                           {language === "fa" ? supplier.name : supplier.nameEn}
                         </h3>
                         {supplier.verified && (
-                          <Badge variant="default" className="bg-green-600 text-white font-bold px-2 py-1 text-xs flex-shrink-0">
-                            <CheckCircle2 className="h-3 w-3 mr-1" />
+                          <Badge variant="default" className="bg-green-600 text-white font-bold px-2.5 py-1 text-xs shadow-sm border-0 flex-shrink-0">
+                            <CheckCircle2 className="h-3 w-3 mr-1 inline" />
                             {t("common.verified")}
                           </Badge>
                         )}
@@ -156,11 +156,11 @@ export function FeaturedSuppliers() {
                   </div>
 
                   {/* Supplier Stats */}
-                  <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-6 flex-1">
+                  <div className="space-y-3 sm:space-y-4 pt-4 border-t border-border/50">
                     <div className="flex items-center justify-between text-sm sm:text-base md:text-lg">
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md">
                         <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 fill-yellow-500" />
-                        <span className="font-bold">{supplier.rating}</span>
+                        <span className="font-bold text-foreground">{supplier.rating}</span>
                       </span>
                       <span className="text-muted-foreground font-medium text-sm sm:text-base">
                         {supplier.responseRate}% {language === "fa" ? "نرخ پاسخ" : "Response Rate"}
@@ -169,16 +169,17 @@ export function FeaturedSuppliers() {
                     <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
                       <Package className="h-4 w-4 sm:h-5 sm:w-5" />
                       <span>
-                        {supplier.productCount} {t("common.products")}
+                        {supplier.productCount.toLocaleString()} {t("common.products")}
                       </span>
                     </div>
                   </div>
 
                   {/* CTA Button */}
                   <Button 
-                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[44px] hover:bg-primary hover:text-white transition-all duration-300" 
+                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[48px] border-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 focus-modern mt-auto" 
                     variant="outline" 
                     size="lg"
+                    aria-label={`${t("common.contactSupplier")} - ${language === "fa" ? supplier.name : supplier.nameEn}`}
                   >
                     {t("common.contactSupplier")}
                   </Button>

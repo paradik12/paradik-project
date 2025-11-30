@@ -114,9 +114,9 @@ export function TopDeals() {
   const isRTL = direction === "rtl";
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-primary/5 to-background" aria-label="Top Deals">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 md:mb-16 gap-4 sm:gap-6">
+    <section className="section-spacing bg-gradient-to-b from-primary/5 via-primary/3 to-background" aria-label="Top Deals">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-12 md:mb-16 gap-4 sm:gap-6">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
               {language === "fa" ? "پیشنهادات ویژه" : "Top Deals"}
@@ -145,38 +145,38 @@ export function TopDeals() {
               href={`/products/${product.id}`}
               className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
             >
-              <Card className="h-full flex flex-col transition-all hover:shadow-xl hover:scale-[1.02] border-2 hover:border-primary/50 overflow-hidden">
-                {/* Image Container - Fixed Aspect Ratio */}
-                <div className="relative w-full aspect-square overflow-hidden bg-muted">
+              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
+                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
-                  <Badge className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-red-600 text-white font-bold px-2 py-1 text-xs sm:text-sm">
+                  <Badge className="absolute top-2.5 left-2.5 bg-red-600 text-white font-bold px-3 py-1.5 text-xs sm:text-sm shadow-lg border-0">
                     {language === "fa" ? "فوری" : "Flash Deal"}
                   </Badge>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
-                
-                {/* Content */}
-                <CardContent className="flex-1 flex flex-col p-3 sm:p-4">
-                  <div className="flex items-baseline gap-2 mb-2 sm:mb-3">
-                    <span className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
+                <CardContent className="flex-1 flex flex-col p-4 sm:p-5 space-y-2">
+                  <div className="flex items-baseline gap-2 pt-2">
+                    <span className="text-xl sm:text-2xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-xs sm:text-sm text-muted-foreground line-through font-medium">
+                      <span className="text-sm text-muted-foreground line-through font-medium">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
                   </div>
                   <p className="text-sm sm:text-base text-muted-foreground font-medium">
-                    {t("common.minimumOrder")}: <span className="font-bold">{product.moq}</span>
+                    {t("common.minimumOrder")}: <span className="font-bold text-foreground">{product.moq}</span>
                   </p>
                 </CardContent>
               </Card>

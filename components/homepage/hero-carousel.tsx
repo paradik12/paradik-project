@@ -73,7 +73,7 @@ export function HeroCarousel() {
   const currentSlide = mockSlides[currentIndex];
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[650px] overflow-hidden rounded-lg shadow-xl" role="region" aria-label="Hero carousel">
+    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[650px] overflow-hidden rounded-xl shadow-2xl" role="region" aria-label="Hero carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -94,7 +94,7 @@ export function HeroCarousel() {
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
-          <div className={`absolute inset-0 ${direction === "rtl" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/60 to-black/40`} />
+          <div className={`absolute inset-0 ${direction === "rtl" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/70 via-black/50 to-black/30`} />
         </motion.div>
       </AnimatePresence>
 
@@ -125,8 +125,12 @@ export function HeroCarousel() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <Link href={currentSlide.link}>
-              <Button size="lg" className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90">
+            <Link href={currentSlide.link} className="focus-modern">
+              <Button 
+                size="lg" 
+                className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold btn-primary-modern focus-modern min-h-[56px]"
+                aria-label={language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
+              >
                 {language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
               </Button>
             </Link>

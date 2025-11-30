@@ -51,7 +51,7 @@ export function Header() {
   const isRTL = direction === "rtl";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm" role="banner">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 shadow-sm" role="banner">
       <div className="container mx-auto px-4">
         {/* Top Bar */}
         <div className="flex h-16 items-center justify-between gap-4">
@@ -118,7 +118,7 @@ export function Header() {
               {/* Search Button */}
               <Button
                 type="submit"
-                className={`h-12 md:h-14 px-8 md:px-10 rounded-none text-base md:text-lg font-semibold ${
+                className={`h-12 md:h-14 px-8 md:px-10 rounded-none text-base md:text-lg font-bold btn-primary-modern focus-modern ${
                   isRTL ? "rounded-l-md" : "rounded-r-md"
                 }`}
                 aria-label="Submit search"
