@@ -22,8 +22,11 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 24 95% 53%;
+    --ring: 24 100% 50%;
     --radius: 0.5rem;
+    --color-primary: #FF6A00;
+    --color-primary-dark: #E65F00;
+    --color-primary-light: #FF8533;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -60,6 +63,30 @@
 @import "@fontsource/vazirmatn/700.css";
 @import "@fontsource/vazirmatn/900.css";
 
+/* IRANYekan Font - Lovable Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/IRANYekan-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/IRANYekan-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/IRANYekan-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -70,18 +97,32 @@
     line-height: 1.6;
   }
   
-  /* RTL - Persian/Farsi with Vazirmatn - Alibaba style professional typography */
+  /* RTL - Persian/Farsi with IRANYekan - Lovable Design */
   [dir="rtl"] {
-    font-family: "Vazirmatn", var(--font-roboto), system-ui, sans-serif;
+    font-family: "IRANYekan", "Tahoma", system-ui, sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
   }
   
-  /* LTR - English with Roboto/Lato - Alibaba style clean typography */
+  /* LTR - English with Inter - Lovable Design */
   [dir="ltr"] {
-    font-family: var(--font-roboto), var(--font-lato), system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
+  }
+  
+  /* Font utility class for IRANYekan */
+  .font-iran {
+    font-family: "IRANYekan", "Tahoma", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
   }
   
   /* Professional typography hierarchy - Alibaba inspired */
@@ -223,49 +264,50 @@
     margin-right: auto;
   }
   
-  /* Figma-inspired professional card styling */
+  /* Figma-exact card styling */
   .modern-card {
-    border: 1px solid hsl(214.3 31.8% 91.4%);
-    border-radius: 12px; /* rounded-xl */
+    border: 1px solid hsl(220 13% 91%); /* border-gray-200 */
+    border-radius: 1.025rem; /* rounded-xl - exact Figma value */
     background: hsl(var(--card));
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg - exact Figma */
     overflow: hidden;
   }
   
   .modern-card:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
-    transform: translateY(-2px);
-    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-xl - exact Figma */
+    transform: translateY(-4px); /* hover:-translate-y-1 - exact Figma */
+    border-color: hsl(var(--primary));
   }
   
-  /* Figma-inspired button styles */
+  /* Figma-exact button styles */
   .btn-primary-modern {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(24 95% 48%));
-    box-shadow: 0 10px 15px -3px rgba(255, 107, 53, 0.3);
-    transition: all 0.3s ease;
-    border-radius: 8px; /* rounded-lg */
+    background: hsl(var(--primary));
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); /* default-transition-duration */
+    border-radius: 0.625rem; /* rounded-lg - exact Figma */
   }
   
   .btn-primary-modern:hover {
-    box-shadow: 0 20px 25px -5px rgba(255, 107, 53, 0.4);
-    transform: scale(1.05); /* hover:scale-105 */
+    background: hsl(var(--primary-dark));
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    transform: scale(1.05); /* hover:scale-105 - exact Figma */
   }
   
   .btn-primary-modern:active {
     transform: scale(1.02);
   }
   
-  /* Figma-inspired professional spacing utilities */
+  /* Figma-exact spacing utilities */
   .section-spacing {
-    padding-top: 4rem; /* py-16 */
-    padding-bottom: 4rem;
+    padding-top: 3rem; /* py-12 - exact Figma */
+    padding-bottom: 3rem;
   }
   
   @media (min-width: 1024px) {
     .section-spacing {
-      padding-top: 5rem; /* lg:py-20 */
-      padding-bottom: 5rem;
+      padding-top: 4rem; /* lg:py-16 - exact Figma */
+      padding-bottom: 4rem;
     }
   }
   

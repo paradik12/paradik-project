@@ -1,13 +1,12 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useLanguageStore } from "@/store/language-store";
 import type { Product } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
+import { useRef } from "react";
 
 const mockTopDeals: Product[] = [
   {
@@ -110,78 +109,132 @@ const mockTopDeals: Product[] = [
 
 export function TopDeals() {
   const { t } = useTranslation();
-  const { language, direction } = useLanguageStore();
-  const isRTL = direction === "rtl";
+  const { language } = useLanguageStore();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400;
+      const newScrollPosition = scrollContainerRef.current.scrollLeft + (direction === 'left' ? scrollAmount : -scrollAmount);
+      scrollContainerRef.current.scrollTo({ left: newScrollPosition, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-primary/5 via-primary/3 to-background" aria-label="Top Deals">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
+    <section className="py-12 lg:py-16 bg-gray-50" aria-label="Top Deals">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-8 lg:mb-12">
+          <div className="hidden md:flex items-center gap-2">
+            <button 
+              onClick={() => scroll('right')}
+              className="p-2 border border-gray-300 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll('left')}
+              className="p-2 border border-gray-300 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          </div>
           <div>
-            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
-              {language === "fa" ? "پیشنهادات ویژه" : "Top Deals"}
+            <h2 className="mb-2">
+              {language === "fa" ? "پیشنهادهای ویژه امروز" : "Today's Special Offers"}
             </h2>
-            <p className="text-lg text-gray-600">
-              {language === "fa"
-                ? "کمترین قیمت‌ها در پارادیک"
-                : "Score the lowest prices on Paradik"}
+            <p className="text-gray-600">
+              {language === "fa" ? "پیشنهادهای محدود روی محصولات پرفروش" : "Limited offers on best-selling products"}
             </p>
           </div>
-          <Link
-            href="/products"
-            className="flex items-center gap-2 text-primary hover:text-primary/80 text-base font-semibold transition-colors"
-          >
-            {t("common.viewMore")}
-            <ArrowRight
-              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
-            />
-          </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div 
+          ref={scrollContainerRef}
+          className="flex gap-6 md:gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {mockTopDeals.map((product) => (
-            <Link 
-              key={product.id} 
+            <Link
+              key={product.id}
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
+              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-200 rounded-xl p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-250"
             >
-              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <div className="relative w-full aspect-square overflow-hidden bg-gray-50 rounded-t-xl">
-                  <Image
-                    src={product.image}
-                    alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
-                    quality={90}
-                    loading="lazy"
-                    title={language === "fa" ? product.title : product.titleEn}
-                  />
-                  <Badge className="absolute top-2.5 left-2.5 bg-red-600 text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 rounded-lg">
-                    {language === "fa" ? "فوری" : "Flash Deal"}
-                  </Badge>
-                </div>
-                <CardContent className="flex-1 flex flex-col p-4 space-y-3">
-                  <h3 className="font-semibold text-base leading-snug line-clamp-2 min-h-[3rem] text-gray-900 group-hover:text-primary transition-colors">
-                    {language === "fa" ? product.title : product.titleEn}
-                  </h3>
-                  <div className="flex items-baseline gap-2 pt-2 border-t border-gray-100">
-                    <span className="text-xl font-bold text-primary">
+              {/* Image Container - Lovable Design */}
+              <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden rounded-lg mb-3">
+                <Image
+                  src={product.image}
+                  alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
+                  fill
+                  className="object-contain object-center group-hover:scale-105 transition-transform duration-250"
+                  sizes="(max-width: 640px) 260px, 280px"
+                  quality={90}
+                  loading="lazy"
+                  title={language === "fa" ? product.title : product.titleEn}
+                />
+                <span className="absolute top-2 right-2 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                  {language === "fa" ? "فوری" : "Flash Deal"}
+                </span>
+                {product.price > 20 && (
+                  <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                    {Math.round((1 - product.price / (product.price * 1.2)) * 100)}%
+                  </span>
+                )}
+              </div>
+
+              {/* Content - Lovable Design */}
+              <div className="space-y-2">
+                {/* Product Title - 18px/20px semibold */}
+                <h3 className="text-[18px] md:text-[20px] font-semibold text-gray-900 leading-snug mt-3 line-clamp-2">
+                  {language === "fa" ? product.title : product.titleEn}
+                </h3>
+
+                {/* Short Description - 14px medium gray-600 */}
+                <p className="text-[14px] font-medium text-gray-600 leading-relaxed mb-1.5 line-clamp-1">
+                  {language === "fa" ? "پیشنهاد ویژه" : "Special offer"}
+                </p>
+
+                {/* Price Section - 20px bold gray-900 */}
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[20px] font-bold text-gray-900">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-sm text-gray-500 line-through font-normal">
+                      <span className="text-[14px] font-normal text-gray-500 line-through">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
+                    <span className="text-[14px] font-normal text-gray-500">
+                      / {language === "fa" ? "واحد" : "unit"}
+                    </span>
                   </div>
-                  <p className="text-sm text-gray-600 font-normal">
-                    {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
+                </div>
+
+                {/* Minimum Order - bg-gray-100 rounded-lg py-2 px-3 */}
+                <div className="bg-gray-100 rounded-lg py-2 px-3">
+                  <p className="text-[13px] text-gray-700">
+                    {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+
+                {/* Vendor/Brand - 13px blue-600 */}
+                <div className="flex items-center gap-1">
+                  <p className="text-[13px] font-medium text-blue-600 truncate">
+                    {product.supplierName}
+                  </p>
+                  {product.verified && (
+                    <span className="text-blue-600 text-[12px]">✓</span>
+                  )}
+                </div>
+              </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
+            {language === "fa" ? "مشاهده همه پیشنهادها" : "View All Deals"}
+          </button>
         </div>
       </div>
     </section>

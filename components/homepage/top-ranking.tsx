@@ -1,13 +1,10 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useLanguageStore } from "@/store/language-store";
 import type { Product } from "@/types";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { Flame, Star, ShoppingCart } from "lucide-react";
 
 const mockTopRanking: Product[] = [
   {
@@ -110,72 +107,112 @@ const mockTopRanking: Product[] = [
 
 export function TopRanking() {
   const { t } = useTranslation();
-  const { language, direction } = useLanguageStore();
-  const isRTL = direction === "rtl";
+  const { language } = useLanguageStore();
+
+  // Add badges to products for Figma style
+  const productsWithBadges = mockTopRanking.map((product, index) => ({
+    ...product,
+    badge: index === 0 ? (language === "fa" ? "رتبه 1" : "Rank 1") : 
+           index === 1 ? (language === "fa" ? "رتبه 2" : "Rank 2") :
+           index === 2 ? (language === "fa" ? "رتبه 3" : "Rank 3") :
+           (language === "fa" ? "داغ" : "Hot"),
+    badgeColor: index === 0 ? "bg-gradient-to-r from-yellow-400 to-orange-500" :
+                 index === 1 ? "bg-gradient-to-r from-gray-300 to-gray-400" :
+                 index === 2 ? "bg-gradient-to-r from-amber-600 to-amber-700" :
+                 "bg-red-500"
+  }));
 
   return (
-    <section className="section-spacing bg-white" aria-label="Top Ranking Products">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
+    <section className="py-12 lg:py-16 bg-white" aria-label="Top Ranking Products">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-start gap-3 mb-8 lg:mb-12">
           <div>
-            <h2 className="text-3xl font-bold lg:text-4xl mb-3 flex items-center gap-3 text-gray-900">
-              <TrendingUp className="h-8 w-8 lg:h-10 lg:w-10 text-primary" />
-              {language === "fa" ? "رتبه‌بندی برتر" : "Top Ranking"}
+            <h2 className="mb-2">
+              {language === "fa" ? "محصولات پرفروش" : "Best Selling Products"}
             </h2>
-            <p className="text-lg text-gray-600">
-              {language === "fa"
-                ? "روندها را با رتبه‌بندی مبتنی بر داده دنبال کنید"
-                : "Navigate trends with data-driven rankings"}
+            <p className="text-gray-600">
+              {language === "fa" ? "محبوب‌ترین اقلام این ماه" : "Most popular items this month"}
             </p>
           </div>
-          <Link
-            href="/products"
-            className="flex items-center gap-2 text-primary hover:text-primary/80 text-base font-semibold transition-colors"
-          >
-            {t("common.viewMore")}
-            <ArrowRight
-              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
-            />
-          </Link>
+          <div className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl">
+            <Flame className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {mockTopRanking.map((product, index) => (
-            <Link 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          {productsWithBadges.map((product) => (
+            <div 
               key={product.id} 
-              href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
+              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <div className="relative w-full aspect-square overflow-hidden bg-gray-50 rounded-t-xl">
-                  <Image
-                    src={product.image}
-                    alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
-                    quality={90}
-                    loading="lazy"
-                    title={language === "fa" ? product.title : product.titleEn}
-                  />
-                  <Badge className="absolute top-2.5 left-2.5 bg-primary text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 rounded-lg">
-                    TOP
-                  </Badge>
-                </div>
-                <CardContent className="flex-1 flex flex-col p-4 space-y-3">
-                  <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">
-                    {language === "fa" ? "دسته‌بندی" : "Category"}
+              {/* Image Container - Figma Exact */}
+              <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
+                  fill
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  quality={90}
+                  loading="lazy"
+                  title={language === "fa" ? product.title : product.titleEn}
+                />
+                {product.badge && (
+                  <span className={`absolute top-3 right-3 ${product.badgeColor} text-white px-3 py-1 rounded-full text-sm shadow-lg`}>
+                    {product.badge}
+                  </span>
+                )}
+                <button className="absolute bottom-3 left-3 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[var(--color-primary)] hover:text-white">
+                  <ShoppingCart className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Content - Figma Exact */}
+              <div className="p-4">
+                <h4 className="mb-2 text-gray-900 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors min-h-[3.5rem]">
+                  {language === "fa" ? product.title : product.titleEn}
+                </h4>
+
+                {/* Price - Figma Exact */}
+                <div className="mb-2">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[var(--color-primary)] text-xl">${product.price}</span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {t("common.minimumOrder")}: {product.moq}
                   </p>
-                  <h3 className="font-semibold text-base leading-snug line-clamp-2 min-h-[3rem] text-gray-900 group-hover:text-primary transition-colors">
-                    {language === "fa" ? product.title : product.titleEn}
-                  </h3>
-                  <Badge variant="secondary" className="text-xs font-medium px-2.5 py-1 w-fit mt-auto bg-orange-50 text-orange-700 border-0 rounded-lg">
-                    {language === "fa" ? "فروش داغ" : "Hot selling"}
-                  </Badge>
-                </CardContent>
-              </Card>
-            </Link>
+                </div>
+
+                {/* Rating - Figma Exact */}
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(product.rating || 0)
+                            ? 'fill-yellow-400 text-yellow-400'
+                            : 'fill-gray-200 text-gray-200'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">
+                    {product.rating} ({product.reviewCount})
+                  </span>
+                </div>
+
+                {/* Supplier - Figma Exact */}
+                <p className="text-sm text-gray-500 truncate">{product.supplierName}</p>
+              </div>
+            </div>
           ))}
+        </div>
+
+        <div className="mt-8 lg:mt-12 text-center">
+          <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
+            {language === "fa" ? "مشاهده محصولات بیشتر" : "View More Products"}
+          </button>
         </div>
       </div>
     </section>

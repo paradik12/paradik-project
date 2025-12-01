@@ -57,9 +57,10 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-roboto)", "var(--font-lato)", "system-ui", "sans-serif"],
-        heading: ["var(--font-lato)", "var(--font-roboto)", "system-ui", "sans-serif"],
-        persian: ["Vazirmatn", "var(--font-roboto)", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Inter", "system-ui", "sans-serif"],
+        persian: ["IRANYekan", "Tahoma", "system-ui", "sans-serif"],
+        iran: ["IRANYekan", "Tahoma", "system-ui", "sans-serif"],
       },
       fontSize: {
         'xs': ['12px', { lineHeight: '1.5', letterSpacing: '0' }],

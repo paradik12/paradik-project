@@ -115,8 +115,8 @@ export function FeaturedProducts() {
 
   return (
     <section className="section-spacing bg-white" aria-label="Featured Products">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Section Header - Figma Style */}
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
+        {/* Section Header */}
         <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
@@ -136,73 +136,74 @@ export function FeaturedProducts() {
           </Link>
         </div>
 
-        {/* Product Grid - Figma Style */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+        {/* Product Grid - Lovable Design */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 justify-items-center">
           {mockProducts.map((product) => (
-            <Link 
-              key={product.id} 
+            <Link
+              key={product.id}
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
+              className="group w-full max-w-[260px] md:max-w-[280px] bg-white border border-gray-200 rounded-xl p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-250"
             >
-              <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                {/* Image Container - Figma Style */}
-                <div className="relative w-full aspect-square overflow-hidden bg-gray-50 rounded-t-xl">
-                  <Image
-                    src={product.image}
-                    alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 20vw, 16.67vw"
-                    quality={90}
-                    loading="lazy"
-                    title={language === "fa" ? product.title : product.titleEn}
-                  />
-                  {product.verified && (
-                    <Badge className="absolute top-2.5 left-2.5 bg-green-600 text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 rounded-lg">
-                      <CheckCircle2 className="h-3 w-3 mr-1 inline" />
-                      {t("common.verified")}
-                    </Badge>
-                  )}
-                </div>
-                
-                {/* Content - Figma Style */}
-                <CardContent className="flex-1 flex flex-col p-4 space-y-3">
-                  <h3 className="font-semibold text-base leading-snug line-clamp-2 min-h-[3rem] text-gray-900 group-hover:text-primary transition-colors">
-                    {language === "fa" ? product.title : product.titleEn}
-                  </h3>
-                  
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                    <span className="text-xl font-bold text-primary">
+              {/* Image Container - Lovable Design */}
+              <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden rounded-lg mb-3">
+                <Image
+                  src={product.image}
+                  alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
+                  fill
+                  className="object-contain object-center group-hover:scale-105 transition-transform duration-250"
+                  sizes="(max-width: 640px) 260px, 280px"
+                  quality={90}
+                  loading="lazy"
+                  title={language === "fa" ? product.title : product.titleEn}
+                />
+                {product.verified && (
+                  <span className="absolute top-2 right-2 bg-green-600 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                    {t("common.verified")}
+                  </span>
+                )}
+              </div>
+
+              {/* Content - Lovable Design */}
+              <div className="space-y-2">
+                {/* Product Title - 18px/20px semibold */}
+                <h3 className="text-[18px] md:text-[20px] font-semibold text-gray-900 leading-snug mt-3 line-clamp-2">
+                  {language === "fa" ? product.title : product.titleEn}
+                </h3>
+
+                {/* Short Description - 14px medium gray-600 */}
+                <p className="text-[14px] font-medium text-gray-600 leading-relaxed mb-1.5 line-clamp-1">
+                  {language === "fa" ? "محصول با کیفیت بالا" : "High quality product"}
+                </p>
+
+                {/* Price Section - 20px bold gray-900 */}
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[20px] font-bold text-gray-900">
                       ${product.price}
                     </span>
-                    {product.rating && (
-                      <span className="text-sm text-gray-600 font-medium flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded-lg">
-                        <span className="text-yellow-500">★</span>
-                        <span>{product.rating}</span>
-                      </span>
-                    )}
+                    <span className="text-[14px] font-normal text-gray-500">
+                      / {language === "fa" ? "واحد" : "unit"}
+                    </span>
                   </div>
-                  
-                  <div className="space-y-1.5 text-sm text-gray-600">
-                    <p className="font-normal">
-                      {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
-                    </p>
-                    <p className="font-normal">
-                      {product.sold.toLocaleString()} {t("common.sold")}
-                    </p>
-                  </div>
-                </CardContent>
-                
-                <CardFooter className="p-4 pt-0">
-                  <Button 
-                    className="w-full text-sm font-semibold py-3 h-11 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all transform hover:scale-105 focus-modern shadow-lg" 
-                    aria-label={`${t("common.addToCart")} - ${language === "fa" ? product.title : product.titleEn}`}
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" aria-hidden="true" />
-                    {t("common.addToCart")}
-                  </Button>
-                </CardFooter>
-              </Card>
+                </div>
+
+                {/* Minimum Order - bg-gray-100 rounded-lg py-2 px-3 */}
+                <div className="bg-gray-100 rounded-lg py-2 px-3">
+                  <p className="text-[13px] text-gray-700">
+                    {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
+                  </p>
+                </div>
+
+                {/* Vendor/Brand - 13px blue-600 */}
+                <div className="flex items-center gap-1">
+                  <p className="text-[13px] font-medium text-blue-600 truncate">
+                    {product.supplierName}
+                  </p>
+                  {product.verified && (
+                    <span className="text-blue-600 text-[12px]">✓</span>
+                  )}
+                </div>
+              </div>
             </Link>
           ))}
         </div>

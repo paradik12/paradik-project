@@ -2,13 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { useLanguageStore } from "@/store/language-store";
 import type { HeroSlide } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 
 const mockSlides: HeroSlide[] = [
   {
@@ -47,130 +44,116 @@ const mockSlides: HeroSlide[] = [
 ];
 
 export function HeroCarousel() {
-  const { t } = useTranslation();
   const { language, direction } = useLanguageStore();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % mockSlides.length);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % mockSlides.length);
     }, 5000);
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % mockSlides.length);
   };
 
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + mockSlides.length) % mockSlides.length);
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + mockSlides.length) % mockSlides.length);
   };
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % mockSlides.length);
-  };
-
-  const currentSlide = mockSlides[currentIndex];
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl shadow-xl" role="region" aria-label="Hero carousel">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={currentSlide.image}
-            alt={language === "fa" ? currentSlide.title : currentSlide.titleEn}
-            fill
-            className="object-cover"
-            priority
-            quality={90}
-            sizes="100vw"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-          />
-          <div className={`absolute inset-0 ${direction === "rtl" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/70 via-black/50 to-black/30`} />
-        </motion.div>
-      </AnimatePresence>
+    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Hero Carousel - Figma Exact */}
+      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+        {mockSlides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-700 ${
+              index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+            }`}
+            style={{ display: index === currentSlide || index === (currentSlide - 1 + mockSlides.length) % mockSlides.length ? 'block' : 'none' }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-l from-black/60 via-black/40 to-transparent z-10" />
+            <Image
+              src={slide.image}
+              alt={language === "fa" ? slide.title : slide.titleEn}
+              fill
+              className="w-full h-full object-cover"
+              priority={index === 0}
+              quality={90}
+              sizes="100vw"
+            />
+            
+            <div className="absolute inset-0 z-20 flex items-center">
+              <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className={`max-w-2xl text-white ${direction === "rtl" ? "mr-auto" : "ml-auto"}`}>
+                  <h1 className="mb-4 animate-fadeIn text-white">
+                    {language === "fa" ? slide.title : slide.titleEn}
+                  </h1>
+                  <p className="text-xl md:text-2xl mb-8 text-gray-100">
+                    {language === "fa" ? slide.subtitle : slide.subtitleEn}
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <button className="px-8 py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-all transform hover:scale-105 shadow-lg">
+                      {language === "fa" ? slide.ctaText : slide.ctaTextEn}
+                    </button>
+                    <button className="px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                      {language === "fa" ? "اطلاعات بیشتر" : "Learn More"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
 
-      {/* Content - Figma Style */}
-      <div className="relative z-10 flex h-full items-center justify-center px-4 md:px-8">
-        <div className="container mx-auto text-center text-white max-w-4xl">
-          <motion.h1
-            key={`title-${currentIndex}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-3xl font-bold lg:text-4xl mb-3 drop-shadow-lg"
-          >
-            {language === "fa" ? currentSlide.title : currentSlide.titleEn}
-          </motion.h1>
-          <motion.p
-            key={`subtitle-${currentIndex}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg text-white/90 mb-8 drop-shadow-md px-4"
-          >
-            {language === "fa" ? currentSlide.subtitle : currentSlide.subtitleEn}
-          </motion.p>
-          <motion.div
-            key={`cta-${currentIndex}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <Link href={currentSlide.link} className="focus-modern">
-              <Button 
-                size="lg" 
-                className="px-10 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 focus-modern min-h-[48px] shadow-xl"
-                aria-label={language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
-              >
-                {language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
-              </Button>
-            </Link>
-          </motion.div>
+        {/* Navigation Arrows - Figma Exact */}
+        <button
+          onClick={nextSlide}
+          className={`absolute ${direction === "rtl" ? "left-4" : "right-4"} top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white rounded-full transition-all`}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+        </button>
+        <button
+          onClick={prevSlide}
+          className={`absolute ${direction === "rtl" ? "right-4" : "left-4"} top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white rounded-full transition-all`}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+        </button>
+
+        {/* Dots indicator - Figma Exact */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+          {mockSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                index === currentSlide ? 'bg-[var(--color-primary)] w-8 md:w-10' : 'bg-white/50'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className={`absolute ${direction === "rtl" ? "right-4" : "left-4"} top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm`}
-        onClick={goToPrevious}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className={`h-6 w-6 ${direction === "rtl" ? "rotate-180" : ""}`} />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className={`absolute ${direction === "rtl" ? "left-4" : "right-4"} top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm`}
-        onClick={goToNext}
-        aria-label="Next slide"
-      >
-        <ChevronRight className={`h-6 w-6 ${direction === "rtl" ? "rotate-180" : ""}`} />
-      </Button>
-
-      {/* Dots Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-        {mockSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-3 w-3 rounded-full transition-all ${
-              index === currentIndex ? "w-8 bg-white scale-110" : "w-3 bg-white/50 hover:bg-white/75"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-            aria-current={index === currentIndex ? "true" : "false"}
-          />
-        ))}
+      {/* Search bar overlay - Mobile - Figma Exact */}
+      <div className="md:hidden px-4 -mt-8 relative z-30 pb-6">
+        <div className="bg-white rounded-lg shadow-xl p-4">
+          <div className="flex items-center gap-2 border border-gray-300 rounded-lg overflow-hidden focus-within:border-[var(--color-primary)] focus-within:ring-2 focus-within:ring-[var(--color-primary)] focus-within:ring-opacity-20">
+            <button className="px-4 py-3 bg-[var(--color-primary)] text-white">
+              {language === "fa" ? "جستجو" : "Search"}
+            </button>
+            <input
+              type="text"
+              placeholder={language === "fa" ? "جستجوی محصولات..." : "Search products..."}
+              className="flex-1 px-2 py-3 outline-none"
+            />
+            <Search className="w-5 h-5 text-gray-400 ml-3" />
+          </div>
+        </div>
       </div>
     </div>
   );
