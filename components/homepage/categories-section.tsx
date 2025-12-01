@@ -107,7 +107,7 @@ export function CategoriesSection() {
                     {language === "fa" ? category.name : category.nameEn}
                   </h3>
                   <p className="text-sm sm:text-base text-muted-foreground font-medium">
-                    {category.productCount.toLocaleString()}+ {t("common.products")}
+                    {category.productCount?.toLocaleString() || 0}+ {t("common.products")}
                   </p>
                 </CardContent>
               </Card>
