@@ -100,10 +100,10 @@ export function FeaturedSuppliers() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
+            <h2 className="font-title mb-3" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {t("homepage.featuredSuppliers.title")}
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {t("homepage.featuredSuppliers.subtitle")}
             </p>
           </div>
@@ -122,15 +122,21 @@ export function FeaturedSuppliers() {
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="flex-1 min-w-0">
-                  <h4 className="mb-1 text-gray-900 group-hover:text-[var(--color-primary)] transition-colors truncate">
+                  <h4 className="font-card-title mb-1 group-hover:text-[var(--color-primary)] transition-colors truncate" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                     {language === "fa" ? supplier.name : supplier.nameEn}
                   </h4>
-                  <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
-                    <span className="truncate">{supplier.country}</span>
+                  <div className="flex items-center gap-1 mb-2">
+                    <span className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                      {supplier.country}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-sm text-gray-500">({supplier.responseRate})</span>
-                    <span className="text-sm">{supplier.rating}</span>
+                    <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                      ({supplier.responseRate})
+                    </span>
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
+                      {supplier.rating}
+                    </span>
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   </div>
                 </div>
@@ -158,20 +164,26 @@ export function FeaturedSuppliers() {
 
               <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                 <div className="text-center flex-1">
-                  <p className="text-gray-900 flex items-center justify-center gap-1">
+                  <p className="font-number flex items-center justify-center gap-1" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
                     <Package className="w-4 h-4" />
                     {supplier.productCount}+
                   </p>
-                  <p className="text-gray-500 text-sm mb-1">{t("common.products")}</p>
+                  <p className="font-small mb-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                    {t("common.products")}
+                  </p>
                 </div>
                 <div className="w-px h-8 bg-gray-200" />
                 <div className="text-center flex-1">
-                  <p className="text-gray-900">{supplier.yearsActive} {language === "fa" ? "سال" : "Years"}</p>
-                  <p className="text-gray-500 text-sm mb-1">{language === "fa" ? "تجربه" : "Experience"}</p>
+                  <p className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
+                    {supplier.yearsActive} {language === "fa" ? "سال" : "Years"}
+                  </p>
+                  <p className="font-small mb-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                    {language === "fa" ? "تجربه" : "Experience"}
+                  </p>
                 </div>
               </div>
 
-              <button className="w-full mt-4 px-4 py-2.5 bg-gray-50 text-gray-900 rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
+              <button className="font-cta w-full mt-4 px-4 py-2.5 bg-gray-50 rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
                 {language === "fa" ? "مشاهده تأمین‌کننده" : "View Supplier"}
               </button>
             </div>

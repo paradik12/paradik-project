@@ -57,7 +57,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="text-2xl md:text-3xl font-bold text-primary font-heading">Paradik</div>
+            <div className="font-heading text-2xl md:text-3xl text-primary" style={{ fontWeight: 900 }}>Paradik</div>
           </Link>
 
           {/* Mega Search Bar - Alibaba Style */}

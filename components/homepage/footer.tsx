@@ -13,8 +13,10 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 mb-12 md:mb-16">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg md:text-xl mb-4 md:mb-6 font-heading">{t("footer.about")}</h3>
-            <ul className="space-y-3 text-base text-muted-foreground">
+            <h3 className="font-card-title mb-4 md:mb-6" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {t("footer.about")}
+            </h3>
+            <ul className="space-y-3 font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               <li>
                 <Link href="/about" className="hover:text-foreground transition-colors">
                   {t("footer.about")}
@@ -40,8 +42,10 @@ export function Footer() {
 
           {/* Products & Services */}
           <div>
-            <h3 className="font-semibold mb-4">{t("footer.products")}</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-card-title mb-4" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {t("footer.products")}
+            </h3>
+            <ul className="space-y-2 font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
               <li>
                 <Link href="/products" className="hover:text-foreground transition-colors">
                   {t("footer.products")}
@@ -67,8 +71,10 @@ export function Footer() {
 
           {/* Payment & Shipping */}
           <div>
-            <h3 className="font-semibold mb-4">{t("footer.payment")}</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-card-title mb-4" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {t("footer.payment")}
+            </h3>
+            <ul className="space-y-2 font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
               <li>
                 <Link href="/payment" className="hover:text-foreground transition-colors">
                   {t("footer.payment")}
@@ -89,8 +95,10 @@ export function Footer() {
 
           {/* For Suppliers */}
           <div>
-            <h3 className="font-semibold mb-4">{t("footer.forSuppliers")}</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-card-title mb-4" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {t("footer.forSuppliers")}
+            </h3>
+            <ul className="space-y-2 font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
               <li>
                 <Link href="/become-supplier" className="hover:text-foreground transition-colors">
                   {t("footer.becomeSupplier")}
@@ -111,8 +119,10 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4">{t("footer.terms")}</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-card-title mb-4" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {t("footer.terms")}
+            </h3>
+            <ul className="space-y-2 font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
               <li>
                 <Link href="/terms" className="hover:text-foreground transition-colors">
                   {t("footer.terms")}
@@ -131,7 +141,9 @@ export function Footer() {
         <div className="border-t pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-semibold mb-4">{t("footer.followUs")}</h3>
+              <h3 className="font-card-title mb-4" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+                {t("footer.followUs")}
+              </h3>
               <div className="flex gap-4">
                 <Link
                   href="https://facebook.com"
@@ -175,7 +187,7 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-            <div className="text-sm text-muted-foreground text-center">
+            <div className="font-small text-center" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
               <p>© 2025 Paradik. All rights reserved.</p>
               <p className="mt-1">پارادیک - بازار B2B ایران</p>
             </div>

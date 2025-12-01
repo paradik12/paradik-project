@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
-      <body className={`${inter.variable} font-iran`}>
+      <body className={`${inter.variable} font-body`}>
         <LanguageProvider>
           <I18nProvider>{children}</I18nProvider>
         </LanguageProvider>

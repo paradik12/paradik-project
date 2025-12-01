@@ -127,10 +127,10 @@ export function TopRanking() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-start gap-3 mb-8 lg:mb-12">
           <div>
-            <h2 className="mb-2">
+            <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {language === "fa" ? "محصولات پرفروش" : "Best Selling Products"}
             </h2>
-            <p className="text-gray-600">
+            <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {language === "fa" ? "محبوب‌ترین اقلام این ماه" : "Most popular items this month"}
             </p>
           </div>
@@ -169,21 +169,23 @@ export function TopRanking() {
 
               {/* Content - Figma Exact */}
               <div className="p-4">
-                <h4 className="mb-2 text-gray-900 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors min-h-[3.5rem]">
+                <h4 className="font-card-title mb-2 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
                 </h4>
 
-                {/* Price - Figma Exact */}
+                {/* Price - Numbers: 18px, weight 500 */}
                 <div className="mb-2">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-[var(--color-primary)] text-xl">${product.price}</span>
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
+                      ${product.price}
+                    </span>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="font-small mt-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                     {t("common.minimumOrder")}: {product.moq}
                   </p>
                 </div>
 
-                {/* Rating - Figma Exact */}
+                {/* Rating - Small: 14px, weight 500 */}
                 <div className="flex items-center gap-2 mb-2">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -197,13 +199,15 @@ export function TopRanking() {
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600">
+                  <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                     {product.rating} ({product.reviewCount})
                   </span>
                 </div>
 
-                {/* Supplier - Figma Exact */}
-                <p className="text-sm text-gray-500 truncate">{product.supplierName}</p>
+                {/* Supplier - Small: 14px, weight 500 */}
+                <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                  {product.supplierName}
+                </p>
               </div>
             </div>
           ))}

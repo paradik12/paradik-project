@@ -88,17 +88,17 @@ export function HeroCarousel() {
             <div className="absolute inset-0 z-20 flex items-center">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className={`max-w-2xl text-white ${direction === "rtl" ? "mr-auto" : "ml-auto"}`}>
-                  <h1 className="mb-4 animate-fadeIn text-white">
+                  <h1 className="font-heading text-3xl mb-4 animate-fadeIn text-white" style={{ fontSize: '36px', lineHeight: '48px', fontWeight: 900, color: '#FFFFFF' }}>
                     {language === "fa" ? slide.title : slide.titleEn}
                   </h1>
-                  <p className="text-xl md:text-2xl mb-8 text-gray-100">
+                  <p className="font-body text-base mb-8 text-gray-100" style={{ fontSize: '16px', lineHeight: '26px', color: 'rgba(255, 255, 255, 0.9)' }}>
                     {language === "fa" ? slide.subtitle : slide.subtitleEn}
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    <button className="px-8 py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-all transform hover:scale-105 shadow-lg">
+                    <button className="font-cta px-8 py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-all transform hover:scale-105 shadow-lg" style={{ fontSize: '16px', fontWeight: 600 }}>
                       {language === "fa" ? slide.ctaText : slide.ctaTextEn}
                     </button>
-                    <button className="px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                    <button className="font-cta px-8 py-3 bg-white rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
                       {language === "fa" ? "اطلاعات بیشتر" : "Learn More"}
                     </button>
                   </div>

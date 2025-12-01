@@ -39,12 +39,12 @@ export function RFQCTA() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title - Figma exact */}
         <div className="text-center mb-8 lg:mb-12">
-          <h2 className="mb-4 text-white">
+          <h2 className="font-title mb-4 text-white" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#FFFFFF' }}>
             {language === "fa" 
               ? "آنچه نیاز دارید را پیدا نمی‌کنید؟" 
               : "Can't find what you need?"}
           </h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="font-body text-white/90 max-w-2xl mx-auto" style={{ fontSize: '16px', lineHeight: '26px', color: 'rgba(255, 255, 255, 0.9)' }}>
             {language === "fa"
               ? "درخواست قیمت خود را ثبت کنید و بگذارید تأمین‌کنندگان تایید شده برای کسب‌وکار شما رقابت کنند"
               : "Submit a price request and let verified suppliers compete for your business"}
@@ -60,8 +60,12 @@ export function RFQCTA() {
                 <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
                   <Icon className="w-8 h-8 lg:w-10 lg:h-10" />
                 </div>
-                <h4 className="mb-2 text-white">{feature.title}</h4>
-                <p className="text-white/80">{feature.description}</p>
+                <h4 className="font-card-title mb-2 text-white" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#FFFFFF' }}>
+                  {feature.title}
+                </h4>
+                <p className="font-small text-white/80" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: 'rgba(255, 255, 255, 0.8)' }}>
+                  {feature.description}
+                </p>
               </div>
             );
           })}
@@ -70,12 +74,12 @@ export function RFQCTA() {
         {/* CTA buttons - Figma exact */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/rfq" className="focus-modern">
-            <button className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-[var(--color-primary)] transition-all transform hover:scale-105 w-full sm:w-auto min-h-[48px]">
+            <button className="font-cta px-10 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-[var(--color-primary)] transition-all transform hover:scale-105 w-full sm:w-auto min-h-[48px]" style={{ fontSize: '16px', fontWeight: 600 }}>
               {language === "fa" ? "اطلاعات بیشتر" : "Learn More"}
             </button>
           </Link>
           <Link href="/rfq" className="focus-modern">
-            <button className="px-10 py-4 bg-white text-[var(--color-primary)] rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto min-h-[48px]">
+            <button className="font-cta px-10 py-4 bg-white text-[var(--color-primary)] rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto min-h-[48px]" style={{ fontSize: '16px', fontWeight: 600 }}>
               {language === "fa" ? "ثبت درخواست قیمت" : "Submit RFQ"}
             </button>
           </Link>
@@ -83,14 +87,14 @@ export function RFQCTA() {
 
         {/* Social Proof - Figma exact */}
         <div className="mt-8 text-center">
-          <p className="text-white/80">
+          <p className="font-body text-white/80" style={{ fontSize: '16px', lineHeight: '26px', color: 'rgba(255, 255, 255, 0.8)' }}>
             {language === "fa" ? (
               <>
-                به <span className="text-white">50,000+</span> کسب‌وکار که با موفقیت از طریق درخواست قیمت پارادیک تأمین کرده‌اند بپیوندید
+                به <span className="text-white font-number" style={{ fontSize: '18px', fontWeight: 500 }}>50,000+</span> کسب‌وکار که با موفقیت از طریق درخواست قیمت پارادیک تأمین کرده‌اند بپیوندید
               </>
             ) : (
               <>
-                Join <span className="text-white">50,000+</span> businesses that have successfully sourced through Paradik RFQ
+                Join <span className="text-white font-number" style={{ fontSize: '18px', fontWeight: 500 }}>50,000+</span> businesses that have successfully sourced through Paradik RFQ
               </>
             )}
           </p>

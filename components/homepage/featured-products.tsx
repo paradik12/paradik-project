@@ -119,10 +119,10 @@ export function FeaturedProducts() {
         {/* Section Header */}
         <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
+            <h2 className="font-title mb-3" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {t("homepage.featuredProducts.title")}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl">
+            <p className="font-body max-w-2xl" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {t("homepage.featuredProducts.subtitle")}
             </p>
           </div>
@@ -165,38 +165,38 @@ export function FeaturedProducts() {
 
               {/* Content - Lovable Design */}
               <div className="space-y-2">
-                {/* Product Title - 18px/20px semibold */}
-                <h3 className="text-[18px] md:text-[20px] font-semibold text-gray-900 leading-snug mt-3 line-clamp-2">
+                {/* Product Title - H3: 20px, weight 600, line-height 30px */}
+                <h3 className="font-card-title mt-3 line-clamp-2" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
                 </h3>
 
-                {/* Short Description - 14px medium gray-600 */}
-                <p className="text-[14px] font-medium text-gray-600 leading-relaxed mb-1.5 line-clamp-1">
+                {/* Short Description - Small: 14px, weight 500, line-height 22px */}
+                <p className="font-small mb-1.5 line-clamp-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                   {language === "fa" ? "محصول با کیفیت بالا" : "High quality product"}
                 </p>
 
-                {/* Price Section - 20px bold gray-900 */}
+                {/* Price Section - Numbers: 18px, weight 500, line-height 26px */}
                 <div className="flex flex-col gap-1">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-[20px] font-bold text-gray-900">
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
                       ${product.price}
                     </span>
-                    <span className="text-[14px] font-normal text-gray-500">
+                    <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                       / {language === "fa" ? "واحد" : "unit"}
                     </span>
                   </div>
                 </div>
 
-                {/* Minimum Order - bg-gray-100 rounded-lg py-2 px-3 */}
+                {/* Minimum Order - Small: 14px, weight 500 */}
                 <div className="bg-gray-100 rounded-lg py-2 px-3">
-                  <p className="text-[13px] text-gray-700">
+                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                     {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
                   </p>
                 </div>
 
-                {/* Vendor/Brand - 13px blue-600 */}
+                {/* Vendor/Brand - Small: 14px, weight 500 */}
                 <div className="flex items-center gap-1">
-                  <p className="text-[13px] font-medium text-blue-600 truncate">
+                  <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                     {product.supplierName}
                   </p>
                   {product.verified && (

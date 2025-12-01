@@ -32,6 +32,23 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    
+    /* Typography Font Variables */
+    --font-heading: "Vazirmatn", system-ui, sans-serif;
+    --font-title: "Vazirmatn", system-ui, sans-serif;
+    --font-body: "Vazirmatn", system-ui, sans-serif;
+    --font-number: "Vazirmatn", system-ui, sans-serif;
+    --font-cta: "Vazirmatn", system-ui, sans-serif;
+    --font-card-title: "Vazirmatn", system-ui, sans-serif;
+    --font-small: "Vazirmatn", system-ui, sans-serif;
+    
+    /* Typography Colors */
+    --color-text-h1: #1A1A1A;
+    --color-text-h2: #1A1A1A;
+    --color-text-h3: #222;
+    --color-text-body: #444;
+    --color-text-small: #666;
+    --color-text-number: #111;
   }
 
   .dark {
@@ -61,6 +78,7 @@
 @import "@fontsource/vazirmatn/500.css";
 @import "@fontsource/vazirmatn/600.css";
 @import "@fontsource/vazirmatn/700.css";
+@import "@fontsource/vazirmatn/800.css";
 @import "@fontsource/vazirmatn/900.css";
 
 /* IRANYekan Font - Lovable Design */
@@ -97,108 +115,105 @@
     line-height: 1.6;
   }
   
-  /* RTL - Persian/Farsi with IRANYekan - Lovable Design */
+  /* RTL - Persian/Farsi with Vazirmatn */
   [dir="rtl"] {
-    font-family: "IRANYekan", "Tahoma", system-ui, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
     font-weight: 400;
-    letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-optical-sizing: auto;
   }
   
-  /* LTR - English with Inter - Lovable Design */
+  /* LTR - English with Vazirmatn (fallback to Inter) */
   [dir="ltr"] {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: var(--font-body), "Inter", system-ui, sans-serif;
     font-weight: 400;
-    letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-optical-sizing: auto;
   }
   
-  /* Font utility class for IRANYekan */
-  .font-iran {
-    font-family: "IRANYekan", "Tahoma", system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-optical-sizing: auto;
-  }
+  /* Typography System - Standardized */
   
-  /* Professional typography hierarchy - Alibaba inspired */
-  p, span, div, li {
-    font-size: 14px;
-    line-height: 1.5;
-    color: hsl(222.2 47.4% 11.2%);
-  }
-  
-  @media (min-width: 768px) {
-    p, span, div, li {
-      font-size: 15px;
-    }
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    color: hsl(222.2 84% 4.9%);
-  }
-  
+  /* H1 - Hero main title - Vazirmatn ExtraBold (900) */
   h1 {
-    font-size: 28px;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 48px;
+    color: var(--color-text-h1);
   }
   
-  @media (min-width: 768px) {
-    h1 {
-      font-size: 36px;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    h1 {
-      font-size: 42px;
-    }
-  }
-  
+  /* H2 - Section titles - Vazirmatn Bold (800) */
   h2 {
-    font-size: 24px;
-    font-weight: 600;
+    font-family: var(--font-title);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 38px;
+    color: var(--color-text-h2);
   }
   
-  @media (min-width: 768px) {
-    h2 {
-      font-size: 30px;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    h2 {
-      font-size: 36px;
-    }
-  }
-  
+  /* H3 - Card titles / suppliers / category titles - Vazirmatn Medium (600) */
   h3 {
+    font-family: var(--font-card-title);
     font-size: 20px;
     font-weight: 600;
+    line-height: 30px;
+    color: var(--color-text-h3);
   }
   
-  @media (min-width: 768px) {
-    h3 {
-      font-size: 24px;
-    }
-  }
-  
+  /* H4 - Same as H3 */
   h4 {
-    font-size: 18px;
+    font-family: var(--font-card-title);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    color: var(--color-text-h3);
+  }
+  
+  /* Body text - Vazirmatn Regular (400) */
+  p, span, div, li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: var(--color-text-body);
+  }
+  
+  /* Utility classes for typography */
+  .font-heading {
+    font-family: var(--font-heading);
+    font-weight: 900;
+  }
+  
+  .font-title {
+    font-family: var(--font-title);
+    font-weight: 800;
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+  
+  .font-number {
+    font-family: var(--font-number);
+    font-weight: 500;
+  }
+  
+  .font-cta {
+    font-family: var(--font-cta);
     font-weight: 600;
   }
   
-  @media (min-width: 768px) {
-    h4 {
-      font-size: 20px;
-    }
+  .font-card-title {
+    font-family: var(--font-card-title);
+    font-weight: 600;
+  }
+  
+  .font-small {
+    font-family: var(--font-small);
+    font-weight: 500;
   }
   
   /* High contrast for better readability - WCAG 2.1 AA compliant */

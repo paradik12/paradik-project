@@ -99,10 +99,10 @@ export function CategoriesSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8 md:mb-12">
           <div>
-            <h2 className="text-neutral-900 mb-2">
+            <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {t("homepage.categories.title")}
             </h2>
-            <p className="text-neutral-600">
+            <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {t("homepage.categories.subtitle")}
             </p>
           </div>
@@ -123,10 +123,10 @@ export function CategoriesSection() {
                 <div className={`w-14 h-14 ${category.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <Icon className="w-7 h-7" />
                 </div>
-                <h4 className="text-neutral-900 mb-1 text-sm md:text-base">
+                <h4 className="font-card-title mb-1" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? category.name : category.nameEn}
                 </h4>
-                <p className="text-neutral-500 text-xs md:text-sm">
+                <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                   {category.productCount?.toLocaleString() || 0} {t("common.products")}
                 </p>
               </button>
