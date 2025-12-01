@@ -374,5 +374,65 @@
       transition-duration: 0.01ms !important;
     }
   }
+
+  /* Header-specific styles for Alibaba/GlobalSources design */
+  .header-gradient {
+    background: linear-gradient(90deg, #FF6A00 0%, #FF8500 50%, #FFD700 100%);
+  }
+
+  /* Enhanced button hover animations */
+  .btn-header-login {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-header-login:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-header-register {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-header-register:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+  }
+
+  /* Search suggestions animation */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .search-suggestions-enter {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  /* Navigation underline animation */
+  .nav-link-underline {
+    position: relative;
+  }
+
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FFD700;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link-underline:hover::after {
+    width: 100%;
+  }
 }
 
