@@ -116,95 +116,91 @@ export function FeaturedProducts() {
   return (
     <section className="section-spacing bg-white" aria-label="Featured Products">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Section Header - Alibaba Style */}
-        <div className="mb-10 sm:mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-          <div className="space-y-2">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-foreground">
+        {/* Section Header - Alibaba.com Professional Style */}
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
               {t("homepage.featuredProducts.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground font-medium max-w-2xl">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl">
               {t("homepage.featuredProducts.subtitle")}
             </p>
           </div>
           <Link href="/products" className="focus-modern">
             <Button 
               variant="outline" 
-              size="lg" 
-              className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 font-semibold border-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 min-h-[48px]"
+              size="sm" 
+              className="text-sm px-4 py-2 font-medium border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors h-9"
             >
               {t("common.viewMore")}
             </Button>
           </Link>
         </div>
 
-        {/* Product Grid - Modern, Spacious */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6">
+        {/* Product Grid - Alibaba.com Style Compact Layout */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
           {mockProducts.map((product) => (
             <Link 
               key={product.id} 
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                {/* Image Container - Fixed Aspect Ratio with Modern Styling */}
-                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
+                {/* Image Container - Compact Alibaba Style */}
+                <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 16.67vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 20vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   {product.verified && (
-                    <Badge className="absolute top-2.5 left-2.5 bg-green-600 text-white font-bold px-2.5 py-1 text-xs shadow-lg border-0">
-                      <CheckCircle2 className="h-3 w-3 mr-1 inline" />
+                    <Badge className="absolute top-1.5 left-1.5 bg-green-600 text-white font-semibold px-1.5 py-0.5 text-[10px] leading-tight shadow-sm border-0">
+                      <CheckCircle2 className="h-2.5 w-2.5 mr-0.5 inline" />
                       {t("common.verified")}
                     </Badge>
                   )}
-                  {/* Hover overlay effect */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
                 
-                {/* Content - Clean, Spacious Layout */}
-                <CardContent className="flex-1 flex flex-col p-4 sm:p-5 space-y-3">
-                  <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] font-heading leading-tight text-foreground">
+                {/* Content - Compact Professional Layout */}
+                <CardContent className="flex-1 flex flex-col p-3 space-y-2">
+                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-primary transition-colors">
                     {language === "fa" ? product.title : product.titleEn}
                   </h3>
                   
-                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                    <span className="text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+                  <div className="flex items-center justify-between pt-1.5 border-t border-gray-100">
+                    <span className="text-lg font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.rating && (
-                      <span className="text-sm sm:text-base text-muted-foreground font-semibold flex items-center gap-1.5 bg-muted/50 px-2 py-1 rounded-md">
-                        <span className="text-yellow-500">⭐</span>
+                      <span className="text-xs text-gray-600 font-medium flex items-center gap-1">
+                        <span className="text-yellow-500 text-xs">★</span>
                         <span>{product.rating}</span>
                       </span>
                     )}
                   </div>
                   
-                  <div className="space-y-2 text-sm sm:text-base text-muted-foreground">
-                    <p className="font-medium">
-                      {t("common.minimumOrder")}: <span className="font-bold text-foreground">{product.moq}</span>
+                  <div className="space-y-1 text-xs text-gray-600">
+                    <p className="font-normal">
+                      {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
                     </p>
-                    <p className="font-medium">
+                    <p className="font-normal">
                       {product.sold.toLocaleString()} {t("common.sold")}
                     </p>
                   </div>
                 </CardContent>
                 
-                <CardFooter className="p-4 sm:p-5 pt-0">
+                <CardFooter className="p-3 pt-0">
                   <Button 
-                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[48px] btn-primary-modern focus-modern" 
-                    size="lg"
+                    className="w-full text-sm font-semibold py-2 h-9 bg-primary hover:bg-primary/90 text-white focus-modern" 
+                    size="sm"
                     aria-label={`${t("common.addToCart")} - ${language === "fa" ? product.title : product.titleEn}`}
                   >
-                    <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 mr-2" aria-hidden="true" />
+                    <ShoppingCart className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
                     {t("common.addToCart")}
                   </Button>
                 </CardFooter>

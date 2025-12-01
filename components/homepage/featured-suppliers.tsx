@@ -98,76 +98,76 @@ export function FeaturedSuppliers() {
   return (
     <section className="section-spacing bg-muted/30" aria-label="Featured Suppliers">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="mb-10 sm:mb-12 md:mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
               {t("homepage.featuredSuppliers.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground font-medium">
+            <p className="text-sm sm:text-base text-gray-600">
               {t("homepage.featuredSuppliers.subtitle")}
             </p>
           </div>
           <Link href="/suppliers">
-            <Button variant="outline" size="lg" className="text-base md:text-lg px-6 md:px-8 py-6 md:py-7 font-semibold hover:bg-primary hover:text-white transition-all duration-300">
+            <Button variant="outline" size="sm" className="text-sm px-4 py-2 font-medium border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors h-9">
               {t("common.viewMore")}
             </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {mockSuppliers.map((supplier) => (
             <Link 
               key={supplier.id} 
               href={`/suppliers/${supplier.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <CardContent className="flex-1 flex flex-col p-6 sm:p-7 md:p-8 space-y-5">
+                <CardContent className="flex-1 flex flex-col p-5 space-y-4">
                   {/* Supplier Header */}
-                  <div className="flex items-start gap-4 sm:gap-5">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-lg overflow-hidden flex-shrink-0 border-2 border-muted shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
                       <Image
                         src={supplier.logo}
                         alt={`${language === "fa" ? supplier.name : supplier.nameEn} - Verified Supplier - Paradik B2B Marketplace`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 112px"
+                        sizes="(max-width: 640px) 64px, 80px"
                         quality={90}
                         loading="lazy"
                         title={language === "fa" ? supplier.name : supplier.nameEn}
                       />
                     </div>
-                    <div className="flex-1 min-w-0 space-y-2">
-                      <div className="flex items-start gap-2 sm:gap-3 flex-wrap">
-                        <h3 className="font-bold text-lg sm:text-xl md:text-2xl font-heading leading-tight">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="flex items-start gap-2 flex-wrap">
+                        <h3 className="font-semibold text-base sm:text-lg leading-tight text-gray-900 group-hover:text-primary transition-colors">
                           {language === "fa" ? supplier.name : supplier.nameEn}
                         </h3>
                         {supplier.verified && (
-                          <Badge variant="default" className="bg-green-600 text-white font-bold px-2.5 py-1 text-xs shadow-sm border-0 flex-shrink-0">
-                            <CheckCircle2 className="h-3 w-3 mr-1 inline" />
+                          <Badge variant="default" className="bg-green-600 text-white font-medium px-2 py-0.5 text-[10px] leading-tight shadow-sm border-0 flex-shrink-0">
+                            <CheckCircle2 className="h-2.5 w-2.5 mr-0.5 inline" />
                             {t("common.verified")}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
+                      <p className="text-xs sm:text-sm text-gray-600 font-normal">
                         {supplier.yearsActive} {language === "fa" ? "سال تجربه" : "Years Experience"}
                       </p>
                     </div>
                   </div>
 
                   {/* Supplier Stats */}
-                  <div className="space-y-3 sm:space-y-4 pt-4 border-t border-border/50">
-                    <div className="flex items-center justify-between text-sm sm:text-base md:text-lg">
-                      <span className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md">
-                        <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 fill-yellow-500" />
-                        <span className="font-bold text-foreground">{supplier.rating}</span>
+                  <div className="space-y-2.5 pt-3 border-t border-gray-100">
+                    <div className="flex items-center justify-between text-xs sm:text-sm">
+                      <span className="flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded">
+                        <Star className="h-3.5 w-3.5 text-yellow-500 fill-yellow-500" />
+                        <span className="font-semibold text-gray-900">{supplier.rating}</span>
                       </span>
-                      <span className="text-muted-foreground font-medium text-sm sm:text-base">
+                      <span className="text-gray-600 font-normal text-xs sm:text-sm">
                         {supplier.responseRate}% {language === "fa" ? "نرخ پاسخ" : "Response Rate"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                      <Package className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-600 font-normal">
+                      <Package className="h-3.5 w-3.5" />
                       <span>
                         {supplier.productCount.toLocaleString()} {t("common.products")}
                       </span>
@@ -176,9 +176,9 @@ export function FeaturedSuppliers() {
 
                   {/* CTA Button */}
                   <Button 
-                    className="w-full text-base font-bold py-3 sm:py-4 min-h-[48px] border-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 focus-modern mt-auto" 
+                    className="w-full text-sm font-semibold py-2 h-9 border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors focus-modern mt-auto" 
                     variant="outline" 
-                    size="lg"
+                    size="sm"
                     aria-label={`${t("common.contactSupplier")} - ${language === "fa" ? supplier.name : supplier.nameEn}`}
                   >
                     {t("common.contactSupplier")}

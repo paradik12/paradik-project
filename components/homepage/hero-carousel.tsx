@@ -73,7 +73,7 @@ export function HeroCarousel() {
   const currentSlide = mockSlides[currentIndex];
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[650px] overflow-hidden rounded-xl shadow-2xl" role="region" aria-label="Hero carousel">
+    <div className="relative w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] overflow-hidden rounded-lg shadow-lg" role="region" aria-label="Hero carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -98,7 +98,7 @@ export function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Content */}
+      {/* Content - Alibaba.com Professional Style */}
       <div className="relative z-10 flex h-full items-center justify-center px-4 md:px-8">
         <div className="container mx-auto text-center text-white max-w-4xl">
           <motion.h1
@@ -106,7 +106,7 @@ export function HeroCarousel() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 font-heading drop-shadow-lg"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 md:mb-6 drop-shadow-lg"
           >
             {language === "fa" ? currentSlide.title : currentSlide.titleEn}
           </motion.h1>
@@ -115,7 +115,7 @@ export function HeroCarousel() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-12 font-medium drop-shadow-md px-4"
+            className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 font-normal drop-shadow-md px-4"
           >
             {language === "fa" ? currentSlide.subtitle : currentSlide.subtitleEn}
           </motion.p>
@@ -128,7 +128,7 @@ export function HeroCarousel() {
             <Link href={currentSlide.link} className="focus-modern">
               <Button 
                 size="lg" 
-                className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 font-bold btn-primary-modern focus-modern min-h-[56px]"
+                className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 font-semibold bg-primary hover:bg-primary/90 text-white focus-modern min-h-[44px] shadow-lg"
                 aria-label={language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
               >
                 {language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}

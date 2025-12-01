@@ -116,12 +116,12 @@ export function TopDeals() {
   return (
     <section className="section-spacing bg-gradient-to-b from-primary/5 via-primary/3 to-background" aria-label="Top Deals">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-12 md:mb-16 gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 font-heading">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
               {language === "fa" ? "پیشنهادات ویژه" : "Top Deals"}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground">
+            <p className="text-sm sm:text-base text-gray-600">
               {language === "fa"
                 ? "کمترین قیمت‌ها در پارادیک"
                 : "Score the lowest prices on Paradik"}
@@ -129,54 +129,54 @@ export function TopDeals() {
           </div>
           <Link
             href="/products"
-            className="flex items-center gap-2 text-primary hover:underline text-base md:text-lg font-semibold"
+            className="flex items-center gap-1.5 text-primary hover:text-primary/80 text-sm font-medium transition-colors"
           >
             {t("common.viewMore")}
             <ArrowRight
-              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
+              className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`}
             />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {mockTopDeals.map((product) => (
             <Link 
               key={product.id} 
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
+                <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16.67vw"
                     quality={90}
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
-                  <Badge className="absolute top-2.5 left-2.5 bg-red-600 text-white font-bold px-3 py-1.5 text-xs sm:text-sm shadow-lg border-0">
+                  <Badge className="absolute top-1.5 left-1.5 bg-red-600 text-white font-semibold px-1.5 py-0.5 text-[10px] leading-tight shadow-sm border-0">
                     {language === "fa" ? "فوری" : "Flash Deal"}
                   </Badge>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
-                <CardContent className="flex-1 flex flex-col p-4 sm:p-5 space-y-2">
-                  <div className="flex items-baseline gap-2 pt-2">
-                    <span className="text-xl sm:text-2xl font-bold text-primary">
+                <CardContent className="flex-1 flex flex-col p-3 space-y-1.5">
+                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-primary transition-colors">
+                    {language === "fa" ? product.title : product.titleEn}
+                  </h3>
+                  <div className="flex items-baseline gap-2 pt-1.5 border-t border-gray-100">
+                    <span className="text-lg font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-sm text-muted-foreground line-through font-medium">
+                      <span className="text-xs text-gray-500 line-through font-normal">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm sm:text-base text-muted-foreground font-medium">
-                    {t("common.minimumOrder")}: <span className="font-bold text-foreground">{product.moq}</span>
+                  <p className="text-xs text-gray-600 font-normal">
+                    {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
                   </p>
                 </CardContent>
               </Card>
