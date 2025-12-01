@@ -223,54 +223,48 @@
     margin-right: auto;
   }
   
-  /* Professional card styling - Alibaba.com inspired */
+  /* Figma-inspired professional card styling */
   .modern-card {
     border: 1px solid hsl(214.3 31.8% 91.4%);
-    border-radius: 4px;
+    border-radius: 12px; /* rounded-xl */
     background: hsl(var(--card));
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
     overflow: hidden;
   }
   
   .modern-card:hover {
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+    transform: translateY(-2px);
     border-color: hsl(var(--primary) / 0.4);
   }
   
-  /* Enhanced button styles */
+  /* Figma-inspired button styles */
   .btn-primary-modern {
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(24 95% 48%));
-    box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(255, 107, 53, 0.3);
     transition: all 0.3s ease;
+    border-radius: 8px; /* rounded-lg */
   }
   
   .btn-primary-modern:hover {
-    box-shadow: 0 6px 20px 0 rgba(255, 107, 53, 0.4);
-    transform: translateY(-1px);
+    box-shadow: 0 20px 25px -5px rgba(255, 107, 53, 0.4);
+    transform: scale(1.05); /* hover:scale-105 */
   }
   
   .btn-primary-modern:active {
-    transform: translateY(0);
+    transform: scale(1.02);
   }
   
-  /* Professional spacing utilities - Alibaba style */
+  /* Figma-inspired professional spacing utilities */
   .section-spacing {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  
-  @media (min-width: 768px) {
-    .section-spacing {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
+    padding-top: 4rem; /* py-16 */
+    padding-bottom: 4rem;
   }
   
   @media (min-width: 1024px) {
     .section-spacing {
-      padding-top: 5rem;
+      padding-top: 5rem; /* lg:py-20 */
       padding-bottom: 5rem;
     }
   }

@@ -73,7 +73,7 @@ export function HeroCarousel() {
   const currentSlide = mockSlides[currentIndex];
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] overflow-hidden rounded-lg shadow-lg" role="region" aria-label="Hero carousel">
+    <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl shadow-xl" role="region" aria-label="Hero carousel">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -98,7 +98,7 @@ export function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Content - Alibaba.com Professional Style */}
+      {/* Content - Figma Style */}
       <div className="relative z-10 flex h-full items-center justify-center px-4 md:px-8">
         <div className="container mx-auto text-center text-white max-w-4xl">
           <motion.h1
@@ -106,7 +106,7 @@ export function HeroCarousel() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 md:mb-6 drop-shadow-lg"
+            className="text-3xl font-bold lg:text-4xl mb-3 drop-shadow-lg"
           >
             {language === "fa" ? currentSlide.title : currentSlide.titleEn}
           </motion.h1>
@@ -115,7 +115,7 @@ export function HeroCarousel() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 font-normal drop-shadow-md px-4"
+            className="text-lg text-white/90 mb-8 drop-shadow-md px-4"
           >
             {language === "fa" ? currentSlide.subtitle : currentSlide.subtitleEn}
           </motion.p>
@@ -128,7 +128,7 @@ export function HeroCarousel() {
             <Link href={currentSlide.link} className="focus-modern">
               <Button 
                 size="lg" 
-                className="text-base md:text-lg px-8 md:px-10 py-3 md:py-4 font-semibold bg-primary hover:bg-primary/90 text-white focus-modern min-h-[44px] shadow-lg"
+                className="px-10 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 focus-modern min-h-[48px] shadow-xl"
                 aria-label={language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}
               >
                 {language === "fa" ? currentSlide.ctaText : currentSlide.ctaTextEn}

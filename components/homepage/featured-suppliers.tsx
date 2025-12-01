@@ -98,76 +98,76 @@ export function FeaturedSuppliers() {
   return (
     <section className="section-spacing bg-muted/30" aria-label="Featured Suppliers">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
+            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
               {t("homepage.featuredSuppliers.title")}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600">
+            <p className="text-lg text-gray-600">
               {t("homepage.featuredSuppliers.subtitle")}
             </p>
           </div>
           <Link href="/suppliers">
-            <Button variant="outline" size="sm" className="text-sm px-4 py-2 font-medium border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors h-9">
+            <Button variant="outline" className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold hover:bg-primary hover:text-white hover:border-primary transition-all transform hover:scale-105 min-h-[48px]">
               {t("common.viewMore")}
             </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockSuppliers.map((supplier) => (
             <Link 
               key={supplier.id} 
               href={`/suppliers/${supplier.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <CardContent className="flex-1 flex flex-col p-5 space-y-4">
+                <CardContent className="flex-1 flex flex-col p-6 space-y-5">
                   {/* Supplier Header */}
                   <div className="flex items-start gap-4">
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
+                    <div className="relative w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 border-gray-200 shadow-sm">
                       <Image
                         src={supplier.logo}
                         alt={`${language === "fa" ? supplier.name : supplier.nameEn} - Verified Supplier - Paradik B2B Marketplace`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 64px, 80px"
+                        sizes="(max-width: 640px) 64px, (max-width: 1024px) 80px, 80px"
                         quality={90}
                         loading="lazy"
                         title={language === "fa" ? supplier.name : supplier.nameEn}
                       />
                     </div>
-                    <div className="flex-1 min-w-0 space-y-1.5">
+                    <div className="flex-1 min-w-0 space-y-2">
                       <div className="flex items-start gap-2 flex-wrap">
-                        <h3 className="font-semibold text-base sm:text-lg leading-tight text-gray-900 group-hover:text-primary transition-colors">
+                        <h3 className="font-semibold text-lg leading-tight text-gray-900 group-hover:text-primary transition-colors">
                           {language === "fa" ? supplier.name : supplier.nameEn}
                         </h3>
                         {supplier.verified && (
-                          <Badge variant="default" className="bg-green-600 text-white font-medium px-2 py-0.5 text-[10px] leading-tight shadow-sm border-0 flex-shrink-0">
-                            <CheckCircle2 className="h-2.5 w-2.5 mr-0.5 inline" />
+                          <Badge variant="default" className="bg-green-600 text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 flex-shrink-0 rounded-lg">
+                            <CheckCircle2 className="h-3 w-3 mr-1 inline" />
                             {t("common.verified")}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-600 font-normal">
+                      <p className="text-sm text-gray-600 font-normal">
                         {supplier.yearsActive} {language === "fa" ? "سال تجربه" : "Years Experience"}
                       </p>
                     </div>
                   </div>
 
                   {/* Supplier Stats */}
-                  <div className="space-y-2.5 pt-3 border-t border-gray-100">
-                    <div className="flex items-center justify-between text-xs sm:text-sm">
-                      <span className="flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded">
-                        <Star className="h-3.5 w-3.5 text-yellow-500 fill-yellow-500" />
+                  <div className="space-y-3 pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
+                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                         <span className="font-semibold text-gray-900">{supplier.rating}</span>
                       </span>
-                      <span className="text-gray-600 font-normal text-xs sm:text-sm">
+                      <span className="text-gray-600 font-normal text-sm">
                         {supplier.responseRate}% {language === "fa" ? "نرخ پاسخ" : "Response Rate"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-600 font-normal">
-                      <Package className="h-3.5 w-3.5" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600 font-normal">
+                      <Package className="h-4 w-4" />
                       <span>
                         {supplier.productCount.toLocaleString()} {t("common.products")}
                       </span>
@@ -176,9 +176,8 @@ export function FeaturedSuppliers() {
 
                   {/* CTA Button */}
                   <Button 
-                    className="w-full text-sm font-semibold py-2 h-9 border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors focus-modern mt-auto" 
-                    variant="outline" 
-                    size="sm"
+                    className="w-full text-sm font-semibold py-3 h-11 border-2 border-gray-300 rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all transform hover:scale-105 focus-modern mt-auto shadow-lg" 
+                    variant="outline"
                     aria-label={`${t("common.contactSupplier")} - ${language === "fa" ? supplier.name : supplier.nameEn}`}
                   >
                     {t("common.contactSupplier")}

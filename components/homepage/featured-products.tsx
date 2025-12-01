@@ -116,38 +116,37 @@ export function FeaturedProducts() {
   return (
     <section className="section-spacing bg-white" aria-label="Featured Products">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Section Header - Alibaba.com Professional Style */}
-        <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* Section Header - Figma Style */}
+        <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
+            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
               {t("homepage.featuredProducts.title")}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-2xl">
+            <p className="text-lg text-gray-600 max-w-2xl">
               {t("homepage.featuredProducts.subtitle")}
             </p>
           </div>
           <Link href="/products" className="focus-modern">
             <Button 
               variant="outline" 
-              size="sm" 
-              className="text-sm px-4 py-2 font-medium border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors h-9"
+              className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold hover:bg-primary hover:text-white hover:border-primary transition-all transform hover:scale-105 min-h-[48px]"
             >
               {t("common.viewMore")}
             </Button>
           </Link>
         </div>
 
-        {/* Product Grid - Alibaba.com Style Compact Layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+        {/* Product Grid - Figma Style */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
           {mockProducts.map((product) => (
             <Link 
               key={product.id} 
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                {/* Image Container - Compact Alibaba Style */}
-                <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
+                {/* Image Container - Figma Style */}
+                <div className="relative w-full aspect-square overflow-hidden bg-gray-50 rounded-t-xl">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
@@ -159,32 +158,32 @@ export function FeaturedProducts() {
                     title={language === "fa" ? product.title : product.titleEn}
                   />
                   {product.verified && (
-                    <Badge className="absolute top-1.5 left-1.5 bg-green-600 text-white font-semibold px-1.5 py-0.5 text-[10px] leading-tight shadow-sm border-0">
-                      <CheckCircle2 className="h-2.5 w-2.5 mr-0.5 inline" />
+                    <Badge className="absolute top-2.5 left-2.5 bg-green-600 text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 rounded-lg">
+                      <CheckCircle2 className="h-3 w-3 mr-1 inline" />
                       {t("common.verified")}
                     </Badge>
                   )}
                 </div>
                 
-                {/* Content - Compact Professional Layout */}
-                <CardContent className="flex-1 flex flex-col p-3 space-y-2">
-                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-primary transition-colors">
+                {/* Content - Figma Style */}
+                <CardContent className="flex-1 flex flex-col p-4 space-y-3">
+                  <h3 className="font-semibold text-base leading-snug line-clamp-2 min-h-[3rem] text-gray-900 group-hover:text-primary transition-colors">
                     {language === "fa" ? product.title : product.titleEn}
                   </h3>
                   
-                  <div className="flex items-center justify-between pt-1.5 border-t border-gray-100">
-                    <span className="text-lg font-bold text-primary">
+                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                    <span className="text-xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.rating && (
-                      <span className="text-xs text-gray-600 font-medium flex items-center gap-1">
-                        <span className="text-yellow-500 text-xs">★</span>
+                      <span className="text-sm text-gray-600 font-medium flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded-lg">
+                        <span className="text-yellow-500">★</span>
                         <span>{product.rating}</span>
                       </span>
                     )}
                   </div>
                   
-                  <div className="space-y-1 text-xs text-gray-600">
+                  <div className="space-y-1.5 text-sm text-gray-600">
                     <p className="font-normal">
                       {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
                     </p>
@@ -194,13 +193,12 @@ export function FeaturedProducts() {
                   </div>
                 </CardContent>
                 
-                <CardFooter className="p-3 pt-0">
+                <CardFooter className="p-4 pt-0">
                   <Button 
-                    className="w-full text-sm font-semibold py-2 h-9 bg-primary hover:bg-primary/90 text-white focus-modern" 
-                    size="sm"
+                    className="w-full text-sm font-semibold py-3 h-11 bg-primary hover:bg-primary/90 text-white rounded-lg transition-all transform hover:scale-105 focus-modern shadow-lg" 
                     aria-label={`${t("common.addToCart")} - ${language === "fa" ? product.title : product.titleEn}`}
                   >
-                    <ShoppingCart className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
+                    <ShoppingCart className="h-4 w-4 mr-2" aria-hidden="true" />
                     {t("common.addToCart")}
                   </Button>
                 </CardFooter>

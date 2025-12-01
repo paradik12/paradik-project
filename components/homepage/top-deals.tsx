@@ -116,12 +116,12 @@ export function TopDeals() {
   return (
     <section className="section-spacing bg-gradient-to-b from-primary/5 via-primary/3 to-background" aria-label="Top Deals">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1.5">
+            <h2 className="text-3xl font-bold lg:text-4xl mb-3 text-gray-900">
               {language === "fa" ? "پیشنهادات ویژه" : "Top Deals"}
             </h2>
-            <p className="text-sm sm:text-base text-gray-600">
+            <p className="text-lg text-gray-600">
               {language === "fa"
                 ? "کمترین قیمت‌ها در پارادیک"
                 : "Score the lowest prices on Paradik"}
@@ -129,24 +129,24 @@ export function TopDeals() {
           </div>
           <Link
             href="/products"
-            className="flex items-center gap-1.5 text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+            className="flex items-center gap-2 text-primary hover:text-primary/80 text-base font-semibold transition-colors"
           >
             {t("common.viewMore")}
             <ArrowRight
-              className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`}
+              className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`}
             />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {mockTopDeals.map((product) => (
             <Link 
               key={product.id} 
               href={`/products/${product.id}`}
-              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 rounded"
+              className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
             >
               <Card className="modern-card h-full flex flex-col overflow-hidden bg-white">
-                <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
+                <div className="relative w-full aspect-square overflow-hidden bg-gray-50 rounded-t-xl">
                   <Image
                     src={product.image}
                     alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
@@ -157,25 +157,25 @@ export function TopDeals() {
                     loading="lazy"
                     title={language === "fa" ? product.title : product.titleEn}
                   />
-                  <Badge className="absolute top-1.5 left-1.5 bg-red-600 text-white font-semibold px-1.5 py-0.5 text-[10px] leading-tight shadow-sm border-0">
+                  <Badge className="absolute top-2.5 left-2.5 bg-red-600 text-white font-semibold px-2.5 py-1 text-xs shadow-lg border-0 rounded-lg">
                     {language === "fa" ? "فوری" : "Flash Deal"}
                   </Badge>
                 </div>
-                <CardContent className="flex-1 flex flex-col p-3 space-y-1.5">
-                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] text-gray-900 group-hover:text-primary transition-colors">
+                <CardContent className="flex-1 flex flex-col p-4 space-y-3">
+                  <h3 className="font-semibold text-base leading-snug line-clamp-2 min-h-[3rem] text-gray-900 group-hover:text-primary transition-colors">
                     {language === "fa" ? product.title : product.titleEn}
                   </h3>
-                  <div className="flex items-baseline gap-2 pt-1.5 border-t border-gray-100">
-                    <span className="text-lg font-bold text-primary">
+                  <div className="flex items-baseline gap-2 pt-2 border-t border-gray-100">
+                    <span className="text-xl font-bold text-primary">
                       ${product.price}
                     </span>
                     {product.price > 20 && (
-                      <span className="text-xs text-gray-500 line-through font-normal">
+                      <span className="text-sm text-gray-500 line-through font-normal">
                         ${(product.price * 1.2).toFixed(0)}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-600 font-normal">
+                  <p className="text-sm text-gray-600 font-normal">
                     {t("common.minimumOrder")}: <span className="font-semibold text-gray-900">{product.moq}</span>
                   </p>
                 </CardContent>
