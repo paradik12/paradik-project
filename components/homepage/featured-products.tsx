@@ -137,7 +137,7 @@ export function FeaturedProducts() {
         </div>
 
         {/* Product Grid - Lovable Design */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 justify-items-center">
           {mockProducts.map((product) => (
             <Link
               key={product.id}
