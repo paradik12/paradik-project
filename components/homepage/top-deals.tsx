@@ -150,7 +150,7 @@ export function TopDeals() {
 
         <div 
           ref={scrollContainerRef}
-          className="flex gap-6 md:gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-3 md:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {mockTopDeals.map((product) => (
@@ -161,7 +161,7 @@ export function TopDeals() {
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
-              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px' }}>
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '4px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
@@ -212,7 +212,7 @@ export function TopDeals() {
                 </div>
 
                 {/* Minimum Order - Small: 14px, weight 500 */}
-                <div className="bg-gray-100 rounded-lg py-2 px-3">
+                <div className="bg-white py-2">
                   <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                     {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
                   </p>

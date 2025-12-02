@@ -139,7 +139,7 @@ export function TopRanking() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {productsWithBadges.map((product) => (
             <div 
               key={product.id} 
@@ -147,7 +147,7 @@ export function TopRanking() {
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
-              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px' }}>
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '4px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
