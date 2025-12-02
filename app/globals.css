@@ -375,35 +375,17 @@
     }
   }
 
-  /* Header-specific styles for Alibaba/GlobalSources design */
-  .header-gradient {
-    background: linear-gradient(90deg, #FF6A00 0%, #FF8500 50%, #FFD700 100%);
+  /* Modern Professional Header Styles */
+  .header-modern {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
-  /* Enhanced button hover animations */
-  .btn-header-login {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-header-login:hover {
-    transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .btn-header-register {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-header-register:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
-  }
-
-  /* Search suggestions animation */
+  /* Smooth search suggestions animation */
   @keyframes slideDown {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     to {
       opacity: 1;
@@ -412,27 +394,40 @@
   }
 
   .search-suggestions-enter {
-    animation: slideDown 0.2s ease-out;
+    animation: slideDown 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Navigation underline animation */
-  .nav-link-underline {
+  /* Professional navigation underline animation */
+  .nav-link-modern {
     position: relative;
   }
 
-  .nav-link-underline::after {
+  .nav-link-modern::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #FFD700;
-    transition: width 0.3s ease;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .nav-link-underline:hover::after {
+  .nav-link-modern:hover::after {
     width: 100%;
+  }
+
+  /* Enhanced button transitions */
+  .btn-modern {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-modern:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-modern:active {
+    transform: translateY(0);
   }
 }
 
