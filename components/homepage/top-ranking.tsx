@@ -177,25 +177,25 @@ export function TopRanking() {
               </div>
 
               {/* Content - Figma Exact */}
-              <div className="p-4 flex-1 flex flex-col">
-                <h4 className="font-card-title mb-2 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              <div className="p-3 md:p-4 flex-1 flex flex-col space-y-1">
+                <h4 className="font-card-title line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors" style={{ fontSize: '20px', lineHeight: '24px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
                 </h4>
 
                 {/* Price - Numbers: 18px, weight 500 */}
-                <div className="mb-2">
+                <div>
                   <div className="flex items-baseline gap-2">
-                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '22px', fontWeight: 500, color: '#111' }}>
                       {formatPrice(product.price, language)}
                     </span>
                   </div>
-                  <p className="font-small mt-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                     {t("common.minimumOrder")}: {product.moq}
                   </p>
                 </div>
 
                 {/* Rating - Small: 14px, weight 500 */}
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
@@ -208,13 +208,13 @@ export function TopRanking() {
                       />
                     ))}
                   </div>
-                  <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                  <span className="font-small" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                     {product.rating} ({product.reviewCount})
                   </span>
                 </div>
 
                 {/* Supplier - Small: 14px, weight 500 */}
-                <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                   {product.supplierName}
                 </p>
               </div>

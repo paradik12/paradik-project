@@ -191,39 +191,39 @@ export function TopDeals() {
               </div>
 
               {/* Content - Lovable Design */}
-              <div className="p-4 md:p-5 space-y-2 flex-1">
+              <div className="p-3 md:p-4 space-y-1 flex-1">
                 {/* Product Title - H3: 20px, weight 600 */}
-                <h3 className="font-card-title mt-3 line-clamp-2" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+                <h3 className="font-card-title line-clamp-2" style={{ fontSize: '20px', lineHeight: '24px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
                 </h3>
 
                 {/* Short Description - Small: 14px, weight 500 */}
-                <p className="font-small mb-1.5 line-clamp-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                <p className="font-small line-clamp-1" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                   {language === "fa" ? "پیشنهاد ویژه" : "Special offer"}
                 </p>
 
                 {/* Price Section - Numbers: 18px, weight 500 */}
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '22px', fontWeight: 500, color: '#111' }}>
                       {formatPrice(product.price, language)}
                     </span>
-                    <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                    <span className="font-small" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                       / {language === "fa" ? "واحد" : "unit"}
                     </span>
                   </div>
                 </div>
 
                 {/* Minimum Order - Small: 14px, weight 500 */}
-                <div className="bg-white py-2">
-                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                <div className="bg-white py-1">
+                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                     {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
                   </p>
                 </div>
 
                 {/* Vendor/Brand - Small: 14px, weight 500 */}
                 <div className="flex items-center gap-1">
-                  <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
+                  <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
                     {product.supplierName}
                   </p>
                   {product.verified && (
