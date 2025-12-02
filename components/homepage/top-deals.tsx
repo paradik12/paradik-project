@@ -132,11 +132,11 @@ export function TopDeals() {
   return (
     <section className="py-12 lg:py-16 bg-gray-50" aria-label="Top Deals">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={cn(
-          "flex items-center justify-between mb-8 lg:mb-12",
-          language === "fa" ? "flex-row-reverse" : "flex-row"
-        )}>
-          <div className="hidden md:flex items-center gap-2">
+        <div className="flex items-center justify-center mb-8 lg:mb-12 relative">
+          <div className={cn(
+            "hidden md:flex items-center gap-2 absolute",
+            language === "fa" ? "right-0" : "left-0"
+          )}>
             <button 
               onClick={() => scroll('right')}
               className="p-2 border border-gray-300 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
@@ -150,18 +150,13 @@ export function TopDeals() {
               <ChevronLeft className="w-5 h-5" />
             </button>
           </div>
-          <div className="flex-1 text-center">
+          <div className="text-center">
             <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {language === "fa" ? "پیشنهادهای ویژه امروز" : "Today's Special Offers"}
             </h2>
             <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {language === "fa" ? "پیشنهادهای محدود روی محصولات پرفروش" : "Limited offers on best-selling products"}
             </p>
-          </div>
-          <div>
-            <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
-              {language === "fa" ? "محصولات بیشتر" : "More Products"}
-            </button>
           </div>
         </div>
 
