@@ -147,11 +147,11 @@ export function TopRanking() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 justify-items-center">
           {productsWithBadges.map((product) => (
             <div 
               key={product.id} 
-              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-full max-w-[234px] md:max-w-[252px] mx-auto"
+              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-[234px] md:w-[252px]"
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}

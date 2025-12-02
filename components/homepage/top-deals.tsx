@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
 import { useRef } from "react";
+import { cn } from "@/lib/utils";
 
 // Helper function to format price
 const formatPrice = (price: number, language: string) => {
@@ -131,7 +132,10 @@ export function TopDeals() {
   return (
     <section className="py-12 lg:py-16 bg-gray-50" aria-label="Top Deals">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8 lg:mb-12">
+        <div className={cn(
+          "flex items-center justify-between mb-8 lg:mb-12",
+          language === "fa" ? "flex-row-reverse" : "flex-row"
+        )}>
           <div className="hidden md:flex items-center gap-2">
             <button 
               onClick={() => scroll('right')}
@@ -146,13 +150,18 @@ export function TopDeals() {
               <ChevronLeft className="w-5 h-5" />
             </button>
           </div>
-          <div>
+          <div className="flex-1 text-center">
             <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {language === "fa" ? "پیشنهادهای ویژه امروز" : "Today's Special Offers"}
             </h2>
             <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
               {language === "fa" ? "پیشنهادهای محدود روی محصولات پرفروش" : "Limited offers on best-selling products"}
             </p>
+          </div>
+          <div>
+            <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
+              {language === "fa" ? "محصولات بیشتر" : "More Products"}
+            </button>
           </div>
         </div>
 
@@ -235,11 +244,6 @@ export function TopDeals() {
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
-            {language === "fa" ? "مشاهده همه پیشنهادها" : "View All Deals"}
-          </button>
-        </div>
       </div>
     </section>
   );
