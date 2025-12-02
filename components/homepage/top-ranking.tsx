@@ -4,7 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useLanguageStore } from "@/store/language-store";
 import type { Product } from "@/types";
 import Image from "next/image";
-import { Flame, Star, ShoppingCart } from "lucide-react";
+import { Flame, Star, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // Helper function to format price
 const formatPrice = (price: number, language: string) => {
@@ -21,7 +24,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Premium Pistachios",
     price: 25,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1606312619070-d48b4bdc6e3c?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800&h=800&fit=crop&q=80",
     moq: 100,
     sold: 1250,
     supplierId: "s1",
@@ -37,7 +40,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Authentic Saffron",
     price: 45,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1606914469633-bd39206ea739?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&h=800&fit=crop&q=80",
     moq: 50,
     sold: 890,
     supplierId: "s2",
@@ -53,7 +56,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Natural Honey",
     price: 18,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1587047006747-5e68712c7d5a?w=800&h=800&fit=crop&q=80",
     moq: 24,
     sold: 670,
     supplierId: "s4",
@@ -69,7 +72,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Natural Leather",
     price: 85,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1624222247344-550fb60583fd?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=800&h=800&fit=crop&q=80",
     moq: 10,
     sold: 320,
     supplierId: "s5",
@@ -85,7 +88,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Face Serum",
     price: 32,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&h=800&fit=crop&q=80",
     moq: 12,
     sold: 540,
     supplierId: "s6",
@@ -101,7 +104,7 @@ const mockTopRanking: Product[] = [
     titleEn: "Handmade Carpet",
     price: 350,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1586076421003-69cc3ae32d0d?w=800&h=800&fit=crop&q=80",
     moq: 1,
     sold: 45,
     supplierId: "s3",
@@ -115,7 +118,8 @@ const mockTopRanking: Product[] = [
 
 export function TopRanking() {
   const { t } = useTranslation();
-  const { language } = useLanguageStore();
+  const { language, direction } = useLanguageStore();
+  const isRTL = direction === "rtl";
 
   // Add badges to products for Figma style
   const productsWithBadges = mockTopRanking.map((product, index) => ({
@@ -133,25 +137,40 @@ export function TopRanking() {
   return (
     <section className="py-12 lg:py-16 bg-white" aria-label="Top Ranking Products">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-start gap-3 mb-8 lg:mb-12">
-          <div>
-            <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
-              {language === "fa" ? "محصولات پرفروش" : "Best Selling Products"}
-            </h2>
-            <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
-              {language === "fa" ? "محبوب‌ترین اقلام این ماه" : "Most popular items this month"}
-            </p>
+        <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div>
+              <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
+                {language === "fa" ? "محصولات پرفروش" : "Best Selling Products"}
+              </h2>
+              <p className="font-body" style={{ fontSize: '16px', lineHeight: '26px', color: '#444' }}>
+                {language === "fa" ? "محبوب‌ترین اقلام این ماه" : "Most popular items this month"}
+              </p>
+            </div>
+            <div className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl">
+              <Flame className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+            </div>
           </div>
-          <div className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl">
-            <Flame className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
-          </div>
+          <Link href="/products" className="focus-modern">
+            <Button 
+              variant="ghost" 
+              className="px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 min-h-[48px] flex items-center gap-2 border-0"
+            >
+              <span>{language === "fa" ? "مشاهده بیشتر" : "View More"}</span>
+              {isRTL ? (
+                <ChevronLeft className="w-5 h-5" />
+              ) : (
+                <ChevronRight className="w-5 h-5" />
+              )}
+            </Button>
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 md:gap-2 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-1 md:gap-x-2 gap-y-2 md:gap-y-3">
           {productsWithBadges.map((product) => (
             <div 
               key={product.id} 
-              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-[234px] md:w-[252px]"
+              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-full"
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
@@ -220,12 +239,6 @@ export function TopRanking() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 lg:mt-12 text-center">
-          <button className="px-8 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all">
-            {language === "fa" ? "مشاهده محصولات بیشتر" : "View More Products"}
-          </button>
         </div>
       </div>
     </section>

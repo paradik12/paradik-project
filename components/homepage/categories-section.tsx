@@ -13,6 +13,10 @@ import {
   Truck,
   Sparkles,
   Package,
+  UtensilsCrossed,
+  FlaskConical,
+  Building,
+  Heart,
 } from "lucide-react";
 
 const mockCategories: (Category & { icon: any; color: string })[] = [
@@ -87,6 +91,42 @@ const mockCategories: (Category & { icon: any; color: string })[] = [
     icon: Package,
     color: "bg-indigo-50 text-indigo-600",
     productCount: 78340,
+  },
+  {
+    id: "9",
+    name: "مواد غذایی",
+    nameEn: "Food & Beverage",
+    slug: "food",
+    icon: UtensilsCrossed,
+    color: "bg-green-50 text-green-600",
+    productCount: 187560,
+  },
+  {
+    id: "10",
+    name: "مواد شیمیایی",
+    nameEn: "Chemicals",
+    slug: "chemicals",
+    icon: FlaskConical,
+    color: "bg-purple-50 text-purple-600",
+    productCount: 65430,
+  },
+  {
+    id: "11",
+    name: "ساختمان و ساخت",
+    nameEn: "Construction & Building",
+    slug: "construction",
+    icon: Building,
+    color: "bg-red-50 text-red-600",
+    productCount: 112340,
+  },
+  {
+    id: "12",
+    name: "پزشکی و سلامت",
+    nameEn: "Medical & Health",
+    slug: "medical",
+    icon: Heart,
+    color: "bg-indigo-50 text-indigo-600",
+    productCount: 87650,
   },
 ];
 

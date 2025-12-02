@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Search, ShoppingCart, Menu, Globe, ChevronDown, Camera, X, ChevronRight, User, MapPin, DollarSign } from "lucide-react";
+import { Search, ShoppingCart, Menu, Globe, ChevronDown, Camera, X, ChevronRight, User, MapPin, DollarSign, Store, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -175,33 +175,6 @@ export function Header() {
                 </div>
               </Link>
 
-              {/* Navigation Menu - Desktop - از راست به چپ */}
-              <nav className="hidden lg:flex items-center gap-6">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    className="relative text-gray-700 font-semibold text-[15px] hover:text-primary transition-colors duration-200 py-2 group"
-                  >
-                    {language === "fa" ? item.name : item.nameEn}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Cart */}
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="relative text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
-                  0
-                </span>
-              </Button>
-
               {/* Mobile Menu Toggle */}
               <Button 
                 variant="ghost" 
@@ -219,13 +192,13 @@ export function Header() {
             </div>
 
             {/* Center - Search Bar (Global Sources Style) */}
-            <div className="hidden lg:flex flex-1 max-w-3xl mx-8" ref={searchRef}>
-              <form onSubmit={handleSearch} className="relative flex w-full items-center">
+            <div className="hidden lg:flex flex-1 mx-2" ref={searchRef}>
+              <form onSubmit={handleSearch} className="relative flex w-full items-center border-2 border-gray-300 rounded-lg overflow-hidden shadow-sm focus-within:border-primary focus-within:shadow-md transition-all duration-200">
                 {/* Category Dropdown */}
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger
                     className={cn(
-                      "h-12 w-40 rounded-l-lg rounded-r-none border-r-0 bg-gray-50 text-gray-700 font-medium text-sm hover:bg-gray-100 transition-colors",
+                      "h-12 w-40 rounded-l-lg rounded-r-none border-0 bg-gray-50 text-gray-700 font-medium text-sm hover:bg-gray-100 transition-colors",
                       isRTL && "rounded-l-none rounded-r-lg"
                     )}
                   >
@@ -254,7 +227,7 @@ export function Header() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => searchQuery.length >= 2 && setShowSearchSuggestions(true)}
                     className={cn(
-                      "h-12 rounded-none border-x-0 pr-12 text-sm bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20 focus:border-primary/50",
+                      "h-12 rounded-none border-0 pr-12 text-sm bg-white text-gray-900 placeholder:text-gray-400 focus:ring-0 focus-visible:ring-0",
                       isRTL && "text-right"
                     )}
                     dir={direction}
@@ -305,8 +278,8 @@ export function Header() {
                 <Button
                   type="submit"
                   className={cn(
-                    "h-12 px-8 rounded-l-none rounded-r-lg text-sm font-semibold bg-primary hover:bg-primary/90 text-white transition-all duration-200 shadow-sm hover:shadow-md",
-                    isRTL && "rounded-l-lg rounded-r-none"
+                    "h-12 px-8 rounded-none text-sm font-semibold bg-primary hover:bg-primary/90 text-white transition-all duration-200",
+                    isRTL ? "rounded-l-lg rounded-r-none" : "rounded-r-lg rounded-l-none"
                   )}
                   aria-label="Submit search"
                 >
@@ -316,8 +289,8 @@ export function Header() {
               </form>
             </div>
 
-            {/* Left Side Actions - جستجو، ورود و ثبت‌نام (RTL: سمت چپ) */}
-            <div className="flex items-center gap-3 flex-shrink-0">
+            {/* Left Side Actions - جستجو، تامین‌کننده شوید، درخواست قیمت، سبد خرید، ورود و ثبت‌نام (RTL: سمت چپ) */}
+            <div className="flex items-center gap-1 flex-shrink-0">
               {/* Search Icon/Button for Mobile */}
               <Button 
                 variant="ghost" 
@@ -329,22 +302,51 @@ export function Header() {
                 <Search className="h-5 w-5" />
               </Button>
 
-              {/* Sign In - Desktop */}
+              {/* Become a Supplier - Desktop */}
+              <Link href="/become-supplier">
+                <Button 
+                  variant="ghost" 
+                  size="default" 
+                  className="hidden lg:flex items-center gap-2 font-semibold text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
+                >
+                  <Store className="h-4 w-4" />
+                  <span>{language === "fa" ? "تامین‌کننده شوید" : "Become a Supplier"}</span>
+                </Button>
+              </Link>
+
+              {/* Request for Quotation - Desktop */}
+              <Link href="/rfq">
+                <Button 
+                  variant="ghost" 
+                  size="default" 
+                  className="hidden lg:flex items-center gap-2 font-semibold text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>{language === "fa" ? "درخواست قیمت" : "Request for Quotation"}</span>
+                </Button>
+              </Link>
+
+              {/* Cart */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="relative text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
+                  0
+                </span>
+              </Button>
+
+              {/* Sign In / Register - Desktop */}
               <Button 
                 variant="ghost" 
                 size="default" 
                 className="hidden md:flex items-center gap-2 font-semibold text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
               >
                 <User className="h-4 w-4" />
-                <span>{t("common.signIn")}</span>
-              </Button>
-
-              {/* Create Account - Desktop */}
-              <Button 
-                size="default" 
-                className="hidden md:flex font-semibold bg-primary hover:bg-primary/90 text-white transition-all duration-200 shadow-sm hover:shadow-md px-5"
-              >
-                {t("common.createAccount")}
+                <span>{language === "fa" ? "ورود / ثبت نام" : "Sign In / Register"}</span>
               </Button>
             </div>
           </div>
@@ -445,13 +447,7 @@ export function Header() {
                 className="w-full font-semibold border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-primary hover:text-primary transition-all duration-200"
               >
                 <User className="h-4 w-4 mr-2" />
-                {t("common.signIn")}
-              </Button>
-              <Button 
-                size="lg" 
-                className="w-full font-semibold bg-primary hover:bg-primary/90 text-white transition-all duration-200 shadow-sm"
-              >
-                {t("common.createAccount")}
+                {language === "fa" ? "ورود / ثبت نام" : "Sign In / Register"}
               </Button>
             </div>
           </div>

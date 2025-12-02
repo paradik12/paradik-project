@@ -15,7 +15,7 @@ const mockSuppliers: Supplier[] = [
     id: "s1",
     name: "شرکت پسته ایرانی",
     nameEn: "Iranian Nuts Company",
-    logo: "https://images.unsplash.com/photo-1606312619070-d48b4bdc6e3c?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=400&fit=crop&q=80",
     verified: true,
     yearsActive: 15,
     country: "Iran",
@@ -28,7 +28,7 @@ const mockSuppliers: Supplier[] = [
     id: "s2",
     name: "صادرات زعفران",
     nameEn: "Saffron Export",
-    logo: "https://images.unsplash.com/photo-1606914469633-bd39206ea739?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&h=400&fit=crop&q=80",
     verified: true,
     yearsActive: 12,
     country: "Iran",
@@ -41,7 +41,7 @@ const mockSuppliers: Supplier[] = [
     id: "s3",
     name: "فرش‌های دستباف ایرانی",
     nameEn: "Persian Handmade Carpets",
-    logo: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop&q=80",
     verified: true,
     yearsActive: 20,
     country: "Iran",
@@ -54,7 +54,7 @@ const mockSuppliers: Supplier[] = [
     id: "s4",
     name: "مزرعه عسل",
     nameEn: "Honey Farm",
-    logo: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&q=80",
     verified: false,
     yearsActive: 8,
     country: "Iran",
@@ -67,7 +67,7 @@ const mockSuppliers: Supplier[] = [
     id: "s5",
     name: "کارگاه چرم",
     nameEn: "Leather Workshop",
-    logo: "https://images.unsplash.com/photo-1624222247344-550fb60583fd?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1602789596530-d89b5f44e2c0?w=400&h=400&fit=crop&q=80",
     verified: true,
     yearsActive: 10,
     country: "Iran",
@@ -75,19 +75,6 @@ const mockSuppliers: Supplier[] = [
     responseRate: 96,
     rating: 4.7,
     mainCategories: ["Apparel", "Leather"],
-  },
-  {
-    id: "s6",
-    name: "محصولات زیبایی",
-    nameEn: "Beauty Products",
-    logo: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop",
-    verified: true,
-    yearsActive: 6,
-    country: "Iran",
-    productCount: 540,
-    responseRate: 94,
-    rating: 4.5,
-    mainCategories: ["Beauty", "Health"],
   },
 ];
 
@@ -97,7 +84,7 @@ export function FeaturedSuppliers() {
 
   return (
     <section className="section-spacing bg-muted/30" aria-label="Featured Suppliers">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h2 className="font-title mb-3" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
@@ -114,15 +101,16 @@ export function FeaturedSuppliers() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-1 md:gap-x-2 gap-y-2 md:gap-y-3">
           {mockSuppliers.map((supplier) => (
             <div 
               key={supplier.id} 
-              className="group bg-white border border-gray-200 rounded-xl p-6 hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-full"
             >
-              <div className="flex items-start gap-4 mb-4">
+              <div className="p-3 md:p-4 flex-1 flex flex-col">
+                <div className="flex items-start gap-4 mb-4">
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-card-title mb-1 group-hover:text-[var(--color-primary)] transition-colors truncate" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+                  <h4 className="font-card-title mb-1 group-hover:text-[var(--color-primary)] transition-colors truncate" style={{ fontSize: '20px', lineHeight: '24px', fontWeight: 600, color: '#222' }}>
                     {language === "fa" ? supplier.name : supplier.nameEn}
                   </h4>
                   <div className="flex items-center gap-1 mb-2">
@@ -181,11 +169,12 @@ export function FeaturedSuppliers() {
                     {language === "fa" ? "تجربه" : "Experience"}
                   </p>
                 </div>
-              </div>
+                </div>
 
-              <button className="font-cta w-full mt-4 px-4 py-2.5 bg-gray-50 rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
-                {language === "fa" ? "مشاهده تأمین‌کننده" : "View Supplier"}
-              </button>
+                <button className="font-cta w-full mt-4 px-4 py-2.5 bg-gray-50 rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
+                  {language === "fa" ? "مشاهده تأمین‌کننده" : "View Supplier"}
+                </button>
+              </div>
             </div>
           ))}
         </div>

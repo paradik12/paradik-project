@@ -10,6 +10,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, CheckCircle2 } from "lucide-react";
 
+// Helper function to format price
+const formatPrice = (price: number, language: string) => {
+  if (language === "fa") {
+    return `${(price * 50000).toLocaleString('fa-IR')} تومان`;
+  }
+  return `$${price}`;
+};
+
 const mockProducts: Product[] = [
   {
     id: "1",
@@ -17,7 +25,7 @@ const mockProducts: Product[] = [
     titleEn: "Premium Pistachios",
     price: 25,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1606312619070-d48b4bdc6e3c?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800&h=800&fit=crop&q=80",
     moq: 100,
     sold: 1250,
     supplierId: "s1",
@@ -33,7 +41,7 @@ const mockProducts: Product[] = [
     titleEn: "Authentic Saffron",
     price: 45,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1606914469633-bd39206ea739?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&h=800&fit=crop&q=80",
     moq: 50,
     sold: 890,
     supplierId: "s2",
@@ -49,7 +57,7 @@ const mockProducts: Product[] = [
     titleEn: "Handmade Carpet",
     price: 350,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1586076421003-69cc3ae32d0d?w=800&h=800&fit=crop&q=80",
     moq: 1,
     sold: 45,
     supplierId: "s3",
@@ -65,7 +73,7 @@ const mockProducts: Product[] = [
     titleEn: "Natural Honey",
     price: 18,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1587047006747-5e68712c7d5a?w=800&h=800&fit=crop&q=80",
     moq: 24,
     sold: 670,
     supplierId: "s4",
@@ -81,7 +89,7 @@ const mockProducts: Product[] = [
     titleEn: "Natural Leather",
     price: 85,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1624222247344-550fb60583fd?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=800&h=800&fit=crop&q=80",
     moq: 10,
     sold: 320,
     supplierId: "s5",
@@ -97,7 +105,7 @@ const mockProducts: Product[] = [
     titleEn: "Face Serum",
     price: 32,
     currency: "USD",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&h=800&fit=crop&q=80",
     moq: 12,
     sold: 540,
     supplierId: "s6",
@@ -137,72 +145,58 @@ export function FeaturedProducts() {
         </div>
 
         {/* Product Grid - Lovable Design */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-1 md:gap-x-2 gap-y-2 md:gap-y-3">
           {mockProducts.map((product) => (
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="group w-full max-w-[260px] md:max-w-[280px] bg-white border border-gray-200 rounded-xl p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-250"
+              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm w-full"
+              style={{ aspectRatio: '6.5/10' }}
             >
-              {/* Image Container - Lovable Design */}
-              <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden rounded-lg mb-3">
+              {/* Image Container - 60% of card height with small margin */}
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '2px 2px 2px 2px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - ${t("common.products")} - Paradik B2B Marketplace`}
                   fill
-                  className="object-contain object-center group-hover:scale-105 transition-transform duration-250"
-                  sizes="(max-width: 640px) 260px, 280px"
+                  className="w-full h-full object-contain object-center group-hover:scale-110 transition-transform duration-500 rounded-lg"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                   quality={90}
                   loading="lazy"
                   title={language === "fa" ? product.title : product.titleEn}
                 />
                 {product.verified && (
-                  <span className="absolute top-2 right-2 bg-green-600 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                  <span className="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm shadow-lg">
                     {t("common.verified")}
                   </span>
                 )}
+                <button className="absolute bottom-3 left-3 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[var(--color-primary)] hover:text-white">
+                  <ShoppingCart className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Content - Lovable Design */}
-              <div className="space-y-2">
-                {/* Product Title - H3: 20px, weight 600, line-height 30px */}
-                <h3 className="font-card-title mt-3 line-clamp-2" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
+              {/* Content - Figma Exact */}
+              <div className="p-3 md:p-4 flex-1 flex flex-col space-y-1">
+                <h4 className="font-card-title line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors" style={{ fontSize: '20px', lineHeight: '24px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
-                </h3>
+                </h4>
 
-                {/* Short Description - Small: 14px, weight 500, line-height 22px */}
-                <p className="font-small mb-1.5 line-clamp-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                  {language === "fa" ? "محصول با کیفیت بالا" : "High quality product"}
-                </p>
-
-                {/* Price Section - Numbers: 18px, weight 500, line-height 26px */}
-                <div className="flex flex-col gap-1">
+                {/* Price - Numbers: 18px, weight 500 */}
+                <div>
                   <div className="flex items-baseline gap-2">
-                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
-                      ${product.price}
-                    </span>
-                    <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                      / {language === "fa" ? "واحد" : "unit"}
+                    <span className="font-number" style={{ fontSize: '18px', lineHeight: '22px', fontWeight: 500, color: '#111' }}>
+                      {formatPrice(product.price, language)}
                     </span>
                   </div>
-                </div>
-
-                {/* Minimum Order - Small: 14px, weight 500 */}
-                <div className="bg-gray-100 rounded-lg py-2 px-3">
-                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                    {t("common.minimumOrder")}: {product.moq} {language === "fa" ? "واحد" : "unit"}
+                  <p className="font-small" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
+                    {t("common.minimumOrder")}: {product.moq}
                   </p>
                 </div>
 
-                {/* Vendor/Brand - Small: 14px, weight 500 */}
-                <div className="flex items-center gap-1">
-                  <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                    {product.supplierName}
-                  </p>
-                  {product.verified && (
-                    <span className="text-blue-600 text-[12px]">✓</span>
-                  )}
-                </div>
+                {/* Supplier - Small: 14px, weight 500 */}
+                <p className="font-small truncate" style={{ fontSize: '14px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
+                  {product.supplierName}
+                </p>
               </div>
             </Link>
           ))}
