@@ -64,7 +64,7 @@ export function Header() {
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState<Array<{id: number, text: string, category: string}>>([]);
-  const searchRef = useRef<HTMLDivElement>(null);  // اصلاح شده
+  const searchRef = useRef<HTMLFormElement>(null); //
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const isRTL = direction === "rtl";
