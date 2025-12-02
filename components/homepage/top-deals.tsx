@@ -8,6 +8,14 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
 import { useRef } from "react";
 
+// Helper function to format price
+const formatPrice = (price: number, language: string) => {
+  if (language === "fa") {
+    return `${(price * 50000).toLocaleString('fa-IR')} تومان`;
+  }
+  return `$${price}`;
+};
+
 const mockTopDeals: Product[] = [
   {
     id: "td1",
@@ -157,11 +165,11 @@ export function TopDeals() {
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-250 flex flex-col"
+              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-300 rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-250 flex flex-col shadow-sm"
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
-              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '4px' }}>
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px 2px 2px 2px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
@@ -198,11 +206,11 @@ export function TopDeals() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-baseline gap-2">
                     <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
-                      ${product.price}
+                      {formatPrice(product.price, language)}
                     </span>
                     {product.price > 20 && (
                       <span className="font-small line-through" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                        ${(product.price * 1.2).toFixed(0)}
+                        {formatPrice(product.price * 1.2, language)}
                       </span>
                     )}
                     <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>

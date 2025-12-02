@@ -6,6 +6,14 @@ import type { Product } from "@/types";
 import Image from "next/image";
 import { Flame, Star, ShoppingCart } from "lucide-react";
 
+// Helper function to format price
+const formatPrice = (price: number, language: string) => {
+  if (language === "fa") {
+    return `${(price * 50000).toLocaleString('fa-IR')} تومان`;
+  }
+  return `$${price}`;
+};
+
 const mockTopRanking: Product[] = [
   {
     id: "tr1",
@@ -143,11 +151,11 @@ export function TopRanking() {
           {productsWithBadges.map((product) => (
             <div 
               key={product.id} 
-              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+              className="group bg-white border border-gray-300 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col shadow-sm"
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
-              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '4px' }}>
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px 2px 2px 2px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
@@ -178,7 +186,7 @@ export function TopRanking() {
                 <div className="mb-2">
                   <div className="flex items-baseline gap-2">
                     <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
-                      ${product.price}
+                      {formatPrice(product.price, language)}
                     </span>
                   </div>
                   <p className="font-small mt-1" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
