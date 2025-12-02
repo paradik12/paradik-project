@@ -158,24 +158,24 @@ export function TopDeals() {
 
         <div 
           ref={scrollContainerRef}
-          className="flex gap-3 md:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-2 md:gap-3 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {mockTopDeals.map((product) => (
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-300 rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-250 flex flex-col shadow-sm"
+              className="flex-none w-[234px] md:w-[252px] snap-start group bg-white border border-gray-300 rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-250 flex flex-col shadow-sm"
               style={{ aspectRatio: '6.5/10' }}
             >
               {/* Image Container - 60% of card height with small margin */}
-              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px 2px 2px 2px' }}>
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '2px 2px 2px 2px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                   fill
                   className="object-contain object-center group-hover:scale-105 transition-transform duration-250 rounded-lg"
-                  sizes="(max-width: 640px) 260px, 280px"
+                  sizes="(max-width: 640px) 234px, 252px"
                   quality={90}
                   loading="lazy"
                   title={language === "fa" ? product.title : product.titleEn}
@@ -208,11 +208,6 @@ export function TopDeals() {
                     <span className="font-number" style={{ fontSize: '18px', lineHeight: '26px', fontWeight: 500, color: '#111' }}>
                       {formatPrice(product.price, language)}
                     </span>
-                    {product.price > 20 && (
-                      <span className="font-small line-through" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
-                        {formatPrice(product.price * 1.2, language)}
-                      </span>
-                    )}
                     <span className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                       / {language === "fa" ? "واحد" : "unit"}
                     </span>
