@@ -143,15 +143,16 @@ export function TopRanking() {
           {productsWithBadges.map((product) => (
             <div 
               key={product.id} 
-              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+              style={{ aspectRatio: '6.5/10' }}
             >
-              {/* Image Container - Figma Exact */}
-              <div className="relative aspect-square bg-gray-50 overflow-hidden">
+              {/* Image Container - 60% of card height with small margin */}
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Top Ranking Product - Paradik B2B Marketplace`}
                   fill
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-contain object-center group-hover:scale-110 transition-transform duration-500 rounded-lg"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   quality={90}
                   loading="lazy"
@@ -168,7 +169,7 @@ export function TopRanking() {
               </div>
 
               {/* Content - Figma Exact */}
-              <div className="p-4">
+              <div className="p-4 flex-1 flex flex-col">
                 <h4 className="font-card-title mb-2 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
                 </h4>

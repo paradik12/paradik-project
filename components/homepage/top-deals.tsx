@@ -157,32 +157,33 @@ export function TopDeals() {
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-200 rounded-xl p-4 md:p-5 hover:shadow-xl hover:scale-105 transition-all duration-250"
+              className="flex-none w-[260px] md:w-[280px] snap-start group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-250 flex flex-col"
+              style={{ aspectRatio: '6.5/10' }}
             >
-              {/* Image Container - Lovable Design */}
-              <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden rounded-lg mb-3">
+              {/* Image Container - 60% of card height with small margin */}
+              <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ height: '60%', padding: '8px' }}>
                 <Image
                   src={product.image}
                   alt={`${language === "fa" ? product.title : product.titleEn} - Flash Deal - Paradik B2B Marketplace`}
                   fill
-                  className="object-contain object-center group-hover:scale-105 transition-transform duration-250"
+                  className="object-contain object-center group-hover:scale-105 transition-transform duration-250 rounded-lg"
                   sizes="(max-width: 640px) 260px, 280px"
                   quality={90}
                   loading="lazy"
                   title={language === "fa" ? product.title : product.titleEn}
                 />
-                <span className="absolute top-2 right-2 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                <span className="absolute top-3 right-3 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
                   {language === "fa" ? "فوری" : "Flash Deal"}
                 </span>
                 {product.price > 20 && (
-                  <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
+                  <span className="absolute top-3 left-3 bg-red-500 text-white px-2 py-0.5 rounded text-[12px] font-medium">
                     {Math.round((1 - product.price / (product.price * 1.2)) * 100)}%
                   </span>
                 )}
               </div>
 
               {/* Content - Lovable Design */}
-              <div className="space-y-2">
+              <div className="p-4 md:p-5 space-y-2 flex-1">
                 {/* Product Title - H3: 20px, weight 600 */}
                 <h3 className="font-card-title mt-3 line-clamp-2" style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 600, color: '#222' }}>
                   {language === "fa" ? product.title : product.titleEn}
