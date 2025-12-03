@@ -171,7 +171,7 @@ export function FeaturedSuppliers() {
                 </div>
                 </div>
 
-                <button className="font-cta w-full mt-4 px-4 py-2.5 bg-gray-50 rounded-lg hover:bg-[var(--color-primary)] hover:text-white transition-all" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
+                <button className="font-cta w-full mt-4 px-4 py-2.5 bg-gray-100 border border-gray-300 rounded-lg hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all" style={{ fontSize: '16px', fontWeight: 600, color: '#1A1A1A' }}>
                   {language === "fa" ? "مشاهده تأمین‌کننده" : "View Supplier"}
                 </button>
               </div>

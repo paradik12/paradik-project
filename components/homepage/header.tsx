@@ -34,8 +34,6 @@ const categories = [
 ];
 
 const navigationItems = [
-  { id: "products", name: "محصولات", nameEn: "Products", href: "/products" },
-  { id: "suppliers", name: "تامین‌کنندگان", nameEn: "Suppliers", href: "/suppliers" },
   { id: "categories", name: "دسته‌بندی‌ها", nameEn: "Categories", href: "/categories" },
 ];
 
@@ -174,6 +172,19 @@ export function Header() {
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></div>
                 </div>
               </Link>
+
+              {/* Categories Navigation Menu - Desktop */}
+              <nav className="hidden lg:flex items-center gap-6">
+                {navigationItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className="font-semibold text-gray-700 hover:text-primary transition-colors duration-200 text-sm"
+                  >
+                    {language === "fa" ? item.name : item.nameEn}
+                  </Link>
+                ))}
+              </nav>
 
               {/* Mobile Menu Toggle */}
               <Button 
