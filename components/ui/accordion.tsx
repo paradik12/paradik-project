@@ -54,3 +54,4 @@ export function AccordionItem({ title, children, defaultOpen = false, className 
     </div>
   );
 }
+

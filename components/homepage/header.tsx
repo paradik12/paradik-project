@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Search, ShoppingCart, Menu, Globe, ChevronDown, Camera, X, ChevronRight, User, MapPin, DollarSign, Store, FileText } from "lucide-react";
+import { Search, ShoppingCart, Menu, Globe, ChevronDown, Camera, X, ChevronRight, User, MapPin, DollarSign, Store, FileText, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -313,6 +313,18 @@ export function Header() {
                 <Search className="h-5 w-5" />
               </Button>
 
+              {/* Products Button - Desktop */}
+              <Link href="/products">
+                <Button 
+                  variant="ghost" 
+                  size="default" 
+                  className="hidden lg:flex items-center gap-2 font-semibold text-gray-700 hover:text-primary hover:bg-gray-50 transition-all duration-200"
+                >
+                  <Package className="h-4 w-4" />
+                  <span>{language === "fa" ? "محصولات" : "Products"}</span>
+                </Button>
+              </Link>
+
               {/* Become a Supplier - Desktop */}
               <Link href="/become-supplier">
                 <Button 
@@ -370,6 +382,18 @@ export function Header() {
           <div className="container mx-auto px-4 py-4 space-y-4">
             {/* Mobile Navigation */}
             <nav className="flex flex-col gap-1">
+              {/* Products Link */}
+              <Link
+                href="/products"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between text-gray-700 font-semibold text-base hover:text-primary hover:bg-gray-50 transition-all duration-200 py-3 px-3 rounded-lg"
+              >
+                <div className="flex items-center gap-2">
+                  <Package className="h-5 w-5" />
+                  <span>{language === "fa" ? "محصولات" : "Products"}</span>
+                </div>
+                <ChevronRight className={cn("h-5 w-5 text-gray-400", isRTL && "rotate-180")} />
+              </Link>
               {navigationItems.map((item) => (
                 <Link
                   key={item.id}
