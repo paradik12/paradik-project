@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
     // Allow unoptimized images in development if needed
-    unoptimized: process.env.NODE_ENV === "development" ? false : false,
+    unoptimized: false,
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
