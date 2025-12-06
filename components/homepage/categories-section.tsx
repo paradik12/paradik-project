@@ -146,17 +146,18 @@ export function CategoriesSection() {
               {t("homepage.categories.subtitle")}
             </p>
           </div>
-          <button className="hidden md:block text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors">
+          <Link href="/products" className="hidden md:block text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors">
             {language === "fa" ? "مشاهده همه →" : "View All →"}
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
           {mockCategories.map((category) => {
             const Icon = category.icon;
             return (
-              <button
+              <Link
                 key={category.id}
+                href={`/products?category=${category.slug}`}
                 className="group bg-white border border-neutral-200 rounded-xl p-6 hover:shadow-xl hover:border-[var(--color-primary)] transition-all duration-300 text-center"
                 aria-label={`Browse ${language === "fa" ? category.name : category.nameEn} products`}
               >
@@ -169,15 +170,15 @@ export function CategoriesSection() {
                 <p className="font-small" style={{ fontSize: '14px', lineHeight: '22px', fontWeight: 500, color: '#666' }}>
                   {category.productCount?.toLocaleString() || 0} {t("common.products")}
                 </p>
-              </button>
+              </Link>
             );
           })}
         </div>
 
         <div className="mt-8 text-center md:hidden">
-          <button className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors">
+          <Link href="/products" className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors">
             {language === "fa" ? "مشاهده همه دسته‌بندی‌ها →" : "View All Categories →"}
-          </button>
+          </Link>
         </div>
       </div>
     </section>

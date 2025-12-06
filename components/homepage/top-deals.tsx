@@ -132,10 +132,9 @@ export function TopDeals() {
   return (
     <section className="py-12 lg:py-16 bg-gray-50" aria-label="Top Deals">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center mb-8 lg:mb-12 relative">
+        <div className="flex items-center justify-between mb-8 lg:mb-12">
           <div className={cn(
-            "hidden md:flex items-center gap-2 absolute",
-            "left-0"
+            "hidden md:flex items-center gap-2"
           )}>
             <button 
               onClick={() => scroll('right')}
@@ -150,7 +149,7 @@ export function TopDeals() {
               <ChevronLeft className="w-5 h-5" />
             </button>
           </div>
-          <div className="text-center">
+          <div className="flex-1 text-center">
             <h2 className="font-title mb-2" style={{ fontSize: '28px', lineHeight: '38px', fontWeight: 800, color: '#1A1A1A' }}>
               {language === "fa" ? "پیشنهادهای ویژه امروز" : "Today's Special Offers"}
             </h2>
@@ -158,6 +157,9 @@ export function TopDeals() {
               {language === "fa" ? "پیشنهادهای محدود روی محصولات پرفروش" : "Limited offers on best-selling products"}
             </p>
           </div>
+          <Link href="/products?type=flash-deals" className="hidden md:block text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors font-semibold">
+            {language === "fa" ? "مشاهده همه →" : "View All →"}
+          </Link>
         </div>
 
         <div 
@@ -224,6 +226,12 @@ export function TopDeals() {
           ))}
         </div>
 
+        {/* Mobile View All Button */}
+        <div className="mt-8 text-center md:hidden">
+          <Link href="/products?type=flash-deals" className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors font-semibold">
+            {language === "fa" ? "مشاهده همه پیشنهادهای ویژه →" : "View All Special Offers →"}
+          </Link>
+        </div>
       </div>
     </section>
   );

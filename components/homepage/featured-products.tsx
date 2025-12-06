@@ -134,7 +134,7 @@ export function FeaturedProducts() {
               {t("homepage.featuredProducts.subtitle")}
             </p>
           </div>
-          <Link href="/products" className="focus-modern">
+          <Link href="/products?type=featured" className="focus-modern">
             <Button 
               variant="outline" 
               className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold hover:bg-primary hover:text-white hover:border-primary transition-all transform hover:scale-105 min-h-[48px]"

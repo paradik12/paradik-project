@@ -279,6 +279,51 @@
     margin-right: auto;
   }
   
+  /* Force LTR for categories container - prevents RTL override */
+  .force-ltr {
+    direction: ltr !important;
+  }
+  
+  .force-ltr[dir="ltr"] {
+    direction: ltr !important;
+  }
+  
+  /* Categories RTL fix - override parent direction */
+  .categories-container-rtl {
+    direction: ltr !important;
+    isolation: isolate;
+  }
+  
+  .categories-container-rtl > * {
+    direction: ltr !important;
+  }
+  
+  [dir="rtl"] .categories-container-rtl {
+    direction: ltr !important;
+  }
+  
+  [dir="rtl"] .categories-container-rtl * {
+    direction: ltr !important;
+  }
+  
+  /* Force categories to display right to left in RTL */
+  .categories-rtl-wrapper {
+    direction: ltr !important;
+  }
+  
+  .categories-rtl-wrapper [dir="ltr"] {
+    direction: ltr !important;
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+  }
+  
+  [dir="rtl"] .categories-rtl-wrapper [dir="ltr"] {
+    direction: ltr !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+  }
+
   /* Figma-exact card styling */
   .modern-card {
     border: 1px solid hsl(220 13% 91%); /* border-gray-200 */

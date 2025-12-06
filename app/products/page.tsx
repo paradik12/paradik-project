@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguageStore } from "@/store/language-store";
+import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/homepage/header";
 import { Footer } from "@/components/homepage/footer";
 import { Breadcrumb } from "@/components/product/breadcrumb";
@@ -27,22 +28,48 @@ const PRODUCTS_PER_PAGE = 20;
 export default function ProductsPage() {
   const { t } = useTranslation();
   const { language } = useLanguageStore();
+  const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [sortBy, setSortBy] = useState<SortOption>("relevance");
+  
+  // Initialize sort from URL params
+  const initialSort = (searchParams.get("sort") as SortOption) || "relevance";
+  const initialCategory = searchParams.get("category") || "";
+  const productType = searchParams.get("type") || "";
+  
+  const [sortBy, setSortBy] = useState<SortOption>(initialSort);
   const [filters, setFilters] = useState<FilterState>({
-    categories: [],
+    categories: initialCategory ? [initialCategory] : [],
     brands: [],
     priceRange: { min: 0, max: 0 },
     moq: 0,
-    verifiedOnly: false,
+    verifiedOnly: productType === "featured" || productType === "flash-deals" ? false : false,
     goldSupplier: false,
   });
   const [totalResults, setTotalResults] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
   const observerTarget = useRef<HTMLDivElement>(null);
+  
+  // Update sort when URL changes
+  useEffect(() => {
+    const urlSort = searchParams.get("sort") as SortOption;
+    if (urlSort && urlSort !== sortBy) {
+      setSortBy(urlSort);
+    }
+  }, [searchParams, sortBy]);
+  
+  // Update category when URL changes
+  useEffect(() => {
+    const urlCategory = searchParams.get("category");
+    if (urlCategory && !filters.categories.includes(urlCategory)) {
+      setFilters(prev => ({
+        ...prev,
+        categories: [urlCategory],
+      }));
+    }
+  }, [searchParams, filters.categories]);
 
   // Fetch products
   const fetchProducts = useCallback(async (currentOffset: number, reset = false) => {
@@ -61,6 +88,17 @@ export default function ProductsPage() {
 
       if (filters.categories.length > 0) {
         params.append("category", filters.categories[0]);
+      }
+      
+      // Add product type filter if specified in URL
+      const productTypeParam = searchParams.get("type");
+      if (productTypeParam) {
+        params.append("type", productTypeParam);
+      }
+      
+      // Add sort parameter
+      if (sortBy && sortBy !== "relevance") {
+        params.append("sort", sortBy);
       }
 
       const response = await fetch(`/api/products?${params.toString()}`);
@@ -82,7 +120,7 @@ export default function ProductsPage() {
       setLoading(false);
       setLoadingMore(false);
     }
-  }, [filters.categories]);
+  }, [filters.categories, searchParams, sortBy]);
 
   // Initial load
   useEffect(() => {

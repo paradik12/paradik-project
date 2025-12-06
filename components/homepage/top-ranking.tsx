@@ -151,7 +151,7 @@ export function TopRanking() {
               <Flame className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
             </div>
           </div>
-          <Link href="/products" className="focus-modern">
+          <Link href="/products?sort=popular" className="focus-modern">
             <Button 
               variant="ghost" 
               className="px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 min-h-[48px] flex items-center gap-2 border-0"

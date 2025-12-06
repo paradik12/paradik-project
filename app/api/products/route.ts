@@ -7,6 +7,7 @@ const mockProducts: Product[] = [
     id: "1",
     title: "پسته درجه یک",
     titleEn: "Premium Pistachios",
+    description: "پسته درجه یک ایرانی با کیفیت عالی و طعم بی‌نظیر، مناسب برای صادرات و مصرف داخلی، بسته‌بندی بهداشتی و استاندارد",
     price: 25,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1606312619070-d48b4bdc6e3c?w=400&h=400&fit=crop",
@@ -14,6 +15,7 @@ const mockProducts: Product[] = [
     sold: 1250,
     supplierId: "s1",
     supplierName: "Iranian Nuts Co.",
+    supplierNameFa: "شرکت خشکبار ایرانی",
     verified: true,
     categoryId: "3",
     rating: 4.8,
@@ -23,6 +25,7 @@ const mockProducts: Product[] = [
     id: "2",
     title: "زعفران اصل",
     titleEn: "Authentic Saffron",
+    description: "زعفران اصل قائنات با عیار بالا و رنگ طبیعی، مناسب برای مصارف غذایی و دارویی، بسته‌بندی در ظروف شیشه‌ای محافظ",
     price: 45,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1606914469633-bd39206ea739?w=400&h=400&fit=crop",
@@ -30,6 +33,7 @@ const mockProducts: Product[] = [
     sold: 890,
     supplierId: "s2",
     supplierName: "Saffron Export",
+    supplierNameFa: "صادرات زعفران",
     verified: true,
     categoryId: "3",
     rating: 4.9,
@@ -39,6 +43,7 @@ const mockProducts: Product[] = [
     id: "3",
     title: "فرش دستباف",
     titleEn: "Handmade Carpet",
+    description: "فرش دستباف ایرانی با طرح‌های اصیل و رنگ‌های طبیعی، بافت با پشم مرغوب و گره‌های محکم، مناسب برای دکوراسیون لوکس",
     price: 350,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop",
@@ -46,6 +51,7 @@ const mockProducts: Product[] = [
     sold: 45,
     supplierId: "s3",
     supplierName: "Persian Carpets",
+    supplierNameFa: "فرش‌های دستباف ایرانی",
     verified: true,
     categoryId: "6",
     rating: 5.0,
@@ -55,6 +61,7 @@ const mockProducts: Product[] = [
     id: "4",
     title: "عسل طبیعی",
     titleEn: "Natural Honey",
+    description: "عسل طبیعی خالص بدون افزودنی و شکر، استخراج شده از کندوهای ارگانیک، سرشار از ویتامین و آنزیم‌های مفید برای سلامت",
     price: 18,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",
@@ -62,6 +69,7 @@ const mockProducts: Product[] = [
     sold: 670,
     supplierId: "s4",
     supplierName: "Honey Farm",
+    supplierNameFa: "مزرعه عسل",
     verified: false,
     categoryId: "3",
     rating: 4.6,
@@ -71,6 +79,7 @@ const mockProducts: Product[] = [
     id: "5",
     title: "چرم طبیعی",
     titleEn: "Natural Leather",
+    description: "چرم طبیعی با کیفیت بالا و بافت یکنواخت، مناسب برای تولید کیف، کفش و لوازم چرمی، مقاوم در برابر رطوبت و سایش",
     price: 85,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1624222247344-550fb60583fd?w=400&h=400&fit=crop",
@@ -78,6 +87,7 @@ const mockProducts: Product[] = [
     sold: 320,
     supplierId: "s5",
     supplierName: "Leather Works",
+    supplierNameFa: "کارگاه چرم",
     verified: true,
     categoryId: "2",
     rating: 4.7,
@@ -87,6 +97,7 @@ const mockProducts: Product[] = [
     id: "6",
     title: "سرم صورت",
     titleEn: "Face Serum",
+    description: "سرم صورت حاوی ویتامین C و هیالورونیک اسید، مرطوب‌کننده و ضد پیری، مناسب برای انواع پوست، فرمولاسیون بدون پارابن",
     price: 32,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
@@ -94,6 +105,7 @@ const mockProducts: Product[] = [
     sold: 540,
     supplierId: "s6",
     supplierName: "Beauty Products",
+    supplierNameFa: "محصولات زیبایی",
     verified: true,
     categoryId: "7",
     rating: 4.5,
@@ -103,6 +115,7 @@ const mockProducts: Product[] = [
     id: "7",
     title: "ماشین برش لیزری",
     titleEn: "Laser Cutting Machine",
+    description: "دستگاه برش لیزری اتوماتیک با دقت بالا و قدرت برش تا ۳۰ میلی‌متر، مجهز به سیستم خنک‌کننده و کنترل CNC پیشرفته",
     price: 12500,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=400&fit=crop&q=80",
@@ -110,6 +123,7 @@ const mockProducts: Product[] = [
     sold: 45,
     supplierId: "s7",
     supplierName: "Tech Manufacturing Co.",
+    supplierNameFa: "شرکت تولیدات فناوری",
     verified: true,
     categoryId: "4",
     rating: 4.8,
@@ -119,6 +133,7 @@ const mockProducts: Product[] = [
     id: "8",
     title: "ماشین بسته‌بندی اتوماتیک",
     titleEn: "Automatic Packaging Machine",
+    description: "دستگاه بسته‌بندی اتوماتیک با سرعت بالا و دقت در اندازه‌گیری، قابلیت بسته‌بندی انواع محصولات پودری و مایع، سیستم کنترل PLC",
     price: 8500,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&q=80",
@@ -126,6 +141,7 @@ const mockProducts: Product[] = [
     sold: 32,
     supplierId: "s8",
     supplierName: "Industrial Equipment Ltd.",
+    supplierNameFa: "تجهیزات صنعتی",
     verified: true,
     categoryId: "4",
     rating: 4.7,
@@ -135,6 +151,7 @@ const mockProducts: Product[] = [
     id: "9",
     title: "دستگاه CNC",
     titleEn: "CNC Machine",
+    description: "دستگاه CNC سه محوره با دقت میکرونی و قابلیت تراشکاری فلزات و پلاستیک، مجهز به سیستم کنترل Fanuc و میز کار بزرگ",
     price: 15000,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=400&fit=crop&q=80",
@@ -142,6 +159,7 @@ const mockProducts: Product[] = [
     sold: 28,
     supplierId: "s9",
     supplierName: "Precision Tools Inc.",
+    supplierNameFa: "ابزار دقیق",
     verified: true,
     categoryId: "4",
     rating: 4.9,
@@ -151,6 +169,7 @@ const mockProducts: Product[] = [
     id: "10",
     title: "گوشی موبایل",
     titleEn: "Smartphone",
+    description: "گوشی هوشمند با پردازنده قدرتمند و دوربین چندگانه، صفحه نمایش AMOLED و باتری با ظرفیت بالا، پشتیبانی از 5G و سیستم عامل به‌روز",
     price: 450,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop&q=80",
@@ -158,6 +177,7 @@ const mockProducts: Product[] = [
     sold: 2340,
     supplierId: "s10",
     supplierName: "Electronics Global",
+    supplierNameFa: "الکترونیک جهانی",
     verified: true,
     categoryId: "1",
     rating: 4.6,
@@ -167,6 +187,7 @@ const mockProducts: Product[] = [
     id: "11",
     title: "لباس ورزشی",
     titleEn: "Sportswear",
+    description: "لباس ورزشی از جنس پلی‌استر و الاستیک با قابلیت تنفس بالا، مناسب برای فعالیت‌های بدنی و ورزش، ضد عرق و ضد بو",
     price: 35,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=400&h=400&fit=crop&q=80",
@@ -174,6 +195,7 @@ const mockProducts: Product[] = [
     sold: 890,
     supplierId: "s11",
     supplierName: "Fashion Wear Co.",
+    supplierNameFa: "شرکت پوشاک مد",
     verified: false,
     categoryId: "2",
     rating: 4.4,
@@ -183,6 +205,7 @@ const mockProducts: Product[] = [
     id: "12",
     title: "مواد شیمیایی صنعتی",
     titleEn: "Industrial Chemicals",
+    description: "مواد شیمیایی صنعتی با خلوص بالا و استانداردهای بین‌المللی، مناسب برای صنایع پتروشیمی و تولیدی، بسته‌بندی ایمن و استاندارد",
     price: 120,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1582719201952-c1ea6dc78a3d?w=400&h=400&fit=crop&q=80",
@@ -190,6 +213,7 @@ const mockProducts: Product[] = [
     sold: 4500,
     supplierId: "s12",
     supplierName: "Chemical Solutions",
+    supplierNameFa: "محلول‌های شیمیایی",
     verified: true,
     categoryId: "5",
     rating: 4.7,
@@ -199,6 +223,7 @@ const mockProducts: Product[] = [
     id: "13",
     title: "سیمان پرتلند",
     titleEn: "Portland Cement",
+    description: "سیمان پرتلند نوع یک با مقاومت بالا و زمان گیرش استاندارد، مناسب برای بتن‌ریزی و ساخت‌وساز، مطابق با استانداردهای ملی و بین‌المللی",
     price: 85,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160563-40a4e3b4b3b3?w=400&h=400&fit=crop&q=80",
@@ -206,6 +231,7 @@ const mockProducts: Product[] = [
     sold: 56000,
     supplierId: "s13",
     supplierName: "Construction Materials",
+    supplierNameFa: "مواد ساختمانی",
     verified: true,
     categoryId: "6",
     rating: 4.8,
@@ -215,6 +241,7 @@ const mockProducts: Product[] = [
     id: "14",
     title: "کرم ضد آفتاب",
     titleEn: "Sunscreen Cream",
+    description: "کرم ضد آفتاب با SPF 50+ و محافظت در برابر اشعه UVA و UVB، فرمولاسیون ضد آب و مناسب برای انواع پوست، بدون چربی و غیر کومدوژنیک",
     price: 15,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=400&fit=crop&q=80",
@@ -222,6 +249,7 @@ const mockProducts: Product[] = [
     sold: 1200,
     supplierId: "s14",
     supplierName: "Beauty Care Products",
+    supplierNameFa: "محصولات مراقبت زیبایی",
     verified: true,
     categoryId: "7",
     rating: 4.5,
@@ -231,6 +259,7 @@ const mockProducts: Product[] = [
     id: "15",
     title: "کابل برق",
     titleEn: "Electrical Cable",
+    description: "کابل برق مسی با عایق PVC مقاوم در برابر حرارت و رطوبت، مناسب برای نصب در محیط‌های داخلی و خارجی، مطابق با استانداردهای IEC",
     price: 55,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=400&fit=crop&q=80",
@@ -238,6 +267,7 @@ const mockProducts: Product[] = [
     sold: 3400,
     supplierId: "s15",
     supplierName: "Electric Supply Co.",
+    supplierNameFa: "شرکت تامین برق",
     verified: true,
     categoryId: "1",
     rating: 4.6,
@@ -247,6 +277,7 @@ const mockProducts: Product[] = [
     id: "16",
     title: "پارچه کتان",
     titleEn: "Linen Fabric",
+    description: "پارچه کتان طبیعی با بافت یکنواخت و قابلیت تنفس بالا، مناسب برای تولید لباس و منسوجات خانگی، رنگ‌بندی متنوع و مقاوم در برابر شستشو",
     price: 28,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1582719201952-c1ea6dc78a3d?w=400&h=400&fit=crop&q=80",
@@ -254,6 +285,7 @@ const mockProducts: Product[] = [
     sold: 2100,
     supplierId: "s16",
     supplierName: "Textile Manufacturers",
+    supplierNameFa: "تولیدکنندگان منسوجات",
     verified: false,
     categoryId: "2",
     rating: 4.3,
@@ -263,6 +295,7 @@ const mockProducts: Product[] = [
     id: "17",
     title: "ماشین آسفالت",
     titleEn: "Asphalt Machine",
+    description: "دستگاه آسفالت‌ریزی با ظرفیت بالا و سیستم گرمایش پیشرفته، قابلیت پخش یکنواخت آسفالت داغ، مجهز به سیستم کنترل دما و فشار",
     price: 45000,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&q=80",
@@ -270,6 +303,7 @@ const mockProducts: Product[] = [
     sold: 12,
     supplierId: "s17",
     supplierName: "Heavy Machinery Inc.",
+    supplierNameFa: "ماشین‌آلات سنگین",
     verified: true,
     categoryId: "4",
     rating: 4.9,
@@ -279,6 +313,7 @@ const mockProducts: Product[] = [
     id: "18",
     title: "رزین اپوکسی",
     titleEn: "Epoxy Resin",
+    description: "رزین اپوکسی دو جزئی با مقاومت شیمیایی بالا و چسبندگی عالی، مناسب برای پوشش‌دهی و چسباندن سطوح، زمان پخت سریع و مقاوم در برابر رطوبت",
     price: 75,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160563-40a4e3b4b3b3?w=400&h=400&fit=crop&q=80",
@@ -286,6 +321,7 @@ const mockProducts: Product[] = [
     sold: 1800,
     supplierId: "s18",
     supplierName: "Chemical Industries",
+    supplierNameFa: "صنایع شیمیایی",
     verified: true,
     categoryId: "5",
     rating: 4.7,
@@ -295,6 +331,7 @@ const mockProducts: Product[] = [
     id: "19",
     title: "آجر سفالی",
     titleEn: "Clay Brick",
+    description: "آجر سفالی با مقاومت فشاری بالا و ابعاد استاندارد، مناسب برای ساخت‌وساز و دیوارچینی، مقاوم در برابر رطوبت و تغییرات دما",
     price: 0.35,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=400&fit=crop&q=80",
@@ -302,6 +339,7 @@ const mockProducts: Product[] = [
     sold: 250000,
     supplierId: "s19",
     supplierName: "Building Materials Co.",
+    supplierNameFa: "شرکت مصالح ساختمانی",
     verified: true,
     categoryId: "6",
     rating: 4.6,
@@ -311,6 +349,7 @@ const mockProducts: Product[] = [
     id: "20",
     title: "شامپو طبیعی",
     titleEn: "Natural Shampoo",
+    description: "شامپو طبیعی حاوی عصاره گیاهان دارویی و بدون سولفات، مناسب برای انواع مو، تقویت کننده و مرطوب‌کننده، فرمولاسیون ملایم و بدون آسیب",
     price: 12,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=400&fit=crop&q=80",
@@ -318,6 +357,7 @@ const mockProducts: Product[] = [
     sold: 890,
     supplierId: "s20",
     supplierName: "Natural Beauty Co.",
+    supplierNameFa: "زیبایی طبیعی",
     verified: false,
     categoryId: "7",
     rating: 4.4,
@@ -327,6 +367,7 @@ const mockProducts: Product[] = [
     id: "21",
     title: "ماشین برش پلاسما",
     titleEn: "Plasma Cutting Machine",
+    description: "دستگاه برش پلاسما با قدرت برش تا ۴۰ میلی‌متر فولاد، سیستم کنترل CNC و میز کار بزرگ، مناسب برای برش فلزات و ورق‌های صنعتی",
     price: 9500,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&q=80",
@@ -334,6 +375,7 @@ const mockProducts: Product[] = [
     sold: 34,
     supplierId: "s21",
     supplierName: "Metal Working Equipment",
+    supplierNameFa: "تجهیزات فلزکاری",
     verified: true,
     categoryId: "4",
     rating: 4.8,
@@ -343,6 +385,7 @@ const mockProducts: Product[] = [
     id: "22",
     title: "لپ تاپ",
     titleEn: "Laptop",
+    description: "لپ تاپ با پردازنده قدرتمند و حافظه RAM بالا، صفحه نمایش Full HD و باتری با عمر طولانی، مناسب برای کار و بازی، پشتیبانی از Wi-Fi 6",
     price: 650,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop&q=80",
@@ -350,6 +393,7 @@ const mockProducts: Product[] = [
     sold: 567,
     supplierId: "s22",
     supplierName: "Computer Solutions",
+    supplierNameFa: "راه‌حل‌های کامپیوتری",
     verified: true,
     categoryId: "1",
     rating: 4.7,
@@ -359,6 +403,7 @@ const mockProducts: Product[] = [
     id: "23",
     title: "پلی استر",
     titleEn: "Polyester Fabric",
+    description: "پارچه پلی‌استر با بافت محکم و مقاوم در برابر چروک، مناسب برای تولید لباس و منسوجات، رنگ‌بندی متنوع و قابلیت چاپ بالا",
     price: 22,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1582719201952-c1ea6dc78a3d?w=400&h=400&fit=crop&q=80",
@@ -366,6 +411,7 @@ const mockProducts: Product[] = [
     sold: 3400,
     supplierId: "s23",
     supplierName: "Fabric Suppliers",
+    supplierNameFa: "تامین‌کنندگان پارچه",
     verified: true,
     categoryId: "2",
     rating: 4.5,
@@ -375,6 +421,7 @@ const mockProducts: Product[] = [
     id: "24",
     title: "ماشین تزریق پلاستیک",
     titleEn: "Plastic Injection Machine",
+    description: "دستگاه تزریق پلاستیک با ظرفیت بالا و سیستم کنترل پیشرفته، قابلیت تولید قطعات پلاستیکی با دقت بالا، مجهز به سیستم خنک‌کننده و تزریق خودکار",
     price: 35000,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=400&fit=crop&q=80",
@@ -382,6 +429,7 @@ const mockProducts: Product[] = [
     sold: 18,
     supplierId: "s24",
     supplierName: "Plastic Machinery Co.",
+    supplierNameFa: "شرکت ماشین‌آلات پلاستیک",
     verified: true,
     categoryId: "4",
     rating: 4.9,
@@ -391,6 +439,7 @@ const mockProducts: Product[] = [
     id: "25",
     title: "روغن صنعتی",
     titleEn: "Industrial Oil",
+    description: "روغن صنعتی با گرید ISO و مقاومت در برابر حرارت و فشار بالا، مناسب برای روان‌کاری ماشین‌آلات و تجهیزات صنعتی، افزایش عمر مفید دستگاه‌ها",
     price: 95,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1581092160563-40a4e3b4b3b3?w=400&h=400&fit=crop&q=80",
@@ -398,32 +447,187 @@ const mockProducts: Product[] = [
     sold: 2800,
     supplierId: "s25",
     supplierName: "Lubricant Solutions",
+    supplierNameFa: "محلول‌های روان‌کننده",
     verified: true,
     categoryId: "5",
     rating: 4.6,
     reviewCount: 389,
   },
+  {
+    id: "26",
+    title: "بادام درجه یک",
+    titleEn: "Premium Almonds",
+    description: "بادام درجه یک ایرانی با کیفیت عالی و طعم خوشمزه، مناسب برای صادرات و مصرف داخلی، بسته‌بندی بهداشتی و استاندارد",
+    price: 28,
+    currency: "USD",
+    image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=400&fit=crop",
+    moq: 100,
+    sold: 980,
+    supplierId: "s1",
+    supplierName: "Iranian Nuts Co.",
+    supplierNameFa: "شرکت خشکبار ایرانی",
+    verified: true,
+    categoryId: "3",
+    rating: 4.7,
+    reviewCount: 134,
+  },
+  {
+    id: "27",
+    title: "گردو تازه",
+    titleEn: "Fresh Walnuts",
+    description: "گردو تازه ایرانی با مغز کامل و طعم عالی، سرشار از ویتامین و امگا 3، مناسب برای سلامت قلب و مغز",
+    price: 22,
+    currency: "USD",
+    image: "https://images.unsplash.com/photo-1606312619070-d48b4bdc6e3c?w=400&h=400&fit=crop",
+    moq: 100,
+    sold: 750,
+    supplierId: "s1",
+    supplierName: "Iranian Nuts Co.",
+    supplierNameFa: "شرکت خشکبار ایرانی",
+    verified: true,
+    categoryId: "3",
+    rating: 4.6,
+    reviewCount: 98,
+  },
+  {
+    id: "28",
+    title: "زعفران درجه یک",
+    titleEn: "Premium Saffron",
+    description: "زعفران درجه یک قائنات با عیار بالا و رنگ طبیعی قرمز، مناسب برای مصارف غذایی و دارویی، بسته‌بندی در ظروف طلایی",
+    price: 55,
+    currency: "USD",
+    image: "https://images.unsplash.com/photo-1606914469633-bd39206ea739?w=400&h=400&fit=crop",
+    moq: 50,
+    sold: 650,
+    supplierId: "s2",
+    supplierName: "Saffron Export",
+    supplierNameFa: "صادرات زعفران",
+    verified: true,
+    categoryId: "3",
+    rating: 4.8,
+    reviewCount: 178,
+  },
+  {
+    id: "29",
+    title: "عسل کنار",
+    titleEn: "Sidr Honey",
+    description: "عسل کنار طبیعی و خالص با طعم و عطر خاص، استخراج شده از کندوهای ارگانیک، سرشار از آنزیم‌های مفید",
+    price: 25,
+    currency: "USD",
+    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",
+    moq: 24,
+    sold: 520,
+    supplierId: "s4",
+    supplierName: "Honey Farm",
+    supplierNameFa: "مزرعه عسل",
+    verified: false,
+    categoryId: "3",
+    rating: 4.5,
+    reviewCount: 76,
+  },
+  {
+    id: "30",
+    title: "فرش ماشینی",
+    titleEn: "Machine-Made Carpet",
+    description: "فرش ماشینی ایرانی با طرح‌های مدرن و رنگ‌های شاد، مناسب برای دکوراسیون منازل و ادارات، مقاوم و قابل شستشو",
+    price: 120,
+    currency: "USD",
+    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop",
+    moq: 1,
+    sold: 380,
+    supplierId: "s3",
+    supplierName: "Persian Carpets",
+    supplierNameFa: "فرش‌های دستباف ایرانی",
+    verified: true,
+    categoryId: "6",
+    rating: 4.4,
+    reviewCount: 156,
+  },
 ];
+
+// Category slug to ID mapping
+const categorySlugToId: Record<string, string> = {
+  "electronics": "1",
+  "machinery": "2",
+  "apparel": "3",
+  "electrical": "4",
+  "home": "5",
+  "transportation": "6",
+  "beauty": "7",
+  "packaging": "8",
+  "food": "9",
+  "chemicals": "10",
+  "construction": "11",
+  "medical": "12",
+};
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
+    const productType = searchParams.get("type");
+    const sortParam = searchParams.get("sort");
     const limit = parseInt(searchParams.get("limit") || "10");
     const offset = parseInt(searchParams.get("offset") || "0");
 
     let products = [...mockProducts];
 
+    // Filter by category (support both slug and ID)
     if (category) {
-      products = products.filter((p) => p.categoryId === category);
+      const categoryId = categorySlugToId[category] || category;
+      products = products.filter((p) => p.categoryId === categoryId);
+    }
+
+    // Filter by product type
+    if (productType) {
+      switch (productType) {
+        case "flash-deals":
+          // Products with high sold count (best sellers)
+          products = products.filter((p) => (p.sold || 0) > 500);
+          break;
+        case "featured":
+          // Verified products
+          products = products.filter((p) => p.verified === true);
+          break;
+        case "bestselling":
+          // Products sorted by sold count
+          products = products.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+          break;
+        default:
+          break;
+      }
+    }
+
+    // Sort products
+    if (sortParam) {
+      switch (sortParam) {
+        case "newest":
+          // For now, maintain original order (would need createdAt field)
+          break;
+        case "lowest-price":
+          products = products.sort((a, b) => a.price - b.price);
+          break;
+        case "highest-price":
+          products = products.sort((a, b) => b.price - a.price);
+          break;
+        case "popular":
+          products = products.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+          break;
+        case "bestselling":
+          products = products.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+          break;
+        default:
+          break;
+      }
     }
 
     // Pagination
+    const total = products.length;
     const paginatedProducts = products.slice(offset, offset + limit);
 
     return NextResponse.json({
       products: paginatedProducts,
-      total: products.length,
+      total,
       limit,
       offset,
     });

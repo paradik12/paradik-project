@@ -38,7 +38,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <div className="relative bg-gray-50 overflow-hidden flex-shrink-0" style={{ aspectRatio: '4/3', padding: '8px' }}>
           <Image
             src={product.image}
-            alt={`${language === "fa" ? product.title : product.titleEn} - Paradik B2B Marketplace`}
+            alt={language === "fa" ? product.title : product.titleEn}
             fill
             className="w-full h-full object-contain object-center group-hover:scale-110 transition-transform duration-500 rounded-lg"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -59,21 +59,21 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
         {/* Content */}
         <div className="p-4 flex-1 flex flex-col space-y-2">
-          {/* Product Title - 2 lines with ellipsis */}
-          <h4 
-            className="font-card-title line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors min-h-[48px]" 
-            style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, color: '#222' }}
-          >
-            {language === "fa" ? product.title : product.titleEn}
-          </h4>
+          {/* Product Description - 3 lines with ellipsis */}
+          {product.description && (
+            <p 
+              className="font-body line-clamp-3 text-gray-600" 
+              style={{ fontSize: '14px', lineHeight: '20px', fontWeight: 400, color: '#666' }}
+            >
+              {product.description}
+            </p>
+          )}
 
           {/* Price */}
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-number" style={{ fontSize: '18px', lineHeight: '22px', fontWeight: 600, color: '#1A1A1A' }}>
-                {formatPrice(product.price, product.currency, language)}
-              </span>
-            </div>
+          <div className="flex items-baseline gap-2">
+            <span className="font-number" style={{ fontSize: '18px', lineHeight: '22px', fontWeight: 600, color: '#1A1A1A' }}>
+              {formatPrice(product.price, product.currency, language)}
+            </span>
           </div>
 
           {/* MOQ and Country */}
@@ -105,7 +105,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           {/* Supplier Name */}
           <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
             <span className="font-small truncate flex-1" style={{ fontSize: '13px', lineHeight: '18px', fontWeight: 500, color: '#666' }}>
-              {product.supplierName}
+              {language === "fa" ? (product.supplierNameFa || product.supplierName) : product.supplierName}
             </span>
             {product.verified && (
               <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">
@@ -129,4 +129,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
     </Link>
   );
 }
+
+
 
